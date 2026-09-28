@@ -130,3 +130,39 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   line-height: 1.2;
 }
+
+/* Seamless royal blue grid background matching Hero_bg.png */
+.hero-grid-bg {
+  background-color: #003be2;
+  background-image:
+    linear-gradient(to right, #1f53e6 1px, transparent 1px),
+    linear-gradient(to bottom, #1f53e6 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: center top;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-1.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 7s ease-in-out infinite;
+}
