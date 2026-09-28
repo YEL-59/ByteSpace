@@ -5,23 +5,13 @@ import { Video, BarChart3, DollarSign, Sparkles } from "lucide-react";
 import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 
-const CREATOR_PERKS = [
-  {
-    icon: <Video className="w-5 h-5 text-primary-600" />,
-    title: "Intuitive Course Builder",
-    description: "Upload high-definition video modules, interactive quizzes, and downloadable assets in minutes.",
-  },
-  {
-    icon: <BarChart3 className="w-5 h-5 text-primary-600" />,
-    title: "Real-Time Student Analytics",
-    description: "Track completion rates, quiz scores, and student engagement with live data visualizers.",
-  },
-  {
-    icon: <DollarSign className="w-5 h-5 text-primary-600" />,
-    title: "Automated Global Payouts",
-    description: "Earn industry-leading creator royalties with direct, hassle-free monthly payments worldwide.",
-  },
-];
+import creatorPerksData from "@/data/creatorPerks.json";
+
+const ICON_MAP: Record<string, React.ReactNode> = {
+  Video: <Video className="w-5 h-5 text-primary-600" />,
+  BarChart3: <BarChart3 className="w-5 h-5 text-primary-600" />,
+  DollarSign: <DollarSign className="w-5 h-5 text-primary-600" />,
+};
 
 export default function CreatorSection() {
   return (
@@ -44,10 +34,10 @@ export default function CreatorSection() {
             </p>
 
             <div className="mt-8 space-y-6">
-              {CREATOR_PERKS.map((perk, i) => (
+              {creatorPerksData.map((perk, i) => (
                 <div key={i} className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center shrink-0 shadow-xs">
-                    {perk.icon}
+                    {ICON_MAP[perk.icon] || <Video className="w-5 h-5 text-primary-600" />}
                   </div>
                   <div>
                     <h3 className="font-heading text-label-l font-semibold text-neutral-900">

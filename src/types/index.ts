@@ -19,6 +19,8 @@ export interface Course {
   level: string;
   duration: string;
   lessonsCount: number;
+  commentsCount?: number;
+  studentAvatars?: string[];
   instructor: Instructor;
   thumbnail: string;
 }

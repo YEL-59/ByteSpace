@@ -1,0 +1,29 @@
+[
+  {
+    "links": [
+      { "label": "Featured Courses", "href": "/courses" },
+      { "label": "Featured Categories", "href": "/courses" },
+      { "label": "Business", "href": "/courses?cat=business" },
+      { "label": "IT", "href": "/courses?cat=data-cloud" },
+      { "label": "Design", "href": "/courses?cat=ui-ux" }
+    ]
+  },
+  {
+    "links": [
+      { "label": "Development", "href": "/courses?cat=web-dev" },
+      { "label": "Marketing", "href": "/courses?cat=marketing" },
+      { "label": "Photography", "href": "/courses?cat=photography" },
+      { "label": "Finance", "href": "/courses?cat=finance" },
+      { "label": "Sport", "href": "/courses?cat=sport" }
+    ]
+  },
+  {
+    "links": [
+      { "label": "Become a Creator", "href": "/#creators" },
+      { "label": "Affiliate Program", "href": "#" },
+      { "label": "Contact", "href": "#" },
+      { "label": "Help", "href": "#" },
+      { "label": "About", "href": "/#about" }
+    ]
+  }
+]
