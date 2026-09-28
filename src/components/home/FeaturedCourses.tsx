@@ -5,35 +5,8 @@ import Link from "next/link";
 import Container from "@/components/common/Container";
 import CourseCard from "@/components/home/CourseCard";
 import coursesData from "@/data/courses.json";
+import categoryTagsData from "@/data/categoryTags.json";
 import { Course } from "@/types";
-
-// Categorized rows exactly matching the design layout
-const TAG_ROWS = [
-  [
-    { id: "featured", label: "Featured" },
-    { id: "music", label: "Music" },
-    { id: "drawing-painting", label: "Drawing & Painting" },
-    { id: "marketing", label: "Marketing" },
-    { id: "animation", label: "Animation" },
-    { id: "social-media", label: "Social Media" },
-    { id: "ui-ux", label: "UI/UX Design" },
-    { id: "creative-marketing", label: "Creative Marketing" },
-  ],
-  [
-    { id: "digital-illustration", label: "Digital Illustration" },
-    { id: "film-video", label: "Film & Video" },
-    { id: "crafts", label: "Crafts" },
-    { id: "freelance-entrepreneurship", label: "Freelance & Entrepreneurship" },
-    { id: "graphic-design", label: "Graphic Design" },
-    { id: "photography", label: "Photography" },
-  ],
-  [
-    { id: "productivity", label: "Productivity" },
-    { id: "web-dev", label: "Web Development" },
-    { id: "data-science", label: "Data Science" },
-    { id: "cooking", label: "Cooking" },
-  ],
-];
 
 export default function FeaturedCourses() {
   const [activeTab, setActiveTab] = useState("featured");
@@ -74,7 +47,7 @@ export default function FeaturedCourses() {
 
         {/* 3-Row Centered Filter Tags */}
         <div className="flex flex-col items-center gap-2.5 sm:gap-3 mb-14">
-          {TAG_ROWS.map((row, rowIdx) => (
+          {categoryTagsData.map((row, rowIdx) => (
             <div
               key={rowIdx}
               className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
@@ -96,7 +69,7 @@ export default function FeaturedCourses() {
                 );
               })}
               {/* + More link on the last row */}
-              {rowIdx === TAG_ROWS.length - 1 && (
+              {rowIdx === categoryTagsData.length - 1 && (
                 <Link
                   href="/courses"
                   className="inline-flex items-center text-xs sm:text-[13px] md:text-sm font-semibold text-primary-500 hover:text-primary-600 transition-colors px-3 py-1.5 cursor-pointer ml-0.5 hover:underline"

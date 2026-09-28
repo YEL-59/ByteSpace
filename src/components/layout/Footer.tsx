@@ -5,47 +5,7 @@ import Link from "next/link";
 import { Sparkles, ArrowRight } from "lucide-react";
 import Container from "@/components/common/Container";
 
-const FOOTER_SECTIONS = [
-  {
-    title: "Courses",
-    links: [
-      { label: "Web Development", href: "/courses?cat=web-dev" },
-      { label: "Artificial Intelligence", href: "/courses?cat=ai-ml" },
-      { label: "UI/UX Design", href: "/courses?cat=ui-ux" },
-      { label: "Data Engineering", href: "/courses?cat=data-cloud" },
-      { label: "Product Management", href: "/courses?cat=business" },
-    ],
-  },
-  {
-    title: "ByteSpace",
-    links: [
-      { label: "About Us", href: "#about" },
-      { label: "Become an Instructor", href: "#creators" },
-      { label: "Careers", href: "#" },
-      { label: "Press & Media", href: "#" },
-      { label: "Affiliate Program", href: "#" },
-    ],
-  },
-  {
-    title: "Community",
-    links: [
-      { label: "Discussion Forums", href: "#" },
-      { label: "Discord Community", href: "#" },
-      { label: "Student Stories", href: "#testimonials" },
-      { label: "Events & Hackathons", href: "#" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { label: "Help Center", href: "#" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Cookie Settings", href: "#" },
-    ],
-  },
-];
+import footerLinksData from "@/data/footerLinks.json";
 
 export default function Footer() {
   return (
@@ -140,7 +100,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          {FOOTER_SECTIONS.map((section) => (
+          {footerLinksData.map((section) => (
             <div key={section.title} className="col-span-1">
               <h4 className="font-heading text-label-m font-semibold text-white mb-4">
                 {section.title}

@@ -5,12 +5,7 @@ import { CheckCircle2, Award, Zap, ShieldCheck } from "lucide-react";
 import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 
-const BENEFITS = [
-  "Hands-on project-based curriculum tested in high-growth companies",
-  "1-on-1 weekly code reviews and portfolio mentoring from tech leads",
-  "Industry-recognized certification shareable on LinkedIn and resumes",
-  "Lifetime access to course updates, lesson resources, and community forums",
-];
+import growthBenefitsData from "@/data/growthBenefits.json";
 
 export default function GrowthSection() {
   return (
@@ -67,7 +62,7 @@ export default function GrowthSection() {
             </p>
 
             <ul className="mt-8 space-y-4">
-              {BENEFITS.map((benefit, idx) => (
+              {growthBenefitsData.map((benefit, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" />
                   <span className="text-body-m text-neutral-700 font-medium">
