@@ -102,7 +102,7 @@ This repository follows industry-standard Git flow without committing directly t
 3. **`feature/landing-page`**: Complete 10-section landing page implementation.
 4. **`feature/auth-and-catalog`**: Split-screen Login and Register pages (Bonus), Course Search catalog, Dynamic Course Details, and 404 page.
 
-👉 **Create Pull Request**: [Open Pull Request on GitHub](https://github.com/YEL-59/ByteSpace/compare/main...feature/auth-and-catalog?expand=1)
+👉 **Active Pull Request**: [Pull Request #2: feat: landing page, authentication split-screens, course catalog, and design system](https://github.com/YEL-59/ByteSpace/pull/2)
 
 ---
 
