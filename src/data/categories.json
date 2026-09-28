@@ -1,0 +1,44 @@
+[
+  {
+    "id": "web-dev",
+    "name": "Web Development",
+    "icon": "Code",
+    "courseCount": 142,
+    "description": "Full-stack, React, Next.js, Node.js & modern architecture."
+  },
+  {
+    "id": "ai-ml",
+    "name": "Artificial Intelligence",
+    "icon": "Cpu",
+    "courseCount": 98,
+    "description": "Machine learning, LLMs, neural networks & computer vision."
+  },
+  {
+    "id": "ui-ux",
+    "name": "UI/UX Design",
+    "icon": "Palette",
+    "courseCount": 85,
+    "description": "User experience, design systems, Figma & prototyping."
+  },
+  {
+    "id": "data-cloud",
+    "name": "Data & Cloud",
+    "icon": "Database",
+    "courseCount": 76,
+    "description": "AWS, Cloud architecture, SQL, Snowflake & Big Data pipelines."
+  },
+  {
+    "id": "business",
+    "name": "Business & Growth",
+    "icon": "TrendingUp",
+    "courseCount": 64,
+    "description": "Product management, agile frameworks, startup strategy & SEO."
+  },
+  {
+    "id": "mobile-dev",
+    "name": "Mobile Development",
+    "icon": "Smartphone",
+    "courseCount": 52,
+    "description": "Cross-platform mobile apps with React Native, Flutter & iOS Swift."
+  }
+]
