@@ -38,8 +38,9 @@ export interface Testimonial {
   name: string;
   role: string;
   avatar: string;
-  rating: number;
-  course: string;
+  avatarBg?: string;
+  rating?: number;
+  course?: string;
   content: string;
 }
 
