@@ -1,84 +1,105 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Search, ShoppingBag, Menu, X, Sparkles } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ShoppingBag, Menu, X } from "lucide-react";
 import Container from "@/components/common/Container";
-import Button from "@/components/common/Button";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
-  { label: "Mentors", href: "#mentors" },
-  { label: "About Us", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Creators", href: "/#creators" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isTransparent = isHome && !scrolled;
+
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-100 transition-all">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isTransparent
+          ? "bg-transparent py-2"
+          : "bg-[#003be2]/90 backdrop-blur-md shadow-lg border-b border-white/10 py-1"
+      }`}
+    >
       <Container size="wide">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center text-secondary-500 shadow-md shadow-primary-600/20 group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5 fill-secondary-500" />
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight text-neutral-900">
-              Byte<span className="text-primary-600">Space</span>
-            </span>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/svgs/nav_logo.svg"
+              alt="ByteSpace"
+              width={145}
+              height={32}
+              priority
+              className="h-7 sm:h-8 w-auto group-hover:opacity-95 transition-opacity"
+            />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-label-s text-neutral-600 hover:text-primary-600 transition-colors font-medium"
+                className="text-sm font-medium text-white/90 hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button
-              aria-label="Search courses"
-              className="p-2.5 rounded-full text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-colors cursor-pointer"
+          {/* Right Action Items: Sign In, Join Us, Cart */}
+          <div className="hidden sm:flex items-center gap-6">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-white/90 hover:text-white transition-colors"
             >
-              <Search className="w-5 h-5" />
-            </button>
-            <button
+              Sign In
+            </Link>
+            <Link
+              href="/register"
+              className="text-sm font-medium text-white/90 hover:text-white transition-colors"
+            >
+              Join Us
+            </Link>
+            <Link
+              href="/courses"
               aria-label="Shopping Cart"
-              className="relative p-2.5 rounded-full text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-colors cursor-pointer"
+              className="p-1.5 text-white/90 hover:text-white transition-colors relative"
             >
               <ShoppingBag className="w-5 h-5" />
-              <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-secondary-500 text-neutral-950 text-[10px] font-bold flex items-center justify-center">
-                2
-              </span>
-            </button>
-            <div className="h-6 w-[1px] bg-neutral-200 mx-1" />
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Log In
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button variant="secondary" size="sm">
-                Sign Up
-              </Button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex sm:hidden items-center gap-2">
+          <div className="flex sm:hidden items-center gap-3">
+            <Link
+              href="/courses"
+              aria-label="Shopping Cart"
+              className="p-1.5 text-white"
+            >
+              <ShoppingBag className="w-5 h-5" />
+            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-neutral-700 hover:bg-neutral-100"
+              className="p-2 rounded-lg text-white hover:bg-white/10"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -89,29 +110,33 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden border-b border-neutral-200 bg-white px-4 pt-3 pb-6 space-y-4">
+        <div className="sm:hidden border-b border-white/10 bg-[#003be2] px-6 pt-3 pb-6 space-y-4">
           <nav className="flex flex-col space-y-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-label-m text-neutral-700 hover:text-primary-600 py-1"
+                className="text-base font-medium text-white/90 hover:text-white py-1"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div className="pt-3 border-t border-neutral-100 flex flex-col gap-2">
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="outline" size="md" className="w-full">
-                Log In
-              </Button>
+          <div className="pt-3 border-t border-white/10 flex flex-col gap-3">
+            <Link
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center py-2.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10"
+            >
+              Sign In
             </Link>
-            <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="secondary" size="md" className="w-full">
-                Sign Up
-              </Button>
+            <Link
+              href="/register"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center py-2.5 rounded-xl bg-[#CEF001] text-neutral-950 font-bold text-sm hover:bg-[#bde200]"
+            >
+              Join Us
             </Link>
           </div>
         </div>
@@ -119,3 +144,4 @@ export default function Navbar() {
     </header>
   );
 }
+
