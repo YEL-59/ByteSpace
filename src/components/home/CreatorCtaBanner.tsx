@@ -1,57 +1,45 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, ArrowRight } from "lucide-react";
 import Container from "@/components/common/Container";
-import Button from "@/components/common/Button";
 
 export default function CreatorCtaBanner() {
   return (
-    <section className="py-16 sm:py-20 bg-primary-600 text-white relative overflow-hidden">
-      {/* Decorative Lime 3D Shapes */}
-      <div className="absolute top-6 left-12 w-12 h-12 text-secondary-500/80 pointer-events-none rotate-45">
-        <svg viewBox="0 0 100 100" fill="currentColor">
-          <polygon points="50,0 65,35 100,50 65,65 50,100 35,65 0,50 35,35" />
-        </svg>
-      </div>
-      <div className="absolute bottom-6 right-16 w-20 h-20 text-secondary-400/70 pointer-events-none -rotate-12">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="10">
-          <rect x="20" y="20" width="60" height="60" rx="15" />
-        </svg>
+    <section
+      className="relative w-full overflow-hidden bg-[#0A4CEE]"
+      id="creator-cta"
+    >
+      {/* Background Image Overlay - sits at z-0 above section background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <Image
+          src="/cta_bg.png"
+          alt="Creator CTA background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
       </div>
 
-      <Container size="default">
-        <div className="text-center relative z-10 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-700 text-secondary-400 text-label-xs font-semibold uppercase tracking-wider mb-6 border border-primary-500/40">
-            <Sparkles className="w-4 h-4 fill-secondary-400" />
-            <span>Join 300+ Verified Instructors</span>
-          </div>
-
-          <h2 className="text-heading-s sm:text-heading-m font-semibold tracking-tight text-white leading-tight">
-            Unlock Your Potential as a Creator With ByteSpace
+      <Container size="default" className="relative z-10 py-16 sm:py-20 md:py-24 lg:py-28">
+        <div className="text-center max-w-2xl mx-auto flex flex-col items-center">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-white tracking-tight leading-[1.2]">
+            Unlock Your Potential as a <br className="hidden sm:inline" />
+            Creator with ByteSpace
           </h2>
 
-          <p className="mt-4 text-body-l text-primary-100 max-w-xl mx-auto">
-            Empower hundreds of thousands of students around the world while building your brand and recurring passive income.
+          <p className="mt-4 sm:mt-5 text-xs sm:text-[13px] md:text-sm text-white/90 leading-relaxed font-normal max-w-xl mx-auto">
+            Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-7 sm:mt-8">
             <Link href="/register?role=creator">
-              <Button
-                variant="secondary"
-                size="lg"
-                icon={<ArrowRight className="w-4 h-4" />}
+              <button
+                type="button"
+                className="px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-[#CEF001] hover:bg-[#bde000] text-neutral-950 font-bold text-xs sm:text-sm transition-all duration-200 shadow-md cursor-pointer hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
               >
-                Start Teaching Today
-              </Button>
-            </Link>
-            <Link href="/courses">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-white/10 text-white border-white/30 hover:bg-white/20"
-              >
-                Browse All Courses
-              </Button>
+                Join as Creator
+              </button>
             </Link>
           </div>
         </div>

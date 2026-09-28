@@ -29,8 +29,8 @@ export interface Category {
   id: string;
   name: string;
   icon: string;
-  courseCount: number;
-  description: string;
+  courseCount?: number;
+  description?: string;
 }
 
 export interface Testimonial {
@@ -38,8 +38,9 @@ export interface Testimonial {
   name: string;
   role: string;
   avatar: string;
-  rating: number;
-  course: string;
+  avatarBg?: string;
+  rating?: number;
+  course?: string;
   content: string;
 }
 

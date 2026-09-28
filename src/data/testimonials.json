@@ -1,29 +1,26 @@
 [
   {
     "id": "t1",
-    "name": "Emily Watson",
-    "role": "Frontend Engineer at Vercel",
-    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&h=200&q=80",
-    "rating": 5,
-    "course": "Build Digital Asset: A Comprehensive Guide",
-    "content": "ByteSpace completely transformed how I learn and apply modern architecture. The bite-sized lessons, interactive projects, and real-world instructor feedback helped me land my dream role."
+    "name": "Sarah M.",
+    "role": "Enthusiastic Learner",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
+    "avatarBg": "bg-amber-400",
+    "content": "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning."
   },
   {
     "id": "t2",
-    "name": "Liam Vance",
-    "role": "Lead Product Designer at Stripe",
+    "name": "James L.",
+    "role": "Lifelong Learner",
     "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80",
-    "rating": 5,
-    "course": "Enterprise UI/UX Design System in Figma",
-    "content": "The design systems curriculum was hands-down the best structured program I have taken online. Extremely polished and immediately applicable to high-scale production design."
+    "avatarBg": "bg-neutral-400",
+    "content": "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development."
   },
   {
     "id": "t3",
-    "name": "Sophia Ramirez",
-    "role": "AI Research Engineer",
-    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
-    "rating": 5,
-    "course": "AI Engineering & Practical LLM Application Development",
-    "content": "From theory to production deployment of LLM agents, ByteSpace provided exactly the cutting-edge content missing from traditional courses. Highly recommended!"
+    "name": "Alex B.",
+    "role": "Inspired Creator",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80",
+    "avatarBg": "bg-blue-300",
+    "content": "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally."
   }
 ]
