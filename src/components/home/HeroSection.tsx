@@ -48,8 +48,8 @@ export default function HeroSection() {
           {/* LAYER 2: 3D Floating SVG Shapes positioned around canvas */}
           {/* ========================================================= */}
 
-          {/* 1. Spiral Lime (Top-Left) */}
-          <div className="absolute left-[0%] top-[25%] w-[18%] aspect-square pointer-events-none animate-float-slow">
+          {/* 1. Spiral Lime (Top-Left - Enlaraged with negative left bleed) */}
+          <div className="absolute -left-[4%] sm:-left-[5%] top-[22%] w-[24%] sm:w-[25%] lg:w-[26%] aspect-square pointer-events-none animate-float-slow z-10">
             <Image
               src="/svgs/spiral-lime.svg"
               alt="Lime 3D Spiral"
@@ -58,8 +58,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* 2. Spiral White 1 (Middle-Left) */}
-          <div className="absolute left-[13%] top-[47%] w-[9%] aspect-square pointer-events-none animate-float-reverse">
+          {/* 2. Spiral White 1 (Middle-Left - Enlarged) */}
+          <div className="absolute left-[13%] sm:left-[14%] top-[45%] w-[11%] sm:w-[12%] aspect-square pointer-events-none animate-float-reverse z-10">
             <Image
               src="/svgs/spiral-white-1.svg"
               alt="White 3D Spring"
@@ -68,8 +68,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* 3. Donut Torus White (Bottom-Left) */}
-          <div className="absolute left-[2%] top-[69%] w-[17.5%] aspect-square pointer-events-none animate-float-slow">
+          {/* 3. Donut Torus White (Bottom-Left - Enlarged with negative left bleed) */}
+          <div className="absolute -left-[3%] sm:-left-[4%] top-[66%] w-[23%] sm:w-[24%] lg:w-[25%] aspect-square pointer-events-none animate-float-slow z-10">
             <Image
               src="/svgs/donut-white.svg"
               alt="White 3D Donut"
@@ -78,8 +78,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* 4. Cylinder Lime / Grey (Top-Right) */}
-          <div className="absolute right-[0%] top-[24%] w-[18.5%] aspect-square pointer-events-none animate-float-slow">
+          {/* 4. Cylinder Lime / Grey (Top-Right - Enlarged with negative right bleed) */}
+          <div className="absolute -right-[5%] sm:-right-[6%] top-[20%] w-[25%] sm:w-[26%] lg:w-[27%] aspect-square pointer-events-none animate-float-slow z-10">
             <Image
               src="/svgs/cylinder-lime.svg"
               alt="Lime 3D Cylinder"
@@ -88,8 +88,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* 5. Pyramid Prism White (Middle-Right) */}
-          <div className="absolute right-[12.5%] top-[46%] w-[9.5%] aspect-square pointer-events-none animate-float-reverse">
+          {/* 5. Pyramid Prism White (Middle-Right - Enlarged) */}
+          <div className="absolute right-[11%] sm:right-[12%] top-[44%] w-[12%] sm:w-[13%] aspect-square pointer-events-none animate-float-reverse z-10">
             <Image
               src="/svgs/pyramid-white.svg"
               alt="White 3D Pyramid"
@@ -98,8 +98,8 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* 6. Spiral White 2 (Bottom-Right) */}
-          <div className="absolute right-[2%] top-[67%] w-[16.5%] aspect-square pointer-events-none animate-float-slow">
+          {/* 6. Spiral White 2 (Bottom-Right - Enlarged with negative right bleed) */}
+          <div className="absolute -right-[4%] sm:-right-[5%] top-[65%] w-[21%] sm:w-[22%] lg:w-[23%] aspect-square pointer-events-none animate-float-slow z-10">
             <Image
               src="/svgs/spiral-white-2.svg"
               alt="White 3D Coil"
