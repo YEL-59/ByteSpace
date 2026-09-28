@@ -2,72 +2,115 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import Container from "@/components/common/Container";
-import SectionHeading from "@/components/common/SectionHeading";
-import Button from "@/components/common/Button";
 import CourseCard from "@/components/home/CourseCard";
 import coursesData from "@/data/courses.json";
 import { Course } from "@/types";
 
-const TABS = [
-  { id: "all", label: "All Courses" },
-  { id: "web-dev", label: "Web Development" },
-  { id: "ui-ux", label: "UI/UX Design" },
-  { id: "ai-ml", label: "Artificial Intelligence" },
-  { id: "data-cloud", label: "Data & Cloud" },
-  { id: "business", label: "Business & Growth" },
+// Categorized rows exactly matching the design layout
+const TAG_ROWS = [
+  [
+    { id: "featured", label: "Featured" },
+    { id: "music", label: "Music" },
+    { id: "drawing-painting", label: "Drawing & Painting" },
+    { id: "marketing", label: "Marketing" },
+    { id: "animation", label: "Animation" },
+    { id: "social-media", label: "Social Media" },
+    { id: "ui-ux", label: "UI/UX Design" },
+    { id: "creative-marketing", label: "Creative Marketing" },
+  ],
+  [
+    { id: "digital-illustration", label: "Digital Illustration" },
+    { id: "film-video", label: "Film & Video" },
+    { id: "crafts", label: "Crafts" },
+    { id: "freelance-entrepreneurship", label: "Freelance & Entrepreneurship" },
+    { id: "graphic-design", label: "Graphic Design" },
+    { id: "photography", label: "Photography" },
+  ],
+  [
+    { id: "productivity", label: "Productivity" },
+    { id: "web-dev", label: "Web Development" },
+    { id: "data-science", label: "Data Science" },
+    { id: "cooking", label: "Cooking" },
+  ],
 ];
 
 export default function FeaturedCourses() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("featured");
 
+  // Filter courses based on active tag
   const filteredCourses: Course[] =
-    activeTab === "all"
+    activeTab === "featured" || activeTab === "all"
       ? (coursesData as Course[])
-      : (coursesData as Course[]).filter((c) => c.categoryId === activeTab);
+      : (coursesData as Course[]).filter((c) => {
+          const catId = c.categoryId?.toLowerCase() || "";
+          const catName = c.category?.toLowerCase() || "";
+          const searchKey = activeTab.toLowerCase().replace(/-/g, " ");
+          return (
+            catId === activeTab ||
+            catName.includes(searchKey) ||
+            searchKey.includes(catId) ||
+            (activeTab === "data-science" && catId === "data-cloud") ||
+            (activeTab === "marketing" && catId === "business")
+          );
+        });
+
+  const displayCourses =
+    filteredCourses.length > 0 ? filteredCourses : (coursesData as Course[]);
 
   return (
-    <section className="py-20 lg:py-28 bg-white" id="courses">
+    <section className="py-16 sm:py-20 lg:py-24 bg-white" id="courses">
       <Container size="wide">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <SectionHeading
-            align="left"
-            badge="Top Trending"
-            title="Discover Your Passion, Build Your Skills"
-            subtitle="Explore our top-rated, industry-verified courses taught by seasoned professionals and tech leaders."
-          />
-          <Link href="/courses">
-            <Button
-              variant="outline"
-              size="md"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Explore All Courses
-            </Button>
-          </Link>
+        {/* Centered Heading & Subtitle */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1A1E23] tracking-tight leading-[1.15]">
+            Discover Your Passion, <br className="hidden sm:inline" />
+            Build Your Skills
+          </h2>
+          <p className="mt-4 text-[#6E8090] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life.
+          </p>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
-          {TABS.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-label-s whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                activeTab === tab.id
-                  ? "bg-primary-600 text-white font-semibold shadow-md shadow-primary-600/20"
-                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
-              }`}
+        {/* 3-Row Centered Filter Tags */}
+        <div className="flex flex-col items-center gap-2.5 sm:gap-3 mb-14">
+          {TAG_ROWS.map((row, rowIdx) => (
+            <div
+              key={rowIdx}
+              className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
             >
-              {tab.label}
-            </button>
+              {row.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-[13px] md:text-sm font-medium transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-[#CEF001] text-neutral-950 font-bold shadow-sm shadow-[#CEF001]/30"
+                        : "bg-[#F2F3F6] text-[#404C57] hover:bg-[#E4E6EB] hover:text-neutral-900"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+              {/* + More link on the last row */}
+              {rowIdx === TAG_ROWS.length - 1 && (
+                <Link
+                  href="/courses"
+                  className="inline-flex items-center text-xs sm:text-[13px] md:text-sm font-semibold text-primary-500 hover:text-primary-600 transition-colors px-3 py-1.5 cursor-pointer ml-0.5 hover:underline"
+                >
+                  + More
+                </Link>
+              )}
+            </div>
           ))}
         </div>
 
         {/* Courses Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredCourses.map((course) => (
+          {displayCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
         </div>
