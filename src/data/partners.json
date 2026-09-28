@@ -1,0 +1,8 @@
+[
+  { "id": "p1", "name": "Coursera", "tagline": "Online Degrees & Certifications" },
+  { "id": "p2", "name": "Udemy", "tagline": "Skill Development" },
+  { "id": "p3", "name": "Skillshare", "tagline": "Creative Learning" },
+  { "id": "p4", "name": "edX", "tagline": "University Courses" },
+  { "id": "p5", "name": "Masterclass", "tagline": "World-Class Mentorship" },
+  { "id": "p6", "name": "Pluralsight", "tagline": "Enterprise Tech Skills" }
+]

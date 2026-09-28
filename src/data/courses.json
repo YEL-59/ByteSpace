@@ -1,0 +1,134 @@
+[
+  {
+    "id": "course-1",
+    "title": "Build Digital Asset: A Comprehensive Guide",
+    "slug": "build-digital-asset-comprehensive-guide",
+    "category": "Web Development",
+    "categoryId": "web-dev",
+    "badge": "Bestseller",
+    "rating": 4.9,
+    "reviewsCount": 1280,
+    "price": 49.99,
+    "originalPrice": 89.99,
+    "level": "Intermediate",
+    "duration": "14h 30m",
+    "lessonsCount": 42,
+    "instructor": {
+      "id": "inst-1",
+      "name": "Alex Johnson",
+      "role": "Lead Architect at ByteSpace",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "course-2",
+    "title": "Next.js 15 & Modern Full-Stack Architecture",
+    "slug": "nextjs-15-modern-fullstack-architecture",
+    "category": "Web Development",
+    "categoryId": "web-dev",
+    "badge": "Hot",
+    "rating": 4.95,
+    "reviewsCount": 940,
+    "price": 54.99,
+    "originalPrice": 99.99,
+    "level": "All Levels",
+    "duration": "18h 15m",
+    "lessonsCount": 58,
+    "instructor": {
+      "id": "inst-2",
+      "name": "Sarah Chen",
+      "role": "Senior Full-Stack Engineer",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "course-3",
+    "title": "Enterprise UI/UX Design System in Figma",
+    "slug": "enterprise-uiux-design-system-figma",
+    "category": "UI/UX Design",
+    "categoryId": "ui-ux",
+    "badge": "Popular",
+    "rating": 4.88,
+    "reviewsCount": 820,
+    "price": 39.99,
+    "originalPrice": 74.99,
+    "level": "Beginner to Pro",
+    "duration": "12h 45m",
+    "lessonsCount": 36,
+    "instructor": {
+      "id": "inst-3",
+      "name": "Marcus Aurel",
+      "role": "Product Design Director",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "course-4",
+    "title": "AI Engineering & Practical LLM Application Development",
+    "slug": "ai-engineering-practical-llm-applications",
+    "category": "Artificial Intelligence",
+    "categoryId": "ai-ml",
+    "badge": "Trending",
+    "rating": 4.92,
+    "reviewsCount": 1150,
+    "price": 64.99,
+    "originalPrice": 119.99,
+    "level": "Advanced",
+    "duration": "16h 00m",
+    "lessonsCount": 48,
+    "instructor": {
+      "id": "inst-4",
+      "name": "Elena Rostova",
+      "role": "AI Research Engineer",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "course-5",
+    "title": "Data Engineering Pipelines with Python & Snowflake",
+    "slug": "data-engineering-pipelines-python-snowflake",
+    "category": "Data & Cloud",
+    "categoryId": "data-cloud",
+    "badge": "Top Rated",
+    "rating": 4.85,
+    "reviewsCount": 670,
+    "price": 44.99,
+    "originalPrice": 79.99,
+    "level": "Intermediate",
+    "duration": "15h 20m",
+    "lessonsCount": 38,
+    "instructor": {
+      "id": "inst-5",
+      "name": "David Miller",
+      "role": "Principal Data Architect",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "course-6",
+    "title": "Tech Product Management & Growth Hacking",
+    "slug": "tech-product-management-growth-hacking",
+    "category": "Business & Strategy",
+    "categoryId": "business",
+    "badge": "Bestseller",
+    "rating": 4.91,
+    "reviewsCount": 890,
+    "price": 49.99,
+    "originalPrice": 89.99,
+    "level": "All Levels",
+    "duration": "11h 10m",
+    "lessonsCount": 30,
+    "instructor": {
+      "id": "inst-6",
+      "name": "Jessica Taylor",
+      "role": "VP of Growth & Strategy",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80"
+    },
+    "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+  }
+]

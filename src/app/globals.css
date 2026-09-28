@@ -1,0 +1,132 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-neutral-50: #F2F3F6;
+  --color-neutral-100: #E4E6EB;
+  --color-neutral-200: #CAD0D7;
+  --color-neutral-300: #ACB6BE;
+  --color-neutral-400: #8F9CA7;
+  --color-neutral-500: #6E8090;
+  --color-neutral-600: #546573;
+  --color-neutral-700: #404C57;
+  --color-neutral-800: #313A43;
+  --color-neutral-900: #262D34;
+  --color-neutral-950: #1A1E23;
+
+  --color-primary-50: #E7F0FF;
+  --color-primary-100: #C1DCFF;
+  --color-primary-200: #94C4FF;
+  --color-primary-300: #63A7FF;
+  --color-primary-400: #3B8AFF;
+  --color-primary-500: #166FFF;
+  --color-primary-600: #0057E8;
+  --color-primary-700: #0043BF;
+  --color-primary-800: #003399;
+  --color-primary-900: #00267A;
+  --color-primary-950: #00164D;
+
+  --color-secondary-50: #F6FFE4;
+  --color-secondary-100: #ECFFC1;
+  --color-secondary-200: #DEFF92;
+  --color-secondary-300: #CCFF5C;
+  --color-secondary-400: #BAFF26;
+  --color-secondary-500: #CEF001;
+  --color-secondary-600: #A7CE00;
+  --color-secondary-700: #84A900;
+  --color-secondary-800: #648500;
+  --color-secondary-900: #486300;
+  --color-secondary-950: #2F4200;
+
+  --font-heading: var(--font-poppins), 'Poppins', sans-serif;
+  --font-body: 'Satoshi', var(--font-satoshi), sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #262D34;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Typography Utilities from Figma Specifications */
+.text-heading-l {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* 72px */
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.text-heading-m {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 3rem); /* 48px */
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.text-heading-s {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem); /* 36px */
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.text-heading-xs {
+  font-family: var(--font-heading);
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.text-body-l {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6;
+}
+
+.text-body-m {
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+}
+
+.text-body-s {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.6;
+}
+
+.text-body-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.6;
+}
+
+.text-label-l {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-label-m {
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-label-s {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-label-xs {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  line-height: 1.2;
+}
