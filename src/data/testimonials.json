@@ -1,0 +1,29 @@
+[
+  {
+    "id": "t1",
+    "name": "Emily Watson",
+    "role": "Frontend Engineer at Vercel",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&h=200&q=80",
+    "rating": 5,
+    "course": "Build Digital Asset: A Comprehensive Guide",
+    "content": "ByteSpace completely transformed how I learn and apply modern architecture. The bite-sized lessons, interactive projects, and real-world instructor feedback helped me land my dream role."
+  },
+  {
+    "id": "t2",
+    "name": "Liam Vance",
+    "role": "Lead Product Designer at Stripe",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80",
+    "rating": 5,
+    "course": "Enterprise UI/UX Design System in Figma",
+    "content": "The design systems curriculum was hands-down the best structured program I have taken online. Extremely polished and immediately applicable to high-scale production design."
+  },
+  {
+    "id": "t3",
+    "name": "Sophia Ramirez",
+    "role": "AI Research Engineer",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
+    "rating": 5,
+    "course": "AI Engineering & Practical LLM Application Development",
+    "content": "From theory to production deployment of LLM agents, ByteSpace provided exactly the cutting-edge content missing from traditional courses. Highly recommended!"
+  }
+]
