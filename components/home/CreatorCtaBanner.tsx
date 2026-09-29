@@ -12,7 +12,7 @@ export default function CreatorCtaBanner() {
       {/* Background Image Overlay - sits at z-0 above section background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <Image
-          src="/cta_bg.png"
+          src="/svgs/cta_bg.svg"
           alt="Creator CTA background"
           fill
           priority
