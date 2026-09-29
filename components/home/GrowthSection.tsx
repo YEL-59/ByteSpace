@@ -21,19 +21,19 @@ export default function GrowthSection() {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-28 sm:space-y-36 lg:space-y-44">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 space-y-28 sm:space-y-36 lg:space-y-44">
         {/* ======================================================================= */}
         {/* SECTION 1: Professional Growth (Left: Copy & Stats, Right: Image + SVG) */}
         {/* ======================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
-          {/* Left Column: Headline, Paragraph & Stats (items-center vertically with image) */}
-          <div className="lg:col-span-6 order-1 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-xl mx-auto lg:mx-0">
+          {/* Left Column: Headline, Paragraph & Stats */}
+          <div className="lg:col-span-6 order-1 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0 w-full">
             <motion.h2
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+              className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[56px] font-extrabold text-neutral-900 tracking-tight leading-[1.12]"
             >
               Your Path to Professional<br className="hidden sm:inline" /> Growth Starts Here!
             </motion.h2>
@@ -43,7 +43,7 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed"
+              className="mt-5 sm:mt-7 text-neutral-600 text-base sm:text-lg lg:text-[19px] xl:text-[20px] leading-relaxed font-normal"
             >
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
             </motion.p>
@@ -54,31 +54,31 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 flex items-center justify-center lg:justify-start gap-8 sm:gap-12 lg:gap-16 w-full"
+              className="mt-8 sm:mt-11 flex items-center justify-center lg:justify-start gap-8 sm:gap-12 lg:gap-16 w-full"
             >
               <div>
-                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                <p className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-extrabold text-[#003be2] leading-none">
                   12K
                 </p>
-                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] font-medium mt-2">
                   Students
                 </p>
               </div>
 
               <div>
-                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                <p className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-extrabold text-[#003be2] leading-none">
                   70+
                 </p>
-                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] font-medium mt-2">
                   Courses
                 </p>
               </div>
 
               <div>
-                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                <p className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-extrabold text-[#003be2] leading-none">
                   16
                 </p>
-                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                <p className="text-neutral-600 text-sm sm:text-base lg:text-[17px] font-medium mt-2">
                   Creators
                 </p>
               </div>
@@ -178,14 +178,14 @@ export default function GrowthSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Headline, Paragraph & Checklist (items-center vertically with image) */}
-          <div className="lg:col-span-6 order-1 lg:order-2 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-xl mx-auto lg:mx-0">
+          {/* Right Column: Headline, Paragraph & Checklist */}
+          <div className="lg:col-span-6 order-1 lg:order-2 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0 w-full">
             <motion.h2
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+              className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[56px] font-extrabold text-neutral-900 tracking-tight leading-[1.12]"
             >
               Create & Manage<br className="hidden sm:inline" /> Courses Easily.
             </motion.h2>
@@ -195,13 +195,13 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed"
+              className="mt-5 sm:mt-7 text-neutral-600 text-base sm:text-lg lg:text-[19px] xl:text-[20px] leading-relaxed font-normal"
             >
-              ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
+              <strong className="font-bold text-neutral-900">ByteSpace</strong> supports individuals or entities in the creation, publication, and administration of educational courses.
             </motion.p>
 
             {/* Feature Checklist */}
-            <ul className="mt-8 space-y-4 sm:space-y-4.5 w-full flex flex-col items-center lg:items-start">
+            <ul className="mt-8 sm:mt-10 space-y-4 sm:space-y-5 w-full flex flex-col items-center lg:items-start">
               {[
                 "Share Your Expertise",
                 "Monetize Your Passion",
@@ -214,12 +214,12 @@ export default function GrowthSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: 0.25 + idx * 0.08 }}
-                  className="flex items-center gap-3.5"
+                  className="flex items-center gap-3.5 sm:gap-4"
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#003be2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <div className="w-6 h-6 rounded-full bg-[#003be2] text-white flex items-center justify-center shrink-0 shadow-xs">
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span className="text-neutral-900 text-sm sm:text-base font-semibold">
+                  <span className="text-neutral-900 text-base sm:text-lg lg:text-[19px] font-semibold">
                     {item}
                   </span>
                 </motion.li>
