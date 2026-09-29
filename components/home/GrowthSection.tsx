@@ -8,7 +8,7 @@ import Container from "@/components/common/Container";
 
 export default function GrowthSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-50/40 py-16 sm:py-24 lg:py-32" id="about">
+    <section className="relative w-full overflow-hidden bg-neutral-50/40 py-20 sm:py-28 lg:py-36" id="about">
       {/* ========================================================================= */}
       {/* Continuous Unified Gradient Background Overlay                           */}
       {/* ========================================================================= */}
@@ -22,19 +22,19 @@ export default function GrowthSection() {
         />
       </div>
 
-      <Container size="wide" className="relative z-10 space-y-24 sm:space-y-32 lg:space-y-40">
+      <Container size="wide" className="relative z-10 space-y-28 sm:space-y-36 lg:space-y-44">
         {/* ======================================================================= */}
         {/* SECTION 1: Professional Growth (Left: Copy & Stats, Right: Image + SVG) */}
         {/* ======================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Headline, Paragraph & Stats */}
-          <div className="lg:col-span-6 order-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
+          {/* Left Column: Headline, Paragraph & Stats (items-center vertically with image) */}
+          <div className="lg:col-span-6 order-1 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-xl mx-auto lg:mx-0">
             <motion.h2
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+              className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
             >
               Your Path to Professional<br className="hidden sm:inline" /> Growth Starts Here!
             </motion.h2>
@@ -44,7 +44,7 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-xl"
+              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed"
             >
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
             </motion.p>
@@ -55,7 +55,7 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 flex items-center gap-8 sm:gap-12 lg:gap-16"
+              className="mt-8 sm:mt-10 flex items-center justify-center lg:justify-start gap-8 sm:gap-12 lg:gap-16 w-full"
             >
               <div>
                 <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
@@ -86,15 +86,15 @@ export default function GrowthSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Visual (advertise1.png + animated advertise1.svg) */}
-          <div className="lg:col-span-6 order-2 flex justify-center lg:justify-end relative">
+          {/* Right Column: Visual (Bigger advertise1.png + animated advertise1.svg) */}
+          <div className="lg:col-span-6 order-2 flex items-center justify-center relative">
             {/* Green 3D SVG Coil (Positioned & Floating) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.6, x: 50 }}
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ type: "spring", damping: 18, stiffness: 75, delay: 0.2 }}
-              className="absolute -right-2 sm:-right-4 lg:-right-2 top-4 sm:top-8 lg:top-10 z-0 w-28 sm:w-36 md:w-44 lg:w-48 aspect-square pointer-events-none"
+              className="absolute -right-2 sm:-right-4 lg:right-0 xl:right-2 top-2 sm:top-6 lg:top-8 z-0 w-36 sm:w-44 md:w-52 lg:w-60 xl:w-64 aspect-square pointer-events-none"
             >
               <motion.div
                 animate={{ y: [0, -12, 0], rotate: [0, 6, -6, 0] }}
@@ -110,21 +110,21 @@ export default function GrowthSection() {
               </motion.div>
             </motion.div>
 
-            {/* Main Visual: advertise1.png */}
+            {/* Main Visual: Bigger advertise1.png */}
             <motion.div
               initial={{ opacity: 0, x: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.015, transition: { duration: 0.25 } }}
-              className="relative z-10 w-full max-w-[500px] lg:max-w-[560px]"
+              className="relative z-10 w-full max-w-[580px] lg:max-w-[680px] xl:max-w-[740px]"
             >
               <Image
                 src="/advertise1.png"
                 alt="Your Path to Professional Growth"
                 width={721}
                 height={697}
-                className="w-full h-auto object-contain select-none drop-shadow-xl"
+                className="w-full h-auto object-contain select-none drop-shadow-2xl"
                 priority
               />
             </motion.div>
@@ -134,16 +134,16 @@ export default function GrowthSection() {
         {/* ======================================================================= */}
         {/* SECTION 2: Course Creation (Left: Image + SVG, Right: Copy & Checklist) */}
         {/* ======================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center" id="creators">
-          {/* Left Column: Visual (advertise2.png + animated advertise2.svg) */}
-          <div className="lg:col-span-6 order-2 lg:order-1 flex justify-center lg:justify-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center" id="creators">
+          {/* Left Column: Visual (Bigger advertise2.png + animated advertise2.svg) */}
+          <div className="lg:col-span-6 order-2 lg:order-1 flex items-center justify-center relative">
             {/* Green 3D SVG Coil (Positioned & Floating) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.6, x: 30 }}
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ type: "spring", damping: 18, stiffness: 75, delay: 0.2 }}
-              className="absolute right-4 sm:right-10 lg:right-14 top-10 sm:top-14 lg:top-18 z-0 w-24 sm:w-32 md:w-40 lg:w-44 aspect-square pointer-events-none"
+              className="absolute right-2 sm:right-6 lg:right-8 xl:right-12 top-6 sm:top-10 lg:top-14 z-0 w-32 sm:w-40 md:w-48 lg:w-56 xl:w-60 aspect-square pointer-events-none"
             >
               <motion.div
                 animate={{ y: [0, 12, 0], rotate: [0, -6, 6, 0] }}
@@ -159,34 +159,34 @@ export default function GrowthSection() {
               </motion.div>
             </motion.div>
 
-            {/* Main Visual: advertise2.png */}
+            {/* Main Visual: Bigger advertise2.png */}
             <motion.div
               initial={{ opacity: 0, x: -40, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.015, transition: { duration: 0.25 } }}
-              className="relative z-10 w-full max-w-[420px] lg:max-w-[470px]"
+              className="relative z-10 w-full max-w-[480px] lg:max-w-[560px] xl:max-w-[620px]"
             >
               <Image
                 src="/advertise2.png"
                 alt="Create & Manage Courses Easily"
                 width={587}
                 height={744}
-                className="w-full h-auto object-contain select-none drop-shadow-xl"
+                className="w-full h-auto object-contain select-none drop-shadow-2xl"
                 priority
               />
             </motion.div>
           </div>
 
-          {/* Right Column: Headline, Paragraph & Checklist */}
-          <div className="lg:col-span-6 order-1 lg:order-2">
+          {/* Right Column: Headline, Paragraph & Checklist (items-center vertically with image) */}
+          <div className="lg:col-span-6 order-1 lg:order-2 flex flex-col justify-center self-center items-center text-center lg:items-start lg:text-left max-w-xl mx-auto lg:mx-0">
             <motion.h2
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+              className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
             >
               Create & Manage<br className="hidden sm:inline" /> Courses Easily.
             </motion.h2>
@@ -196,13 +196,13 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-xl"
+              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed"
             >
               ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
             </motion.p>
 
             {/* Feature Checklist */}
-            <ul className="mt-8 space-y-4 sm:space-y-4.5">
+            <ul className="mt-8 space-y-4 sm:space-y-4.5 w-full flex flex-col items-center lg:items-start">
               {[
                 "Share Your Expertise",
                 "Monetize Your Passion",
