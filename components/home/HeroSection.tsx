@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Search, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const STUDENT_AVATARS = [
   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80",
@@ -15,75 +18,143 @@ export default function HeroSection() {
   return (
     <section className="relative w-full h-[880px] sm:h-[920px] lg:h-[960px] flex flex-col items-center bg-[#003be2] hero-grid-bg text-white overflow-hidden select-none">
       {/* ========================================================= */}
-      {/* LAYER 1: 3D Floating SVGs anchored to edges               */}
+      {/* LAYER 1: 3D Floating SVGs with Directional Entrances       */}
       {/* ========================================================= */}
 
-      {/* 1. Spiral Lime (Top-Left) */}
-      <div className="absolute -left-6 sm:-left-8 lg:-left-12 top-[18%] sm:top-[20%] w-32 sm:w-44 md:w-56 lg:w-68 xl:w-76 aspect-square pointer-events-none animate-float-slow z-10">
-        <Image
-          src="/svgs/spiral-lime.svg"
-          alt="Lime 3D Spiral"
-          fill
-          className="object-contain"
-        />
-      </div>
+      {/* 1. Spiral Lime (Flies in from LEFT) */}
+      <motion.div
+        initial={{ opacity: 0, x: -280, rotate: -25 }}
+        animate={{ opacity: 1, x: 0, rotate: 0 }}
+        transition={{ type: "spring", damping: 20, stiffness: 70, delay: 0.15 }}
+        className="absolute -left-6 sm:-left-8 lg:-left-12 top-[18%] sm:top-[20%] w-32 sm:w-44 md:w-56 lg:w-68 xl:w-76 aspect-square pointer-events-none z-10"
+      >
+        <motion.div
+          animate={{ y: [0, -14, 0], rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/svgs/spiral-lime.svg"
+            alt="Lime 3D Spiral"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* 2. Spiral White 1 (Middle-Left) */}
-      <div className="absolute left-[4%] sm:left-[6%] lg:left-[18%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
-        <Image
-          src="/svgs/spiral-white-1.svg"
-          alt="White 3D Spring"
-          fill
-          className="object-contain"
-        />
-      </div>
+      {/* 2. Spiral White 1 (Flies in from LEFT) */}
+      <motion.div
+        initial={{ opacity: 0, x: -220, scale: 0.7 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ type: "spring", damping: 20, stiffness: 70, delay: 0.25 }}
+        className="absolute left-[4%] sm:left-[6%] lg:left-[18%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 10, -6, 0], rotate: [0, -6, 6, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/svgs/spiral-white-1.svg"
+            alt="White 3D Spring"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* 3. Cylinder Lime / Grey (Top-Right) */}
-      <div className="absolute -right-6 sm:-right-8 lg:-right-40 top-[14%] sm:top-[16%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
-        <Image
-          src="/svgs/cylinder-lime.svg"
-          alt="Lime 3D Cylinder"
-          fill
-          className="object-contain"
-        />
-      </div>
+      {/* 3. Cylinder Lime / Grey (Flies in from RIGHT) */}
+      <motion.div
+        initial={{ opacity: 0, x: 280, rotate: 25 }}
+        animate={{ opacity: 1, x: 0, rotate: 0 }}
+        transition={{ type: "spring", damping: 20, stiffness: 70, delay: 0.15 }}
+        className="absolute -right-6 sm:-right-8 lg:-right-40 top-[14%] sm:top-[16%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 14, -4, 0], rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/svgs/cylinder-lime.svg"
+            alt="Lime 3D Cylinder"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* 4. Pyramid Prism White (Middle-Right) */}
-      <div className="absolute right-[4%] sm:right-[6%] lg:right-[25%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
-        <Image
-          src="/svgs/pyramid-white.svg"
-          alt="White 3D Pyramid"
-          fill
-          className="object-contain"
-        />
-      </div>
+      {/* 4. Pyramid Prism White (Flies in from RIGHT) */}
+      <motion.div
+        initial={{ opacity: 0, x: 220, scale: 0.7 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ type: "spring", damping: 20, stiffness: 70, delay: 0.25 }}
+        className="absolute right-[4%] sm:right-[6%] lg:right-[25%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none z-10"
+      >
+        <motion.div
+          animate={{ y: [0, -10, 8, 0], rotate: [0, 6, -6, 0] }}
+          transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/svgs/pyramid-white.svg"
+            alt="White 3D Pyramid"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* 5. Spiral White 2 (Bottom-Right) */}
-      <div className="absolute -right-6 sm:-right-8 lg:right-48 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 aspect-square pointer-events-none animate-float-slow z-10">
-        <Image
-          src="/svgs/spiral-white-2.svg"
-          alt="White 3D Coil"
-          fill
-          className="object-contain"
-        />
-      </div>
+      {/* 5. Spiral White 2 (Flies in from RIGHT) */}
+      <motion.div
+        initial={{ opacity: 0, x: 260, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ type: "spring", damping: 20, stiffness: 70, delay: 0.35 }}
+        className="absolute -right-6 sm:-right-8 lg:right-48 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 aspect-square pointer-events-none z-10"
+      >
+        <motion.div
+          animate={{ y: [0, -12, 0], rotate: [0, -8, 4, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/svgs/spiral-white-2.svg"
+            alt="White 3D Coil"
+            fill
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* ========================================================= */}
       {/* LAYER 2: Foreground Headline, Subtitle & Search Bar       */}
       {/* ========================================================= */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 sm:pt-26 md:pt-28 lg:pt-32 max-w-4xl mx-auto w-full">
         {/* Main Hero Headline */}
-        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-bold text-white tracking-tight leading-[1.14] drop-shadow-sm">
+        <motion.h1
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-bold text-white tracking-tight leading-[1.14] drop-shadow-sm"
+        >
           Get Access to Hundreds<br />Courses Available
-        </h1>
+        </motion.h1>
 
         {/* Subtitle */}
-        <p className="mt-3 sm:mt-3.5 text-sm sm:text-base lg:text-[17px] text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2">
+        <motion.p
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-3 sm:mt-3.5 text-sm sm:text-base lg:text-[17px] text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2"
+        >
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
-        </p>
+        </motion.p>
 
-        {/* Centered Search Pill Bar (Server-rendered Next.js GET form) */}
-        <form
+        {/* Centered Search Pill Bar */}
+        <motion.form
+          initial={{ opacity: 0, y: 20, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
           action="/courses"
           method="GET"
           className="mt-5 sm:mt-6 w-full max-w-[340px] sm:max-w-md md:max-w-lg mx-auto"
@@ -96,24 +167,30 @@ export default function HeroSection() {
               placeholder="Course, topic, creator"
               className="w-full min-w-0 bg-transparent text-neutral-800 placeholder-neutral-400 text-xs sm:text-sm md:text-[15px] focus:outline-none"
             />
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               type="submit"
-              className="bg-[#CEF001] hover:bg-[#bde200] active:scale-95 text-neutral-950 font-bold px-4 sm:px-7 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm md:text-[15px] transition-all duration-150 shrink-0 cursor-pointer shadow-sm"
+              className="bg-[#CEF001] hover:bg-[#bde200] text-neutral-950 font-bold px-4 sm:px-7 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm md:text-[15px] transition-colors shrink-0 cursor-pointer shadow-sm"
             >
               Search
-            </button>
+            </motion.button>
           </div>
-        </form>
+        </motion.form>
       </div>
 
       {/* ========================================================================= */}
-      {/* LAYER 3: Bottom Visual Assembly (bottomcircle.svg + person.svg + cards)  */}
-      {/* Pinned to bottom-0 of the coded royal blue grid background               */}
+      {/* LAYER 3: Bottom Visual Assembly (Person & Circle Appear from BOTTOM)     */}
       {/* ========================================================================= */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1149px] h-[420px] sm:h-[460px] lg:h-[500px] flex items-end justify-center pointer-events-none z-20">
         
-        {/* 1. Vector Lime Arc (bottomcircle.svg) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] sm:max-w-[1000px] lg:max-w-[1080px] pointer-events-none z-10">
+        {/* 1. Vector Lime Arc (bottomcircle.svg - Appears by RISING from deep BOTTOM) */}
+        <motion.div
+          initial={{ opacity: 0, y: 380, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", damping: 22, stiffness: 65, delay: 0.2 }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] sm:max-w-[1000px] lg:max-w-[1080px] pointer-events-none z-10"
+        >
           <Image
             src="/svgs/bottomcircle.svg"
             alt="ByteSpace Lime Arc"
@@ -122,20 +199,36 @@ export default function HeroSection() {
             className="w-full h-auto object-bottom"
             priority
           />
-        </div>
+        </motion.div>
 
-        {/* 2. White 3D Donut (Overlapping bottom-left arc of the circle) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[-5%] bottom-1 sm:bottom-2 w-28 sm:w-38 md:w-50 lg:w-62 aspect-square pointer-events-none animate-float-slow z-15">
-          <Image
-            src="/svgs/donut-white.svg"
-            alt="White 3D Donut"
-            fill
-            className="object-contain"
-          />
-        </div>
+        {/* 2. White 3D Donut (Flies in from the LEFT side) */}
+        <motion.div
+          initial={{ opacity: 0, x: -240, scale: 0.7 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ type: "spring", damping: 20, stiffness: 75, delay: 0.3 }}
+          className="absolute left-[3%] sm:left-[6%] lg:left-[-5%] bottom-1 sm:bottom-2 w-28 sm:w-38 md:w-50 lg:w-62 aspect-square pointer-events-none z-15"
+        >
+          <motion.div
+            animate={{ y: [0, -10, 0], rotate: [0, 8, -6, 0] }}
+            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="relative w-full h-full"
+          >
+            <Image
+              src="/svgs/donut-white.svg"
+              alt="White 3D Donut"
+              fill
+              className="object-contain"
+            />
+          </motion.div>
+        </motion.div>
 
-        {/* 3. Middle Overlay Person with Laptop & Headphones (person.svg) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] max-w-[440px] sm:max-w-[500px] lg:max-w-[550px] pointer-events-none z-20">
+        {/* 3. Middle Overlay Person (Appears by RISING up majestically from BOTTOM) */}
+        <motion.div
+          initial={{ opacity: 0, y: 480 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", damping: 22, stiffness: 60, delay: 0.35 }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] max-w-[440px] sm:max-w-[500px] lg:max-w-[550px] pointer-events-none z-20"
+        >
           <Image
             src="/svgs/person.svg"
             alt="ByteSpace Student"
@@ -144,65 +237,111 @@ export default function HeroSection() {
             className="w-full h-auto object-bottom"
             priority
           />
-        </div>
+        </motion.div>
 
-        {/* 4. Card 1: UI/UX Design (Left of student's shoulder) */}
-        <div className="absolute left-[6%] sm:left-[11%] lg:left-[23%] top-[18%] sm:top-[22%] lg:top-[26%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
-          <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
-            UI/UX Design
-          </h3>
-          <p className="text-[9px] sm:text-xs text-neutral-500 font-medium whitespace-nowrap mt-0.5">
-            200 Courses &bull; 1000+ Students
-          </p>
-        </div>
-
-        {/* 5. Card 2: Learning Progress 55% (Right of student's headphone) */}
-        <div className="absolute right-[6%] sm:right-[11%] lg:right-[26%] top-[22%] sm:top-[26%] lg:top-[30%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform pointer-events-auto">
-          <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
-            Learning Progress
-          </p>
-          <p className="font-heading text-base sm:text-2xl md:text-3xl font-bold text-neutral-900 my-0.5 sm:my-1">
-            55%
-          </p>
-          <div className="w-full h-1.5 sm:h-2 rounded-full bg-neutral-100 overflow-hidden">
-            <div className="w-[55%] h-full bg-[#CEF001] rounded-full" />
-          </div>
-        </div>
-
-        {/* 6. Card 3: Happy Students (Bottom-Left over lime arc & donut) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[20%] bottom-[8%] sm:bottom-[11%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto max-w-[250px]">
-          <div>
-            <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
-              Happy Students
+        {/* 4. Card 1: UI/UX Design (Flies in from LEFT side) */}
+        <motion.div
+          initial={{ opacity: 0, x: -140, scale: 0.8 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.55 }}
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+          className="absolute left-[6%] sm:left-[11%] lg:left-[23%] top-[18%] sm:top-[22%] lg:top-[26%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 cursor-pointer pointer-events-auto"
+        >
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+          >
+            <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
+              UI/UX Design
+            </h3>
+            <p className="text-[9px] sm:text-xs text-neutral-500 font-medium whitespace-nowrap mt-0.5">
+              200 Courses &bull; 1000+ Students
             </p>
-            <div className="flex items-center gap-1 mt-1 text-[9px] sm:text-xs text-neutral-600 font-semibold">
-              <span>4.5</span>
-              <span className="text-neutral-400 font-normal">(240)</span>
-              <Star className="w-3 h-3 fill-amber-400 text-amber-400 ml-0.5" />
-            </div>
-          </div>
+          </motion.div>
+        </motion.div>
 
-          {/* Overlapping User Avatars + 2K+ pill */}
-          <div className="flex items-center -space-x-1.5 sm:-space-x-2 mt-1.5 sm:mt-2">
-            {STUDENT_AVATARS.map((avatarUrl, idx) => (
-              <div
-                key={idx}
-                className="relative w-5 h-5 sm:w-7 sm:h-7 rounded-full overflow-hidden ring-2 ring-white"
-              >
-                <Image
-                  src={avatarUrl}
-                  alt="Student avatar"
-                  fill
-                  sizes="28px"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-            <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-[8px] sm:text-[10px] flex items-center justify-center ring-2 ring-white">
-              2K+
+        {/* 5. Card 2: Learning Progress 55% (Flies in from RIGHT side) */}
+        <motion.div
+          initial={{ opacity: 0, x: 140, scale: 0.8 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.65 }}
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+          className="absolute right-[6%] sm:right-[11%] lg:right-[26%] top-[22%] sm:top-[26%] lg:top-[30%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] cursor-pointer pointer-events-auto"
+        >
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          >
+            <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
+              Learning Progress
+            </p>
+            <p className="font-heading text-base sm:text-2xl md:text-3xl font-bold text-neutral-900 my-0.5 sm:my-1">
+              55%
+            </p>
+            <div className="w-full h-1.5 sm:h-2 rounded-full bg-neutral-100 overflow-hidden">
+              <motion.div
+                initial={{ width: "0%" }}
+                animate={{ width: "55%" }}
+                transition={{ duration: 1.2, delay: 1.1, ease: "easeOut" }}
+                className="h-full bg-[#CEF001] rounded-full"
+              />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
+        {/* 6. Card 3: Happy Students (Flies in from LEFT side) */}
+        <motion.div
+          initial={{ opacity: 0, x: -160, scale: 0.8 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.75 }}
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+          className="absolute left-[3%] sm:left-[6%] lg:left-[20%] bottom-[8%] sm:bottom-[11%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 cursor-pointer pointer-events-auto max-w-[250px]"
+        >
+          <motion.div
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+          >
+            <div>
+              <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
+                Happy Students
+              </p>
+              <div className="flex items-center gap-1 mt-1 text-[9px] sm:text-xs text-neutral-600 font-semibold">
+                <span>4.5</span>
+                <span className="text-neutral-400 font-normal">(240)</span>
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400 ml-0.5" />
+              </div>
+            </div>
+
+            {/* Overlapping User Avatars + 2K+ pill */}
+            <div className="flex items-center -space-x-1.5 sm:-space-x-2 mt-1.5 sm:mt-2">
+              {STUDENT_AVATARS.map((avatarUrl, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.4 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 1 + idx * 0.08 }}
+                  className="relative w-5 h-5 sm:w-7 sm:h-7 rounded-full overflow-hidden ring-2 ring-white"
+                >
+                  <Image
+                    src={avatarUrl}
+                    alt="Student avatar"
+                    fill
+                    sizes="28px"
+                    className="object-cover"
+                  />
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.4 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 1.5 }}
+                className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-[8px] sm:text-[10px] flex items-center justify-center ring-2 ring-white"
+              >
+                2K+
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
 
       </div>
     </section>
