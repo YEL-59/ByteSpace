@@ -29,7 +29,7 @@ export default function HeroSection() {
       </div>
 
       {/* 2. Spiral White 1 (Middle-Left) */}
-      <div className="absolute left-[4%] sm:left-[6%] lg:left-[8%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
+      <div className="absolute left-[4%] sm:left-[6%] lg:left-[18%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
         <Image
           src="/svgs/spiral-white-1.svg"
           alt="White 3D Spring"
@@ -39,7 +39,7 @@ export default function HeroSection() {
       </div>
 
       {/* 3. Cylinder Lime / Grey (Top-Right) */}
-      <div className="absolute -right-6 sm:-right-8 lg:-right-12 top-[14%] sm:top-[16%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
+      <div className="absolute -right-6 sm:-right-8 lg:-right-40 top-[14%] sm:top-[16%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/cylinder-lime.svg"
           alt="Lime 3D Cylinder"
@@ -49,7 +49,7 @@ export default function HeroSection() {
       </div>
 
       {/* 4. Pyramid Prism White (Middle-Right) */}
-      <div className="absolute right-[4%] sm:right-[6%] lg:right-[8%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
+      <div className="absolute right-[4%] sm:right-[6%] lg:right-[25%] top-[38%] sm:top-[40%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
         <Image
           src="/svgs/pyramid-white.svg"
           alt="White 3D Pyramid"
@@ -59,7 +59,7 @@ export default function HeroSection() {
       </div>
 
       {/* 5. Spiral White 2 (Bottom-Right) */}
-      <div className="absolute -right-6 sm:-right-8 lg:-right-12 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 aspect-square pointer-events-none animate-float-slow z-10">
+      <div className="absolute -right-6 sm:-right-8 lg:right-48 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/spiral-white-2.svg"
           alt="White 3D Coil"
@@ -125,7 +125,7 @@ export default function HeroSection() {
         </div>
 
         {/* 2. White 3D Donut (Overlapping bottom-left arc of the circle) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[8%] bottom-1 sm:bottom-2 w-28 sm:w-38 md:w-50 lg:w-62 aspect-square pointer-events-none animate-float-slow z-15">
+        <div className="absolute left-[3%] sm:left-[6%] lg:left-[-5%] bottom-1 sm:bottom-2 w-28 sm:w-38 md:w-50 lg:w-62 aspect-square pointer-events-none animate-float-slow z-15">
           <Image
             src="/svgs/donut-white.svg"
             alt="White 3D Donut"
@@ -147,7 +147,7 @@ export default function HeroSection() {
         </div>
 
         {/* 4. Card 1: UI/UX Design (Left of student's shoulder) */}
-        <div className="absolute left-[6%] sm:left-[11%] lg:left-[16%] top-[18%] sm:top-[22%] lg:top-[26%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
+        <div className="absolute left-[6%] sm:left-[11%] lg:left-[23%] top-[18%] sm:top-[22%] lg:top-[26%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
           <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
             UI/UX Design
           </h3>
@@ -157,7 +157,7 @@ export default function HeroSection() {
         </div>
 
         {/* 5. Card 2: Learning Progress 55% (Right of student's headphone) */}
-        <div className="absolute right-[6%] sm:right-[11%] lg:right-[16%] top-[22%] sm:top-[26%] lg:top-[30%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform pointer-events-auto">
+        <div className="absolute right-[6%] sm:right-[11%] lg:right-[26%] top-[22%] sm:top-[26%] lg:top-[30%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform pointer-events-auto">
           <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
             Learning Progress
           </p>
@@ -170,7 +170,7 @@ export default function HeroSection() {
         </div>
 
         {/* 6. Card 3: Happy Students (Bottom-Left over lime arc & donut) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[10%] bottom-[8%] sm:bottom-[11%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto max-w-[250px]">
+        <div className="absolute left-[3%] sm:left-[6%] lg:left-[20%] bottom-[8%] sm:bottom-[11%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto max-w-[250px]">
           <div>
             <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
               Happy Students
