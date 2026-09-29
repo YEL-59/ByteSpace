@@ -13,26 +13,13 @@ const STUDENT_AVATARS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-[750px] sm:min-h-[850px] lg:min-h-[960px] xl:min-h-[1024px] flex flex-col justify-between items-center bg-[#003be2] text-white overflow-hidden select-none">
+    <section className="relative w-full min-h-[760px] sm:min-h-[840px] lg:min-h-[920px] xl:h-[960px] flex flex-col justify-between items-center bg-[#003be2] hero-grid-bg text-white overflow-hidden select-none">
       {/* ========================================================= */}
-      {/* BACKGROUND: Full-Width hero_bg.png Image                  */}
-      {/* ========================================================= */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero_bg.png"
-          alt="ByteSpace Hero Background"
-          fill
-          priority
-          className="object-cover object-bottom pointer-events-none"
-        />
-      </div>
-
-      {/* ========================================================= */}
-      {/* LAYER 1: Full-Bleed 3D Floating SVGs anchored to edges    */}
+      {/* LAYER 1: 3D Floating SVGs anchored to viewport edges       */}
       {/* ========================================================= */}
 
-      {/* 1. Spiral Lime (Top-Left - Bleeds off left screen edge) */}
-      <div className="absolute -left-6 sm:-left-10 md:-left-12 lg:-left-16 top-[18%] sm:top-[20%] w-36 sm:w-52 md:w-64 lg:w-76 xl:w-84 aspect-square pointer-events-none animate-float-slow z-10">
+      {/* 1. Spiral Lime (Top-Left - Peeking over left edge) */}
+      <div className="absolute -left-6 sm:-left-8 lg:-left-12 top-[19%] sm:top-[21%] w-32 sm:w-44 md:w-56 lg:w-68 xl:w-76 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/spiral-lime.svg"
           alt="Lime 3D Spiral"
@@ -42,7 +29,7 @@ export default function HeroSection() {
       </div>
 
       {/* 2. Spiral White 1 (Middle-Left) */}
-      <div className="absolute left-[3%] sm:left-[6%] md:left-[8%] lg:left-[10%] top-[40%] sm:top-[42%] w-20 sm:w-28 md:w-36 lg:w-44 aspect-square pointer-events-none animate-float-reverse z-10">
+      <div className="absolute left-[5%] sm:left-[7%] lg:left-[9%] xl:left-[11%] top-[42%] sm:top-[44%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
         <Image
           src="/svgs/spiral-white-1.svg"
           alt="White 3D Spring"
@@ -51,8 +38,8 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* 3. Donut Torus White (Bottom-Left - Bleeds off left screen edge) */}
-      <div className="absolute -left-6 sm:-left-10 md:-left-12 lg:-left-14 bottom-[3%] sm:bottom-[5%] md:bottom-[7%] w-36 sm:w-56 md:w-72 lg:w-84 xl:w-96 aspect-square pointer-events-none animate-float-slow z-10">
+      {/* 3. Donut Torus White (Bottom-Left - Peeking over bottom-left edge) */}
+      <div className="absolute -left-6 sm:-left-8 lg:-left-12 bottom-[2%] sm:bottom-[3%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/donut-white.svg"
           alt="White 3D Donut"
@@ -61,8 +48,8 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* 4. Cylinder Lime / Grey (Top-Right - Bleeds off right screen edge) */}
-      <div className="absolute -right-6 sm:-right-10 md:-right-12 lg:-right-16 top-[15%] sm:top-[17%] w-40 sm:w-56 md:w-72 lg:w-84 xl:w-96 aspect-square pointer-events-none animate-float-slow z-10">
+      {/* 4. Cylinder Lime / Grey (Top-Right - Peeking over right edge) */}
+      <div className="absolute -right-6 sm:-right-8 lg:-right-12 top-[16%] sm:top-[18%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/cylinder-lime.svg"
           alt="Lime 3D Cylinder"
@@ -72,7 +59,7 @@ export default function HeroSection() {
       </div>
 
       {/* 5. Pyramid Prism White (Middle-Right) */}
-      <div className="absolute right-[3%] sm:right-[6%] md:right-[8%] lg:right-[10%] top-[40%] sm:top-[42%] w-20 sm:w-28 md:w-36 lg:w-44 aspect-square pointer-events-none animate-float-reverse z-10">
+      <div className="absolute right-[5%] sm:right-[7%] lg:right-[9%] xl:right-[11%] top-[42%] sm:top-[44%] w-18 sm:w-24 md:w-30 lg:w-36 aspect-square pointer-events-none animate-float-reverse z-10">
         <Image
           src="/svgs/pyramid-white.svg"
           alt="White 3D Pyramid"
@@ -81,8 +68,8 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* 6. Spiral White 2 (Bottom-Right - Bleeds off right screen edge) */}
-      <div className="absolute -right-6 sm:-right-10 md:-right-12 lg:-right-14 bottom-[3%] sm:bottom-[5%] md:bottom-[7%] w-36 sm:w-52 md:w-68 lg:w-80 xl:w-92 aspect-square pointer-events-none animate-float-slow z-10">
+      {/* 6. Spiral White 2 (Bottom-Right - Peeking over bottom-right edge) */}
+      <div className="absolute -right-6 sm:-right-8 lg:-right-12 bottom-[2%] sm:bottom-[3%] w-32 sm:w-46 md:w-58 lg:w-70 xl:w-80 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/spiral-white-2.svg"
           alt="White 3D Coil"
@@ -94,34 +81,34 @@ export default function HeroSection() {
       {/* ========================================================= */}
       {/* LAYER 2: Foreground Headline, Subtitle & Search Bar       */}
       {/* ========================================================= */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4 pt-28 sm:pt-32 md:pt-36 lg:pt-40 max-w-4xl mx-auto w-full">
+      <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 sm:pt-28 md:pt-32 lg:pt-36 max-w-4xl mx-auto w-full">
         {/* Main Hero Headline */}
-        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[66px] font-bold text-white tracking-tight leading-[1.12] drop-shadow-sm">
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[62px] font-bold text-white tracking-tight leading-[1.14] drop-shadow-sm">
           Get Access to Hundreds<br />Courses Available
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-3 sm:mt-4 md:mt-5 text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2">
+        <p className="mt-3.5 sm:mt-4 text-sm sm:text-base lg:text-[17px] text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2">
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
         </p>
 
-        {/* Centered Search Pill Bar (Server-rendered Next.js GET form - zero client JS) */}
+        {/* Centered Search Pill Bar (Server-rendered Next.js GET form) */}
         <form
           action="/courses"
           method="GET"
-          className="mt-6 sm:mt-8 w-full max-w-[340px] sm:max-w-md md:max-w-xl mx-auto"
+          className="mt-6 sm:mt-7 w-full max-w-[340px] sm:max-w-md md:max-w-lg mx-auto"
         >
           <div className="flex items-center bg-white rounded-full pl-4 pr-1.5 py-1.5 shadow-2xl transition-all hover:shadow-primary-950/20 focus-within:ring-2 focus-within:ring-[#CEF001]">
-            <Search className="w-4 h-4 sm:w-5 h-5 text-neutral-400 shrink-0 mr-2" />
+            <Search className="w-4 h-4 sm:w-5 h-5 text-neutral-400 shrink-0 mr-2.5" />
             <input
               type="text"
               name="q"
               placeholder="Course, topic, creator"
-              className="w-full min-w-0 bg-transparent text-neutral-800 placeholder-neutral-400 text-xs sm:text-sm md:text-base focus:outline-none"
+              className="w-full min-w-0 bg-transparent text-neutral-800 placeholder-neutral-400 text-xs sm:text-sm md:text-[15px] focus:outline-none"
             />
             <button
               type="submit"
-              className="bg-[#CEF001] hover:bg-[#bde200] active:scale-95 text-neutral-950 font-bold px-4 sm:px-7 md:px-9 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm md:text-base transition-all duration-150 shrink-0 cursor-pointer shadow-sm"
+              className="bg-[#CEF001] hover:bg-[#bde200] active:scale-95 text-neutral-950 font-bold px-4 sm:px-7 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm md:text-[15px] transition-all duration-150 shrink-0 cursor-pointer shadow-sm"
             >
               Search
             </button>
@@ -130,11 +117,21 @@ export default function HeroSection() {
       </div>
 
       {/* ========================================================= */}
-      {/* LAYER 3: Center Bottom Floating Cards (matching student)  */}
+      {/* LAYER 3: Razor-Sharp Student Visual & Floating Cards       */}
       {/* ========================================================= */}
-      <div className="relative z-20 w-full max-w-[1080px] aspect-[1130/489] mt-6 sm:mt-8 md:mt-10 mx-auto px-4 flex items-end justify-center pointer-events-none">
-        {/* Card 1: UI/UX Design (Left of student) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[10%] top-[4%] sm:top-[8%] lg:top-[12%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
+      <div className="relative z-20 w-full max-w-[740px] sm:max-w-[820px] lg:max-w-[900px] xl:max-w-[960px] aspect-[1130/489] mt-6 sm:mt-8 mx-auto px-4 flex items-end justify-center">
+        {/* Crystal-Clear Isolated Student + Lime Disc Visual (Native resolution, no blur/stretching) */}
+        <Image
+          src="/hero_student_transparent.png"
+          alt="ByteSpace Student Learning"
+          fill
+          priority
+          className="object-contain object-bottom pointer-events-none"
+          sizes="(max-width: 960px) 100vw, 960px"
+        />
+
+        {/* Card 1: UI/UX Design (Positioned cleanly at left shoulder) */}
+        <div className="absolute left-[4%] sm:left-[7%] lg:left-[10%] top-[4%] sm:top-[7%] lg:top-[9%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer">
           <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
             UI/UX Design
           </h3>
@@ -143,8 +140,8 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Card 2: Learning Progress 55% (Right of student) */}
-        <div className="absolute right-[3%] sm:right-[6%] lg:right-[8%] top-[8%] sm:top-[12%] lg:top-[16%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3.5 py-2.5 sm:px-5 sm:py-4 border border-white/90 min-w-[130px] sm:min-w-[180px] md:min-w-[210px] hover:scale-105 transition-transform pointer-events-auto">
+        {/* Card 2: Learning Progress 55% (Positioned cleanly at right headphone) */}
+        <div className="absolute right-[4%] sm:right-[7%] lg:right-[9%] top-[7%] sm:top-[11%] lg:top-[13%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform">
           <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
             Learning Progress
           </p>
@@ -156,8 +153,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Card 3: Happy Students (Bottom-Left of student) */}
-        <div className="absolute left-[0%] sm:left-[2%] lg:left-[5%] bottom-[8%] sm:bottom-[12%] lg:bottom-[15%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto">
+        {/* Card 3: Happy Students (Positioned cleanly at bottom-left over lime disc) */}
+        <div className="absolute left-[0%] sm:left-[2%] lg:left-[4%] bottom-[8%] sm:bottom-[12%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform">
           <div>
             <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
               Happy Students
