@@ -53,15 +53,28 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-white/90 hover:text-white transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : link.href === "/creators"
+                  ? pathname === "/creators" || pathname?.startsWith("/creator")
+                  : pathname === link.href || pathname?.startsWith(link.href);
+
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`text-sm transition-all duration-200 inline-block origin-center ${
+                    isActive
+                      ? "font-bold text-white scale-110 drop-shadow-sm tracking-wide"
+                      : "font-medium text-white/80 hover:text-white hover:scale-105"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Action Items: Sign In, Join Us, Cart */}
@@ -111,16 +124,29 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="sm:hidden border-b border-white/10 bg-[#003be2] px-6 pt-3 pb-6 space-y-4">
           <nav className="flex flex-col space-y-3">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-white/90 hover:text-white py-1"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : link.href === "/creators"
+                  ? pathname === "/creators" || pathname?.startsWith("/creator")
+                  : pathname === link.href || pathname?.startsWith(link.href);
+
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-base py-1 transition-all duration-200 inline-block origin-left ${
+                    isActive
+                      ? "font-bold text-white scale-105 pl-2 border-l-2 border-[#CEF001]"
+                      : "font-medium text-white/80 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="pt-3 border-t border-white/10 flex flex-col gap-3">
             <Link
