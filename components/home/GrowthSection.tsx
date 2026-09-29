@@ -1,89 +1,231 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { CheckCircle2, Award, Zap, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
+import { motion } from "framer-motion";
 import Container from "@/components/common/Container";
-import Button from "@/components/common/Button";
-
-import growthBenefitsData from "@/data/growthBenefits.json";
 
 export default function GrowthSection() {
   return (
-    <section className="py-20 lg:py-28 bg-white" id="about">
-      <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Visual & Floating Overlays */}
-          <div className="lg:col-span-6 relative order-2 lg:order-1">
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl aspect-4/3 max-w-lg mx-auto">
-              <Image
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-                alt="Professional learning with ByteSpace"
-                fill
-                className="object-cover"
-              />
-            </div>
+    <section className="relative w-full overflow-hidden bg-neutral-50/40 py-16 sm:py-24 lg:py-32" id="about">
+      {/* ========================================================================= */}
+      {/* Continuous Unified Gradient Background Overlay                           */}
+      {/* ========================================================================= */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Image
+          src="/gradient_bg.png"
+          alt="Atmospheric Background Gradient"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </div>
 
-            {/* Floating Card 1: 95% Completion Rate */}
-            <div className="absolute -bottom-6 left-4 sm:left-12 bg-white rounded-2xl p-4 shadow-xl border border-neutral-100 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-secondary-100 text-neutral-900 flex items-center justify-center font-bold">
-                <Zap className="w-6 h-6 text-neutral-900 fill-secondary-500" />
-              </div>
-              <div>
-                <p className="font-heading text-lg font-bold text-neutral-900">95% Rate</p>
-                <p className="text-body-xs text-neutral-500">Graduation & Placement</p>
-              </div>
-            </div>
+      <Container size="wide" className="relative z-10 space-y-24 sm:space-y-32 lg:space-y-40">
+        {/* ======================================================================= */}
+        {/* SECTION 1: Professional Growth (Left: Copy & Stats, Right: Image + SVG) */}
+        {/* ======================================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Headline, Paragraph & Stats */}
+          <div className="lg:col-span-6 order-1">
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+            >
+              Your Path to Professional<br className="hidden sm:inline" /> Growth Starts Here!
+            </motion.h2>
 
-            {/* Floating Card 2: Accredited Certificate */}
-            <div className="absolute -top-6 right-4 sm:right-12 bg-neutral-900 text-white rounded-2xl p-4 shadow-xl border border-neutral-800 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center font-bold">
-                <Award className="w-6 h-6 text-secondary-400" />
-              </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-xl"
+            >
+              Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
+            </motion.p>
+
+            {/* Metrics & Student Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 sm:mt-10 flex items-center gap-8 sm:gap-12 lg:gap-16"
+            >
               <div>
-                <p className="font-heading text-sm font-bold text-white">Accredited</p>
-                <p className="text-[11px] text-neutral-400">Recognized Worldwide</p>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                  12K
+                </p>
+                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                  Students
+                </p>
               </div>
-            </div>
+
+              <div>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                  70+
+                </p>
+                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                  Courses
+                </p>
+              </div>
+
+              <div>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003be2]">
+                  16
+                </p>
+                <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                  Creators
+                </p>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Copy & Checklist */}
+          {/* Right Column: Visual (advertise1.png + animated advertise1.svg) */}
+          <div className="lg:col-span-6 order-2 flex justify-center lg:justify-end relative">
+            {/* Green 3D SVG Coil (Positioned & Floating) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, x: 50 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", damping: 18, stiffness: 75, delay: 0.2 }}
+              className="absolute -right-2 sm:-right-4 lg:-right-2 top-4 sm:top-8 lg:top-10 z-0 w-28 sm:w-36 md:w-44 lg:w-48 aspect-square pointer-events-none"
+            >
+              <motion.div
+                animate={{ y: [0, -12, 0], rotate: [0, 6, -6, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src="/svgs/advertise1.svg"
+                  alt="3D Lime Coil"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Main Visual: advertise1.png */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.015, transition: { duration: 0.25 } }}
+              className="relative z-10 w-full max-w-[500px] lg:max-w-[560px]"
+            >
+              <Image
+                src="/advertise1.png"
+                alt="Your Path to Professional Growth"
+                width={721}
+                height={697}
+                className="w-full h-auto object-contain select-none drop-shadow-xl"
+                priority
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ======================================================================= */}
+        {/* SECTION 2: Course Creation (Left: Image + SVG, Right: Copy & Checklist) */}
+        {/* ======================================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center" id="creators">
+          {/* Left Column: Visual (advertise2.png + animated advertise2.svg) */}
+          <div className="lg:col-span-6 order-2 lg:order-1 flex justify-center lg:justify-start relative">
+            {/* Green 3D SVG Coil (Positioned & Floating) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, x: 30 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", damping: 18, stiffness: 75, delay: 0.2 }}
+              className="absolute right-4 sm:right-10 lg:right-14 top-10 sm:top-14 lg:top-18 z-0 w-24 sm:w-32 md:w-40 lg:w-44 aspect-square pointer-events-none"
+            >
+              <motion.div
+                animate={{ y: [0, 12, 0], rotate: [0, -6, 6, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src="/svgs/advertise2.svg"
+                  alt="3D Lime Coil"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Main Visual: advertise2.png */}
+            <motion.div
+              initial={{ opacity: 0, x: -40, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.015, transition: { duration: 0.25 } }}
+              className="relative z-10 w-full max-w-[420px] lg:max-w-[470px]"
+            >
+              <Image
+                src="/advertise2.png"
+                alt="Create & Manage Courses Easily"
+                width={587}
+                height={744}
+                className="w-full h-auto object-contain select-none drop-shadow-xl"
+                priority
+              />
+            </motion.div>
+          </div>
+
+          {/* Right Column: Headline, Paragraph & Checklist */}
           <div className="lg:col-span-6 order-1 lg:order-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-100 text-neutral-900 text-label-xs font-semibold uppercase tracking-wider mb-4">
-              <ShieldCheck className="w-4 h-4 text-neutral-900" />
-              <span>Proven Career Acceleration</span>
-            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-neutral-900 tracking-tight leading-[1.18]"
+            >
+              Create & Manage<br className="hidden sm:inline" /> Courses Easily.
+            </motion.h2>
 
-            <h2 className="text-heading-s sm:text-heading-m font-semibold text-neutral-900 tracking-tight leading-tight">
-              Your Path to Professional Growth Starts Here!
-            </h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4 sm:mt-6 text-neutral-600 text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-xl"
+            >
+              ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
+            </motion.p>
 
-            <p className="mt-4 text-body-l text-neutral-500">
-              ByteSpace equips ambitious professionals with the skills, tools, and direct guidance needed to thrive in modern tech ecosystems.
-            </p>
-
-            <ul className="mt-8 space-y-4">
-              {growthBenefitsData.map((benefit, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" />
-                  <span className="text-body-m text-neutral-700 font-medium">
-                    {benefit}
+            {/* Feature Checklist */}
+            <ul className="mt-8 space-y-4 sm:space-y-4.5">
+              {[
+                "Share Your Expertise",
+                "Monetize Your Passion",
+                "Flexibility and Autonomy",
+                "Build a Community",
+              ].map((item, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.25 + idx * 0.08 }}
+                  className="flex items-center gap-3.5"
+                >
+                  <div className="w-5 h-5 rounded-full bg-[#003be2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </div>
+                  <span className="text-neutral-900 text-sm sm:text-base font-semibold">
+                    {item}
                   </span>
-                </li>
+                </motion.li>
               ))}
             </ul>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="/courses">
-                <Button variant="primary" size="lg">
-                  Get Started Today
-                </Button>
-              </Link>
-              <Link href="#creators">
-                <Button variant="outline" size="lg">
-                  Explore Creator Paths
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
       </Container>
