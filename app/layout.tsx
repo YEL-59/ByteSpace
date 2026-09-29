@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-body bg-white text-neutral-800">
+    <html lang="en" className={`${poppins.variable} antialiased`}>
+      <body className="min-h-screen flex flex-col font-body bg-white text-neutral-800">
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
