@@ -13,7 +13,20 @@ const STUDENT_AVATARS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-[750px] sm:min-h-[850px] lg:min-h-[960px] xl:min-h-[1024px] flex flex-col justify-between items-center bg-[#003be2] hero-grid-bg text-white overflow-hidden select-none">
+    <section className="relative w-full min-h-[750px] sm:min-h-[850px] lg:min-h-[960px] xl:min-h-[1024px] flex flex-col justify-between items-center bg-[#003be2] text-white overflow-hidden select-none">
+      {/* ========================================================= */}
+      {/* BACKGROUND: Full-Width hero_bg.png Image                  */}
+      {/* ========================================================= */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/hero_bg.png"
+          alt="ByteSpace Hero Background"
+          fill
+          priority
+          className="object-cover object-bottom pointer-events-none"
+        />
+      </div>
+
       {/* ========================================================= */}
       {/* LAYER 1: Full-Bleed 3D Floating SVGs anchored to edges    */}
       {/* ========================================================= */}
@@ -117,21 +130,11 @@ export default function HeroSection() {
       </div>
 
       {/* ========================================================= */}
-      {/* LAYER 3: Center Bottom Student Visual & Floating Cards    */}
+      {/* LAYER 3: Center Bottom Floating Cards (matching student)  */}
       {/* ========================================================= */}
-      <div className="relative z-20 w-full max-w-[1080px] aspect-[1130/489] mt-6 sm:mt-8 md:mt-10 mx-auto px-4 flex items-end justify-center">
-        {/* Isolated Student + Lime Disc Visual (Transparent PNG, sitting cleanly over 100vw grid) */}
-        <Image
-          src="/hero_student_transparent.png"
-          alt="ByteSpace Student Learning"
-          fill
-          priority
-          className="object-contain object-bottom pointer-events-none"
-          sizes="(max-width: 1080px) 100vw, 1080px"
-        />
-
+      <div className="relative z-20 w-full max-w-[1080px] aspect-[1130/489] mt-6 sm:mt-8 md:mt-10 mx-auto px-4 flex items-end justify-center pointer-events-none">
         {/* Card 1: UI/UX Design (Left of student) */}
-        <div className="absolute left-[3%] sm:left-[6%] lg:left-[10%] top-[4%] sm:top-[8%] lg:top-[12%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform cursor-pointer">
+        <div className="absolute left-[3%] sm:left-[6%] lg:left-[10%] top-[4%] sm:top-[8%] lg:top-[12%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
           <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
             UI/UX Design
           </h3>
@@ -141,7 +144,7 @@ export default function HeroSection() {
         </div>
 
         {/* Card 2: Learning Progress 55% (Right of student) */}
-        <div className="absolute right-[3%] sm:right-[6%] lg:right-[8%] top-[8%] sm:top-[12%] lg:top-[16%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3.5 py-2.5 sm:px-5 sm:py-4 border border-white/90 min-w-[130px] sm:min-w-[180px] md:min-w-[210px] hover:scale-105 transition-transform">
+        <div className="absolute right-[3%] sm:right-[6%] lg:right-[8%] top-[8%] sm:top-[12%] lg:top-[16%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3.5 py-2.5 sm:px-5 sm:py-4 border border-white/90 min-w-[130px] sm:min-w-[180px] md:min-w-[210px] hover:scale-105 transition-transform pointer-events-auto">
           <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
             Learning Progress
           </p>
@@ -154,7 +157,7 @@ export default function HeroSection() {
         </div>
 
         {/* Card 3: Happy Students (Bottom-Left of student) */}
-        <div className="absolute left-[0%] sm:left-[2%] lg:left-[5%] bottom-[8%] sm:bottom-[12%] lg:bottom-[15%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform">
+        <div className="absolute left-[0%] sm:left-[2%] lg:left-[5%] bottom-[8%] sm:bottom-[12%] lg:bottom-[15%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/25 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto">
           <div>
             <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
               Happy Students
