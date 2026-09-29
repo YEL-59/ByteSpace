@@ -10,67 +10,73 @@ const RAIN_LEFT_ITEMS = [
     id: "l1",
     src: "/svgs/spine-lime.svg",
     alt: "Lime Spring",
-    left: "2%",
-    size: "w-22 sm:w-28 md:w-34 lg:w-40",
-    duration: 11,
+    left: "-2%",
+    size: "w-28 sm:w-36 md:w-48 lg:w-56",
+    duration: 13,
     delay: 0,
-    rotateDelta: 160,
-    sway: [0, 12, -8, 0],
+    rotateDelta: 180,
+    sway: [0, 18, -12, 0],
+    zIndex: 14,
   },
   {
     id: "l2",
     src: "/svgs/spine-white.svg",
     alt: "White Spring",
-    left: "14%",
-    size: "w-14 sm:w-18 md:w-22 lg:w-26",
-    duration: 9.5,
-    delay: 3,
-    rotateDelta: -180,
-    sway: [0, -10, 10, 0],
+    left: "18%",
+    size: "w-18 sm:w-24 md:w-30 lg:w-36",
+    duration: 10.5,
+    delay: 3.5,
+    rotateDelta: -210,
+    sway: [0, -14, 14, 0],
+    zIndex: 12,
   },
   {
     id: "l3",
     src: "/svgs/circle-lime.svg",
     alt: "Lime Donut",
-    left: "7%",
-    size: "w-24 sm:w-30 md:w-36 lg:w-44",
-    duration: 13,
-    delay: 5.8,
-    rotateDelta: 200,
-    sway: [0, 14, -14, 0],
+    left: "6%",
+    size: "w-32 sm:w-42 md:w-54 lg:w-64",
+    duration: 16,
+    delay: 6.8,
+    rotateDelta: 240,
+    sway: [0, 22, -18, 0],
+    zIndex: 15,
   },
   {
     id: "l4",
     src: "/svgs/pyramid-white.svg",
     alt: "White Pyramid",
-    left: "18%",
-    size: "w-18 sm:w-22 md:w-26 lg:w-32",
-    duration: 10.5,
-    delay: 1.8,
-    rotateDelta: -140,
-    sway: [0, -12, 8, 0],
+    left: "26%",
+    size: "w-22 sm:w-28 md:w-38 lg:w-44",
+    duration: 12,
+    delay: 1.5,
+    rotateDelta: -160,
+    sway: [0, -14, 12, 0],
+    zIndex: 11,
   },
   {
     id: "l5",
     src: "/svgs/spine-lime.svg",
     alt: "Lime Spring",
-    left: "11%",
-    size: "w-20 sm:w-26 md:w-30 lg:w-36",
-    duration: 12,
-    delay: 8.2,
-    rotateDelta: 140,
-    sway: [0, 10, -12, 0],
+    left: "12%",
+    size: "w-24 sm:w-32 md:w-42 lg:w-48",
+    duration: 14.5,
+    delay: 9.2,
+    rotateDelta: 160,
+    sway: [0, 16, -14, 0],
+    zIndex: 13,
   },
   {
     id: "l6",
     src: "/svgs/circle-lime.svg",
     alt: "Lime Donut",
-    left: "16%",
-    size: "w-20 sm:w-26 md:w-32 lg:w-38",
-    duration: 14,
-    delay: 10.5,
-    rotateDelta: -160,
-    sway: [0, -8, 12, 0],
+    left: "22%",
+    size: "w-26 sm:w-34 md:w-46 lg:w-52",
+    duration: 17,
+    delay: 11.5,
+    rotateDelta: -190,
+    sway: [0, -12, 16, 0],
+    zIndex: 12,
   },
 ];
 
@@ -79,67 +85,73 @@ const RAIN_RIGHT_ITEMS = [
     id: "r1",
     src: "/svgs/cylinder-white.svg",
     alt: "White Cylinder",
-    right: "3%",
-    size: "w-24 sm:w-30 md:w-36 lg:w-44",
-    duration: 12.5,
-    delay: 0.5,
-    rotateDelta: -150,
-    sway: [0, -12, 12, 0],
+    right: "-1%",
+    size: "w-32 sm:w-44 md:w-56 lg:w-68",
+    duration: 15,
+    delay: 0.8,
+    rotateDelta: -170,
+    sway: [0, -18, 14, 0],
+    zIndex: 15,
   },
   {
     id: "r2",
     src: "/svgs/piramid-ime.svg",
     alt: "Lime Pyramid",
-    right: "15%",
-    size: "w-18 sm:w-22 md:w-28 lg:w-34",
-    duration: 10,
-    delay: 3.5,
-    rotateDelta: 180,
-    sway: [0, 10, -10, 0],
+    right: "20%",
+    size: "w-22 sm:w-30 md:w-38 lg:w-46",
+    duration: 11.5,
+    delay: 4,
+    rotateDelta: 200,
+    sway: [0, 14, -14, 0],
+    zIndex: 12,
   },
   {
     id: "r3",
     src: "/svgs/spine-lime.svg",
     alt: "Lime Spring",
     right: "8%",
-    size: "w-22 sm:w-28 md:w-34 lg:w-40",
-    duration: 11.5,
-    delay: 6.8,
-    rotateDelta: 210,
-    sway: [0, -14, 10, 0],
+    size: "w-28 sm:w-38 md:w-48 lg:w-56",
+    duration: 13.5,
+    delay: 7.5,
+    rotateDelta: 220,
+    sway: [0, -16, 12, 0],
+    zIndex: 14,
   },
   {
     id: "r4",
     src: "/svgs/spine-white.svg",
     alt: "White Spring",
-    right: "19%",
-    size: "w-14 sm:w-18 md:w-22 lg:w-26",
-    duration: 9,
+    right: "28%",
+    size: "w-18 sm:w-24 md:w-30 lg:w-36",
+    duration: 10,
     delay: 2.2,
-    rotateDelta: -170,
-    sway: [0, 8, -12, 0],
+    rotateDelta: -200,
+    sway: [0, 10, -12, 0],
+    zIndex: 11,
   },
   {
     id: "r5",
     src: "/svgs/circle-lime.svg",
     alt: "Lime Donut",
-    right: "6%",
-    size: "w-22 sm:w-28 md:w-34 lg:w-40",
-    duration: 13.5,
-    delay: 8.8,
-    rotateDelta: 180,
-    sway: [0, 12, -10, 0],
+    right: "5%",
+    size: "w-28 sm:w-38 md:w-50 lg:w-60",
+    duration: 16,
+    delay: 9.8,
+    rotateDelta: 200,
+    sway: [0, 16, -14, 0],
+    zIndex: 13,
   },
   {
     id: "r6",
     src: "/svgs/cylinder-white.svg",
     alt: "White Cylinder",
-    right: "14%",
-    size: "w-20 sm:w-26 md:w-30 lg:w-36",
-    duration: 11,
-    delay: 5.2,
-    rotateDelta: -130,
-    sway: [0, -10, 10, 0],
+    right: "17%",
+    size: "w-26 sm:w-34 md:w-44 lg:w-52",
+    duration: 13,
+    delay: 5.8,
+    rotateDelta: -150,
+    sway: [0, -14, 14, 0],
+    zIndex: 12,
   },
 ];
 
@@ -150,18 +162,18 @@ export default function CreatorCtaBanner() {
       id="creator-cta"
     >
       {/* ===================================================================== */}
-      {/* Left Side Raining 3D SVGs (falling smoothly from top to bottom)       */}
+      {/* Left Side Raining 3D SVGs: Varied Spread, Larger Sizes & Depth Layers */}
       {/* ===================================================================== */}
-      <div className="absolute inset-y-0 left-0 w-1/3 pointer-events-none z-10 overflow-hidden">
+      <div className="absolute inset-y-0 left-0 w-[42%] lg:w-[40%] pointer-events-none z-10 overflow-hidden">
         {RAIN_LEFT_ITEMS.map((item) => (
           <motion.div
             key={item.id}
             className={`absolute pointer-events-none select-none ${item.size}`}
-            style={{ left: item.left, top: 0 }}
-            initial={{ y: -160, opacity: 0 }}
+            style={{ left: item.left, top: 0, zIndex: item.zIndex }}
+            initial={{ y: -240, opacity: 0 }}
             animate={{
-              y: [-160, 680],
-              opacity: [0, 1, 1, 0.8, 0],
+              y: [-240, 780],
+              opacity: [0, 1, 1, 0.85, 0],
               x: item.sway,
               rotate: [0, item.rotateDelta],
             }}
@@ -175,9 +187,9 @@ export default function CreatorCtaBanner() {
             <Image
               src={item.src}
               alt={item.alt}
-              width={180}
-              height={180}
-              className="w-full h-auto drop-shadow-xl"
+              width={260}
+              height={260}
+              className="w-full h-auto drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)]"
               priority={item.delay === 0}
             />
           </motion.div>
@@ -185,18 +197,18 @@ export default function CreatorCtaBanner() {
       </div>
 
       {/* ===================================================================== */}
-      {/* Right Side Raining 3D SVGs (falling smoothly from top to bottom)      */}
+      {/* Right Side Raining 3D SVGs: Varied Spread, Larger Sizes & Depth Layers*/}
       {/* ===================================================================== */}
-      <div className="absolute inset-y-0 right-0 w-1/3 pointer-events-none z-10 overflow-hidden">
+      <div className="absolute inset-y-0 right-0 w-[42%] lg:w-[40%] pointer-events-none z-10 overflow-hidden">
         {RAIN_RIGHT_ITEMS.map((item) => (
           <motion.div
             key={item.id}
             className={`absolute pointer-events-none select-none ${item.size}`}
-            style={{ right: item.right, top: 0 }}
-            initial={{ y: -160, opacity: 0 }}
+            style={{ right: item.right, top: 0, zIndex: item.zIndex }}
+            initial={{ y: -240, opacity: 0 }}
             animate={{
-              y: [-160, 680],
-              opacity: [0, 1, 1, 0.8, 0],
+              y: [-240, 780],
+              opacity: [0, 1, 1, 0.85, 0],
               x: item.sway,
               rotate: [0, item.rotateDelta],
             }}
@@ -210,9 +222,9 @@ export default function CreatorCtaBanner() {
             <Image
               src={item.src}
               alt={item.alt}
-              width={180}
-              height={180}
-              className="w-full h-auto drop-shadow-xl"
+              width={260}
+              height={260}
+              className="w-full h-auto drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)]"
             />
           </motion.div>
         ))}
@@ -221,15 +233,15 @@ export default function CreatorCtaBanner() {
       {/* ===================================================================== */}
       {/* Central Content                                                       */}
       {/* ===================================================================== */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-16 sm:py-20 md:py-24 lg:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20 sm:py-24 md:py-28 lg:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center max-w-2xl mx-auto flex flex-col items-center"
+          className="text-center max-w-5xl mx-auto flex flex-col items-center"
         >
-          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-white tracking-tight leading-[1.2]">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-white tracking-tight leading-[1.2]">
             Unlock Your Potential as a <br className="hidden sm:inline" />
             Creator with ByteSpace
           </h2>
@@ -244,7 +256,7 @@ export default function CreatorCtaBanner() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="button"
-                className="px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-[#CEF001] hover:bg-[#bde000] text-neutral-950 font-bold text-xs sm:text-sm transition-all duration-200 shadow-md cursor-pointer hover:shadow-lg"
+                className="px-7 py-3 sm:px-9 sm:py-3.5 rounded-full bg-[#CEF001] hover:bg-[#bde000] text-neutral-950 font-bold text-xs sm:text-sm transition-all duration-200 shadow-lg cursor-pointer hover:shadow-xl"
               >
                 Join as Creator
               </motion.button>
