@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Sparkles, ArrowRight, Lock, Mail, Eye, EyeOff } from "lucide-react";
-import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 
 export default function LoginPage() {
@@ -18,7 +17,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center py-12 px-4 bg-neutral-50/50">
-      <Container size="default">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 bg-white max-w-4xl mx-auto">
           {/* Left Visual Panel (Electric Blue + Lime 3D accents) */}
           <div className="lg:col-span-5 bg-primary-600 p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
@@ -186,7 +185,7 @@ export default function LoginPage() {
             </form>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

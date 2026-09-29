@@ -1,14 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "@/components/common/Container";
 import categoriesData from "@/data/categories.json";
 import { Category } from "@/types";
 
 export default function CategoryGrid() {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white" id="categories">
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Heading & Subtitle */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-14">
           <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-[#1A1E23] tracking-tight leading-[1.15]">
@@ -45,7 +44,7 @@ export default function CategoryGrid() {
             </Link>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

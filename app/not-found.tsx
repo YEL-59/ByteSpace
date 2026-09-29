@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft, Home } from "lucide-react";
-import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 
 export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center py-20 px-4">
-      <Container size="default">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto">
           {/* Big Stylized 404 */}
           <div className="relative inline-block mb-6">
@@ -51,7 +50,7 @@ export default function NotFound() {
             </Link>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

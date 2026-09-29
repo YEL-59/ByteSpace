@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
-import Container from "@/components/common/Container";
 
 export default function GrowthSection() {
   return (
@@ -22,7 +21,7 @@ export default function GrowthSection() {
         />
       </div>
 
-      <Container size="wide" className="relative z-10 space-y-28 sm:space-y-36 lg:space-y-44">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-28 sm:space-y-36 lg:space-y-44">
         {/* ======================================================================= */}
         {/* SECTION 1: Professional Growth (Left: Copy & Stats, Right: Image + SVG) */}
         {/* ======================================================================= */}
@@ -228,7 +227,7 @@ export default function GrowthSection() {
             </ul>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

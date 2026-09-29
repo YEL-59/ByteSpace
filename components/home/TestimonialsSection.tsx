@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
-import Container from "@/components/common/Container";
 import testimonialsData from "@/data/testimonials.json";
 import { Testimonial } from "@/types";
 
@@ -20,7 +17,7 @@ export default function TestimonialsSection() {
         />
       </div>
 
-      <Container size="wide" className="relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Header: Title on Left, Paragraph on Right */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-16 mb-14 lg:mb-16">
           <div className="max-w-xl">
@@ -70,7 +67,7 @@ export default function TestimonialsSection() {
             </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

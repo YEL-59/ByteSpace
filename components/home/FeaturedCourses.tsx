@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Container from "@/components/common/Container";
 import CourseCard from "@/components/home/CourseCard";
 import coursesData from "@/data/courses.json";
 import categoryTagsData from "@/data/categoryTags.json";
@@ -33,7 +32,7 @@ export default function FeaturedCourses() {
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white" id="courses">
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Heading & Subtitle */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1A1E23] tracking-tight leading-[1.15]">
@@ -87,7 +86,7 @@ export default function FeaturedCourses() {
             <CourseCard key={course.id} course={course} />
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

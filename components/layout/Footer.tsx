@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "@/components/common/Container";
 import footerLinksData from "@/data/footerLinks.json";
 
 export default function Footer() {
@@ -19,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-white text-neutral-900 pt-16 pb-10 border-t border-neutral-200">
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Row */}
         <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16 pb-12">
           {/* Left Column: Brand & Newsletter */}
@@ -97,7 +96,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }
