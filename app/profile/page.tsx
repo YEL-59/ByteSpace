@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useRef, useEffect, Suspense } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,6 +12,7 @@ import {
   Check,
   CheckCircle2,
   UserPlus,
+  RotateCcw,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import CourseCard from "@/components/home/CourseCard";
@@ -47,6 +48,8 @@ export default function CreatorProfilePage() {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [sortBy, setSortBy] = useState("relevant");
+  const [maxPrice, setMaxPrice] = useState<number | null>(null);
+  const [minRating, setMinRating] = useState<number | null>(null);
 
   // Dropdown menus state
   const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
@@ -78,9 +81,27 @@ export default function CreatorProfilePage() {
     }
   };
 
-  // Filter creator's courses (first 6 items by default matching screenshot)
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (selectedLevel) count++;
+    if (selectedCategory !== "All Categories") count++;
+    if (maxPrice !== null) count++;
+    if (minRating !== null) count++;
+    return count;
+  }, [selectedLevel, selectedCategory, maxPrice, minRating]);
+
+  const resetAllFilters = () => {
+    setSelectedLevel(null);
+    setSelectedCategory("All Categories");
+    setMaxPrice(null);
+    setMinRating(null);
+    setSortBy("relevant");
+    setFilterPanelOpen(false);
+  };
+
+  // Filter creator's courses (up to 6 items matching screenshot)
   const creatorCourses = useMemo(() => {
-    let result = (coursesData as Course[]).filter((c) => {
+    const result = (coursesData as Course[]).filter((c) => {
       const matchesLevel =
         !selectedLevel ||
         selectedLevel === "All Levels" ||
@@ -90,7 +111,10 @@ export default function CreatorProfilePage() {
         selectedCategory === "All Categories" ||
         c.category?.toLowerCase() === selectedCategory.toLowerCase();
 
-      return matchesLevel && matchesCategory;
+      const matchesPrice = maxPrice === null || c.price <= maxPrice;
+      const matchesRating = minRating === null || c.rating >= minRating;
+
+      return matchesLevel && matchesCategory && matchesPrice && matchesRating;
     });
 
     if (sortBy === "rating") {
@@ -102,7 +126,7 @@ export default function CreatorProfilePage() {
     }
 
     return result.slice(0, 6);
-  }, [selectedLevel, selectedCategory, sortBy]);
+  }, [selectedLevel, selectedCategory, maxPrice, minRating, sortBy]);
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col">
@@ -202,21 +226,26 @@ export default function CreatorProfilePage() {
           >
             {/* Left Filter Buttons */}
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              {/* Filter Button */}
+              {/* 1. Filter Button (Toggles Advanced Filters Drawer) */}
               <button
                 type="button"
                 onClick={() => setFilterPanelOpen(!filterPanelOpen)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-                  filterPanelOpen
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                  filterPanelOpen || activeFiltersCount > 0
                     ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
                     : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
                 }`}
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Filter</span>
+                {activeFiltersCount > 0 && (
+                  <span className="w-5 h-5 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-[10px] flex items-center justify-center -mr-1">
+                    {activeFiltersCount}
+                  </span>
+                )}
               </button>
 
-              {/* Level Dropdown Button */}
+              {/* 2. Level Dropdown Button */}
               <div className="relative">
                 <button
                   type="button"
@@ -225,7 +254,7 @@ export default function CreatorProfilePage() {
                     setCategoryDropdownOpen(false);
                     setSortDropdownOpen(false);
                   }}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                     selectedLevel
                       ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
                       : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
@@ -233,32 +262,41 @@ export default function CreatorProfilePage() {
                 >
                   <BarChart2 className="w-3.5 h-3.5" />
                   <span>{selectedLevel || "Level"}</span>
-                  <ChevronDown className="w-3.5 h-3.5 ml-0.5" />
+                  <ChevronDown className={`w-3.5 h-3.5 ml-0.5 transition-transform ${levelDropdownOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {levelDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-44 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
-                    {LEVEL_OPTIONS.map((lvl) => (
-                      <button
-                        key={lvl}
-                        type="button"
-                        onClick={() => {
-                          setSelectedLevel(lvl === "All Levels" ? null : lvl);
-                          setLevelDropdownOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-neutral-700 hover:bg-neutral-50 text-left cursor-pointer"
-                      >
-                        <span>{lvl}</span>
-                        {(lvl === "All Levels" ? !selectedLevel : selectedLevel === lvl) && (
-                          <Check className="w-3.5 h-3.5 text-[#003be2]" />
-                        )}
-                      </button>
-                    ))}
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                    <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                      Select Level
+                    </div>
+                    {LEVEL_OPTIONS.map((lvl) => {
+                      const isSelected =
+                        lvl === "All Levels" ? !selectedLevel : selectedLevel === lvl;
+                      return (
+                        <button
+                          key={lvl}
+                          type="button"
+                          onClick={() => {
+                            setSelectedLevel(lvl === "All Levels" ? null : lvl);
+                            setLevelDropdownOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                            isSelected
+                              ? "font-semibold text-neutral-950 bg-neutral-50"
+                              : "text-neutral-700"
+                          }`}
+                        >
+                          <span>{lvl}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </div>
 
-              {/* Category Dropdown Button */}
+              {/* 3. Category Dropdown Button */}
               <div className="relative">
                 <button
                   type="button"
@@ -267,7 +305,7 @@ export default function CreatorProfilePage() {
                     setLevelDropdownOpen(false);
                     setSortDropdownOpen(false);
                   }}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                     selectedCategory !== "All Categories"
                       ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
                       : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
@@ -275,30 +313,50 @@ export default function CreatorProfilePage() {
                 >
                   <LayoutGrid className="w-3.5 h-3.5" />
                   <span>{selectedCategory === "All Categories" ? "Category" : selectedCategory}</span>
-                  <ChevronDown className="w-3.5 h-3.5 ml-0.5" />
+                  <ChevronDown className={`w-3.5 h-3.5 ml-0.5 transition-transform ${categoryDropdownOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {categoryDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
-                    {CATEGORY_OPTIONS.map((cat) => (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => {
-                          setSelectedCategory(cat);
-                          setCategoryDropdownOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-neutral-700 hover:bg-neutral-50 text-left cursor-pointer"
-                      >
-                        <span>{cat}</span>
-                        {selectedCategory === cat && (
-                          <Check className="w-3.5 h-3.5 text-[#003be2]" />
-                        )}
-                      </button>
-                    ))}
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                    <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                      Select Category
+                    </div>
+                    {CATEGORY_OPTIONS.map((cat) => {
+                      const isSelected = selectedCategory === cat;
+                      return (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => {
+                            setSelectedCategory(cat);
+                            setCategoryDropdownOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                            isSelected
+                              ? "font-semibold text-neutral-950 bg-neutral-50"
+                              : "text-neutral-700"
+                          }`}
+                        >
+                          <span>{cat}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </div>
+
+              {/* Clear Filters Reset Button */}
+              {activeFiltersCount > 0 && (
+                <button
+                  type="button"
+                  onClick={resetAllFilters}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Clear All</span>
+                </button>
+              )}
             </div>
 
             {/* Right Sort Button */}
@@ -314,11 +372,14 @@ export default function CreatorProfilePage() {
               >
                 <ArrowUpDown className="w-3.5 h-3.5 text-neutral-600" />
                 <span>{SORT_OPTIONS.find((s) => s.id === sortBy)?.label}</span>
-                <ChevronDown className="w-3.5 h-3.5 ml-0.5" />
+                <ChevronDown className={`w-3.5 h-3.5 ml-0.5 transition-transform ${sortDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {sortDropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                  <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                    Sort Courses
+                  </div>
                   {SORT_OPTIONS.map((opt) => (
                     <button
                       key={opt.id}
@@ -327,7 +388,9 @@ export default function CreatorProfilePage() {
                         setSortBy(opt.id);
                         setSortDropdownOpen(false);
                       }}
-                      className="w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-neutral-700 hover:bg-neutral-50 text-left cursor-pointer"
+                      className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                        sortBy === opt.id ? "font-semibold text-neutral-950 bg-neutral-50" : "text-neutral-700"
+                      }`}
                     >
                       <span>{opt.label}</span>
                       {sortBy === opt.id && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
@@ -338,12 +401,118 @@ export default function CreatorProfilePage() {
             </div>
           </div>
 
-          {/* Course Cards Grid (6 courses matching the screenshot) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8">
-            {creatorCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
+          {/* Advanced Collapsible Filter Drawer */}
+          <AnimatePresence>
+            {filterPanelOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden border-b border-neutral-100"
+              >
+                <div className="py-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {/* Price Filter */}
+                  <div>
+                    <label className="block text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">
+                      Max Price: {maxPrice ? `$${maxPrice}` : "Any"}
+                    </label>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {[25, 30, 40].map((price) => (
+                        <button
+                          key={price}
+                          type="button"
+                          onClick={() => setMaxPrice(maxPrice === price ? null : price)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
+                            maxPrice === price
+                              ? "bg-neutral-950 text-white border-neutral-950"
+                              : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                          }`}
+                        >
+                          Under ${price}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Rating Filter */}
+                  <div>
+                    <label className="block text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">
+                      Minimum Rating
+                    </label>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {[4.5, 4.8].map((rating) => (
+                        <button
+                          key={rating}
+                          type="button"
+                          onClick={() => setMinRating(minRating === rating ? null : rating)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
+                            minRating === rating
+                              ? "bg-neutral-950 text-white border-neutral-950"
+                              : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                          }`}
+                        >
+                          ★ {rating}+
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Reset Actions */}
+                  <div className="flex items-end justify-start sm:justify-end">
+                    <button
+                      type="button"
+                      onClick={resetAllFilters}
+                      className="px-4 py-2 rounded-full border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                    >
+                      Reset All Filters
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Results Count Bar */}
+          <div className="flex items-center justify-between text-xs sm:text-sm text-neutral-500 pt-4 pb-2">
+            <p>
+              Showing <span className="font-bold text-neutral-900">{creatorCourses.length}</span> courses
+              {selectedCategory !== "All Categories" && (
+                <span> in <strong className="text-neutral-900">{selectedCategory}</strong></span>
+              )}
+              {selectedLevel && (
+                <span> • Level: <strong className="text-neutral-900">{selectedLevel}</strong></span>
+              )}
+            </p>
           </div>
+
+          {/* Course Cards Grid (6 courses matching the screenshot) */}
+          {creatorCourses.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6"
+            >
+              {creatorCourses.map((course) => (
+                <CourseCard key={course.id} course={course} />
+              ))}
+            </motion.div>
+          ) : (
+            <div className="text-center py-20 bg-neutral-50 rounded-3xl border border-neutral-200 my-8">
+              <p className="font-heading text-lg font-bold text-neutral-800">
+                No courses found matching selected filters
+              </p>
+              <p className="text-sm text-neutral-500 mt-2">
+                Try selecting a different level or category.
+              </p>
+              <button
+                type="button"
+                onClick={resetAllFilters}
+                className="mt-5 px-6 py-2.5 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-sm hover:bg-[#bde200] transition-colors cursor-pointer"
+              >
+                Reset Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>
