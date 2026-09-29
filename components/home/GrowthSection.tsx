@@ -33,9 +33,11 @@ export default function GrowthSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[56px] font-extrabold text-neutral-900 tracking-tight leading-[1.12]"
+              className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[36px] xl:text-[42px] font-extrabold text-neutral-900 tracking-tight leading-[1.2]"
             >
-              Your Path to Professional<br className="hidden sm:inline" /> Growth Starts Here!
+              <span className="sm:whitespace-nowrap">Your Path to Professional</span>
+              <br className="hidden sm:inline" />{" "}
+              <span className="sm:whitespace-nowrap">Growth Starts Here!</span>
             </motion.h2>
 
             <motion.p
