@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Star, Clock, BookOpen, ShieldCheck, CheckCircle2, PlayCircle, ArrowLeft } from "lucide-react";
-import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 import Badge from "@/components/common/Badge";
 import coursesData from "@/data/courses.json";
@@ -33,7 +32,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     <div className="bg-neutral-50/50 pb-20">
       {/* Course Hero Banner */}
       <section className="bg-primary-600 text-white py-12 lg:py-16">
-        <Container size="wide">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/courses"
             className="inline-flex items-center gap-2 text-primary-200 hover:text-white text-body-s mb-6 transition-colors"
@@ -93,11 +92,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Main Content & Pricing Sticky Card */}
-      <Container size="wide" className="mt-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left Details Column */}
           <div className="lg:col-span-8 space-y-10">
@@ -199,7 +198,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, X } from "lucide-react";
-import Container from "@/components/common/Container";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -28,7 +27,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = isHome && !scrolled;
+  const isTransparent = !pathname?.startsWith("/courses") && !scrolled;
 
   return (
     <header
@@ -38,7 +37,7 @@ export default function Navbar() {
           : "bg-[#003be2]/90 backdrop-blur-md shadow-lg border-b border-white/10 py-1"
       }`}
     >
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
@@ -106,7 +105,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </Container>
+      </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (

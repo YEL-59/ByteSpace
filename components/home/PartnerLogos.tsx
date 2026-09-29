@@ -1,13 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Container from "@/components/common/Container";
 import partnersData from "@/data/partners.json";
 import { Partner } from "@/types";
 
 export default function PartnerLogos() {
   return (
     <section className="py-8 sm:py-10 md:py-12 bg-[#F8F9FA] border-y border-[#ECEEF2]">
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-24">
           {(partnersData as Partner[]).map((partner) => (
             <div
@@ -25,7 +24,7 @@ export default function PartnerLogos() {
             </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

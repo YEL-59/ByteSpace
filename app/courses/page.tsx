@@ -3,7 +3,6 @@
 import React, { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
-import Container from "@/components/common/Container";
 import SectionHeading from "@/components/common/SectionHeading";
 import CourseCard from "@/components/home/CourseCard";
 import coursesData from "@/data/courses.json";
@@ -41,7 +40,7 @@ function CourseCatalogContent() {
 
   return (
     <div className="py-12 lg:py-16 bg-white min-h-[80vh]">
-      <Container size="wide">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="Course Catalog"
           title="Find Your Next Course"
@@ -114,7 +113,7 @@ function CourseCatalogContent() {
             </button>
           </div>
         )}
-      </Container>
+      </div>
     </div>
   );
 }
