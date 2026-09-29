@@ -1,0 +1,580 @@
+"use client";
+
+import React, { useState, useMemo, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  SlidersHorizontal,
+  BarChart2,
+  LayoutGrid,
+  ChevronDown,
+  Check,
+  CheckCircle2,
+  UserPlus,
+  RotateCcw,
+  ExternalLink,
+  FolderGit2,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import CourseCard from "@/components/home/CourseCard";
+import coursesData from "@/data/courses.json";
+import { Course } from "@/types";
+
+const LEVEL_OPTIONS = ["All Levels", "Beginner", "Intermediate", "Advanced"];
+
+const CATEGORY_OPTIONS = [
+  "All Categories",
+  "UI/UX Design",
+  "Marketing",
+  "Creative Marketing",
+  "Social Media",
+  "Animation",
+  "Drawing & Painting",
+  "Music",
+  "Cooking",
+];
+
+const SORT_OPTIONS = [
+  { id: "relevant", label: "Most relevant" },
+  { id: "rating", label: "Highest rated" },
+  { id: "price-low", label: "Price: Low to High" },
+  { id: "price-high", label: "Price: High to Low" },
+];
+
+export default function CreatorProfilePage() {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followersCount, setFollowersCount] = useState(12);
+
+  // Filters & sorting state
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
+  const [sortBy, setSortBy] = useState("relevant");
+  const [maxPrice, setMaxPrice] = useState<number | null>(null);
+  const [minRating, setMinRating] = useState<number | null>(null);
+
+  // Dropdown menus state
+  const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [filterPanelOpen, setFilterPanelOpen] = useState(false);
+
+  const controlsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (controlsRef.current && !controlsRef.current.contains(e.target as Node)) {
+        setLevelDropdownOpen(false);
+        setCategoryDropdownOpen(false);
+        setSortDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleFollowToggle = () => {
+    if (isFollowing) {
+      setIsFollowing(false);
+      setFollowersCount((prev) => prev - 1);
+    } else {
+      setIsFollowing(true);
+      setFollowersCount((prev) => prev + 1);
+    }
+  };
+
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (selectedLevel) count++;
+    if (selectedCategory !== "All Categories") count++;
+    if (maxPrice !== null) count++;
+    if (minRating !== null) count++;
+    return count;
+  }, [selectedLevel, selectedCategory, maxPrice, minRating]);
+
+  const resetAllFilters = () => {
+    setSelectedLevel(null);
+    setSelectedCategory("All Categories");
+    setMaxPrice(null);
+    setMinRating(null);
+    setSortBy("relevant");
+    setFilterPanelOpen(false);
+  };
+
+  // Filter creator's courses (up to 6 items matching screenshot)
+  const creatorCourses = useMemo(() => {
+    const result = (coursesData as Course[]).filter((c) => {
+      const matchesLevel =
+        !selectedLevel ||
+        selectedLevel === "All Levels" ||
+        c.level?.toLowerCase() === selectedLevel.toLowerCase();
+
+      const matchesCategory =
+        selectedCategory === "All Categories" ||
+        c.category?.toLowerCase() === selectedCategory.toLowerCase();
+
+      const matchesPrice = maxPrice === null || c.price <= maxPrice;
+      const matchesRating = minRating === null || c.rating >= minRating;
+
+      return matchesLevel && matchesCategory && matchesPrice && matchesRating;
+    });
+
+    if (sortBy === "rating") {
+      result.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === "price-low") {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "price-high") {
+      result.sort((a, b) => b.price - a.price);
+    }
+
+    return result.slice(0, 6);
+  }, [selectedLevel, selectedCategory, maxPrice, minRating, sortBy]);
+
+  return (
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col">
+      {/* ======================================================================= */}
+      {/* SECTION 1: Royal Blue Creator Profile Hero Section                      */}
+      {/* ======================================================================= */}
+      <section className="bg-[#003be2] hero-grid-bg text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 relative overflow-hidden">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          {/* Creator Profile Header */}
+          <div className="flex items-start gap-4 sm:gap-5">
+            {/* Creator Photo Avatar */}
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/30 bg-neutral-200">
+              <Image
+                src="/myphoto.png"
+                alt="Tofayel"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+
+            {/* Creator Name, Badge & Title */}
+            <div>
+              <div className="flex items-center gap-3 flex-wrap">
+                <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                  Tofayel
+                </h1>
+                <span className="bg-[#CEF001] text-neutral-950 font-bold px-3 py-0.5 rounded-full text-xs shadow-xs">
+                  Creator
+                </span>
+              </div>
+              <p className="text-[#CEF001] text-xs sm:text-sm mt-1 font-semibold">
+                Frontend Developer & UI/UX Specialist
+              </p>
+            </div>
+          </div>
+
+          {/* Creator Bio Paragraphs */}
+          <div className="mt-5 sm:mt-6 text-xs sm:text-sm text-white/95 leading-relaxed max-w-3xl space-y-2.5 font-normal">
+            <p>
+              Hi! I&apos;m Tofayel, a passionate Frontend Developer dedicated to crafting responsive, high-performance, and interactive web applications using React, Next.js, TypeScript, and modern CSS architecture. I specialize in turning complex design systems into intuitive, pixel-perfect user experiences with fluid micro-animations and seamless responsiveness.
+            </p>
+            <p>
+              Explore my digital products, interactive courses, and open-source frontend engineering projects below. Let&apos;s build the future of modern web interfaces together!
+            </p>
+          </div>
+
+          {/* Action Row: Products, Followers, GitHub, Project & Follow Button */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-8 pt-6 border-t border-white/15">
+            {/* Stats & Social Links Pills */}
+            <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+              <div className="bg-white text-neutral-900 font-bold px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm shadow-xs">
+                3 Products
+              </div>
+              <div className="bg-white text-neutral-900 font-bold px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm shadow-xs">
+                {followersCount} Followers
+              </div>
+
+              {/* GitHub Link */}
+              <a
+                href="https://github.com/yel-59"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-neutral-900 hover:bg-neutral-100 font-semibold px-4 py-2 rounded-full text-xs sm:text-sm shadow-xs transition-all hover:scale-105"
+                title="View Tofayel's GitHub Profile"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                <span>GitHub</span>
+                <span className="text-neutral-500 font-normal">@yel-59</span>
+                <ExternalLink className="w-3 h-3 text-neutral-400" />
+              </a>
+
+              {/* Project Repository Link */}
+              <a
+                href="https://github.com/YEL-59/ByteSpace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-neutral-900 hover:bg-neutral-100 font-semibold px-4 py-2 rounded-full text-xs sm:text-sm shadow-xs transition-all hover:scale-105"
+                title="View ByteSpace Project on GitHub"
+              >
+                <FolderGit2 className="w-3.5 h-3.5 text-[#003be2]" />
+                <span>ByteSpace Project</span>
+                <ExternalLink className="w-3 h-3 text-neutral-400" />
+              </a>
+            </div>
+
+            {/* Follow Button */}
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              type="button"
+              onClick={handleFollowToggle}
+              className={`font-bold px-7 py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center gap-1.5 ${
+                isFollowing
+                  ? "bg-white text-[#003be2]"
+                  : "bg-[#CEF001] hover:bg-[#bde200] text-neutral-950"
+              }`}
+            >
+              {isFollowing ? (
+                <>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#003be2]" />
+                  <span>Following</span>
+                </>
+              ) : (
+                <>
+                  <UserPlus className="w-3.5 h-3.5 text-neutral-950" />
+                  <span>Follow</span>
+                </>
+              )}
+            </motion.button>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================================= */}
+      {/* SECTION 2: Catalog Products / Courses Grid                              */}
+      {/* ======================================================================= */}
+      <section className="py-10 sm:py-14 bg-white flex-1">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          {/* Top Control Bar: Filters & Sorting */}
+          <div
+            ref={controlsRef}
+            className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100 relative"
+          >
+            {/* Left Filter Buttons */}
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              {/* 1. Filter Button (Toggles Advanced Filters Drawer) */}
+              <button
+                type="button"
+                onClick={() => setFilterPanelOpen(!filterPanelOpen)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                  filterPanelOpen || activeFiltersCount > 0
+                    ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
+                    : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                }`}
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span>Filter</span>
+                {activeFiltersCount > 0 && (
+                  <span className="w-5 h-5 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-[10px] flex items-center justify-center -mr-1">
+                    {activeFiltersCount}
+                  </span>
+                )}
+              </button>
+
+              {/* 2. Level Dropdown Button */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLevelDropdownOpen(!levelDropdownOpen);
+                    setCategoryDropdownOpen(false);
+                    setSortDropdownOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                    selectedLevel
+                      ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
+                      : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                  }`}
+                >
+                  <BarChart2 className="w-3.5 h-3.5" />
+                  <span>{selectedLevel || "Level"}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 ml-0.5 transition-transform ${levelDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {levelDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                    <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                      Select Level
+                    </div>
+                    {LEVEL_OPTIONS.map((lvl) => {
+                      const isSelected =
+                        lvl === "All Levels" ? !selectedLevel : selectedLevel === lvl;
+                      return (
+                        <button
+                          key={lvl}
+                          type="button"
+                          onClick={() => {
+                            setSelectedLevel(lvl === "All Levels" ? null : lvl);
+                            setLevelDropdownOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                            isSelected
+                              ? "font-semibold text-neutral-950 bg-neutral-50"
+                              : "text-neutral-700"
+                          }`}
+                        >
+                          <span>{lvl}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* 3. Category Dropdown Button */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCategoryDropdownOpen(!categoryDropdownOpen);
+                    setLevelDropdownOpen(false);
+                    setSortDropdownOpen(false);
+                  }}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                    selectedCategory !== "All Categories"
+                      ? "bg-neutral-900 text-white border-neutral-900 shadow-xs"
+                      : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                  }`}
+                >
+                  <LayoutGrid className="w-3.5 h-3.5" />
+                  <span>{selectedCategory === "All Categories" ? "Category" : selectedCategory}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 ml-0.5 transition-transform ${categoryDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {categoryDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                    <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                      Select Category
+                    </div>
+                    {CATEGORY_OPTIONS.map((cat) => {
+                      const isSelected = selectedCategory === cat;
+                      return (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => {
+                            setSelectedCategory(cat);
+                            setCategoryDropdownOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                            isSelected
+                              ? "font-semibold text-neutral-950 bg-neutral-50"
+                              : "text-neutral-700"
+                          }`}
+                        >
+                          <span>{cat}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Clear Filters Reset Button */}
+              {activeFiltersCount > 0 && (
+                <button
+                  type="button"
+                  onClick={resetAllFilters}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Reset ({activeFiltersCount})</span>
+                </button>
+              )}
+            </div>
+
+            {/* Right Sort Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  setSortDropdownOpen(!sortDropdownOpen);
+                  setLevelDropdownOpen(false);
+                  setCategoryDropdownOpen(false);
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 text-xs sm:text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-all cursor-pointer"
+              >
+                <span>
+                  {SORT_OPTIONS.find((s) => s.id === sortBy)?.label || "Most relevant"}
+                </span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${sortDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {sortDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-30">
+                  <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                    Sort By
+                  </div>
+                  {SORT_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => {
+                        setSortBy(opt.id);
+                        setSortDropdownOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-4 py-2 text-xs sm:text-sm text-left hover:bg-neutral-50 transition-colors cursor-pointer ${
+                        sortBy === opt.id
+                          ? "font-semibold text-neutral-950 bg-neutral-50"
+                          : "text-neutral-700"
+                      }`}
+                    >
+                      <span>{opt.label}</span>
+                      {sortBy === opt.id && <Check className="w-3.5 h-3.5 text-[#003be2]" />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Expandable Advanced Filter Panel */}
+          <AnimatePresence>
+            {filterPanelOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden border-b border-neutral-100 bg-neutral-50/70 rounded-2xl mt-4 p-5 sm:p-6"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+                  {/* Price Filter */}
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 mb-2">
+                      Max Price: {maxPrice ? `$${maxPrice}` : "Any"}
+                    </label>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      step="5"
+                      value={maxPrice || 100}
+                      onChange={(e) => setMaxPrice(Number(e.target.value))}
+                      className="w-full accent-[#003be2] cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[11px] text-neutral-400 mt-1">
+                      <span>$10</span>
+                      <span>$100</span>
+                    </div>
+                  </div>
+
+                  {/* Rating Filter */}
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 mb-2">
+                      Minimum Rating
+                    </label>
+                    <div className="flex items-center gap-1.5">
+                      {[4.0, 4.5, 4.8].map((rating) => (
+                        <button
+                          key={rating}
+                          type="button"
+                          onClick={() => setMinRating(minRating === rating ? null : rating)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                            minRating === rating
+                              ? "bg-neutral-900 text-white"
+                              : "bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                          }`}
+                        >
+                          ★ {rating}+
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Level Pill Quick Toggle */}
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 mb-2">
+                      Level
+                    </label>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {["Beginner", "Intermediate", "Advanced"].map((lvl) => (
+                        <button
+                          key={lvl}
+                          type="button"
+                          onClick={() => setSelectedLevel(selectedLevel === lvl ? null : lvl)}
+                          className={`px-3 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                            selectedLevel === lvl
+                              ? "bg-[#003be2] text-white"
+                              : "bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                          }`}
+                        >
+                          {lvl}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center justify-end gap-2.5">
+                    <button
+                      type="button"
+                      onClick={resetAllFilters}
+                      className="px-4 py-2 rounded-full border border-neutral-200 bg-white text-xs font-semibold text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                    >
+                      Clear
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFilterPanelOpen(false)}
+                      className="px-5 py-2 rounded-full bg-neutral-900 text-white text-xs font-semibold hover:bg-black transition-colors cursor-pointer shadow-xs"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Active Filter Chips Bar */}
+          <div className="pt-4 flex items-center justify-between flex-wrap gap-2 text-xs text-neutral-500">
+            <p>
+              Showing <strong className="text-neutral-900 font-semibold">{creatorCourses.length}</strong> courses by Tofayel
+              {selectedCategory !== "All Categories" && (
+                <span> in <strong className="text-neutral-900">{selectedCategory}</strong></span>
+              )}
+              {selectedLevel && (
+                <span> • Level: <strong className="text-neutral-900">{selectedLevel}</strong></span>
+              )}
+            </p>
+          </div>
+
+          {/* Course Cards Grid (6 courses matching the screenshot) */}
+          {creatorCourses.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6"
+            >
+              {creatorCourses.map((course) => (
+                <CourseCard key={course.id} course={course} />
+              ))}
+            </motion.div>
+          ) : (
+            <div className="text-center py-20 bg-neutral-50 rounded-3xl border border-neutral-200 my-8">
+              <p className="font-heading text-lg font-bold text-neutral-800">
+                No courses found matching selected filters
+              </p>
+              <p className="text-sm text-neutral-500 mt-2">
+                Try selecting a different level or category.
+              </p>
+              <button
+                type="button"
+                onClick={resetAllFilters}
+                className="mt-5 px-6 py-2.5 rounded-full bg-[#CEF001] text-neutral-950 font-bold text-sm hover:bg-[#bde200] transition-colors cursor-pointer"
+              >
+                Reset Filters
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
