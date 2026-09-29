@@ -1,93 +1,164 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Star, Clock, BookOpen, ShieldCheck, CheckCircle2, PlayCircle, ArrowLeft } from "lucide-react";
-import Button from "@/components/common/Button";
-import Badge from "@/components/common/Badge";
+import { useParams } from "next/navigation";
+import {
+  Star,
+  Play,
+  Share2,
+  Users,
+  BarChart2,
+  CheckCircle2,
+  FileText,
+  Video,
+  Award,
+  MessageSquare,
+  ArrowLeft,
+  Clock,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import coursesData from "@/data/courses.json";
 import { Course } from "@/types";
 
-interface CourseDetailPageProps {
-  params: Promise<{ id: string }>;
-}
+export default function CourseDetailPage() {
+  const params = useParams();
+  const courseId = params?.id as string;
 
-export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
-  const { id } = await params;
-  const course = (coursesData as Course[]).find((c) => c.id === id);
+  // Find course or fallback to first course
+  const course =
+    (coursesData as Course[]).find((c) => c.id === courseId) || coursesData[0];
 
-  if (!course) {
-    notFound();
-  }
+  const [activeTab, setActiveTab] = useState<"about" | "lessons" | "reviews">("about");
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [copiedShare, setCopiedShare] = useState(false);
 
-  const SYLLABUS = [
-    { title: "Module 1: Foundations & Architecture Setup", duration: "2h 15m", lessons: 6 },
-    { title: "Module 2: Advanced Design Patterns & State Management", duration: "3h 40m", lessons: 10 },
-    { title: "Module 3: Full-Stack Integration & API Design", duration: "4h 10m", lessons: 12 },
-    { title: "Module 4: Performance Optimization & Edge Caching", duration: "2h 30m", lessons: 8 },
-    { title: "Module 5: Production Deployment & Observability", duration: "1h 55m", lessons: 6 },
+  const handleShare = () => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard?.writeText(window.location.href);
+      setCopiedShare(true);
+      setTimeout(() => setCopiedShare(false), 2000);
+    }
+  };
+
+  const SAMPLE_LESSONS = [
+    { num: "01", title: "Introduction to Digital Assets", duration: "12 mins" },
+    { num: "02", title: "Design Principles for Impacts", duration: "21 mins" },
+    { num: "03", title: "Advanced Techniques in Digital Creation", duration: "16 mins" },
+    { num: "04", title: "Workflow Automation & Vector Systems", duration: "28 mins" },
+    { num: "05", title: "Asset Packaging & Export Strategies", duration: "19 mins" },
+  ];
+
+  const KEY_POINTS = [
+    "Foundational Concepts",
+    "Design Principles Mastery",
+    "Advanced Techniques in Digital Creation",
+    "Project Showcase and Critique",
+    "Optimizing for Various Platforms",
+    "Digital Asset Management Best Practices",
+    "Monetization Strategies",
+    "Capstone Project: Building Your Portfolio",
+  ];
+
+  const SNEAK_PEEK_IMAGES = [
+    "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80",
   ];
 
   return (
-    <div className="bg-neutral-50/50 pb-20">
-      {/* Course Hero Banner */}
-      <section className="bg-primary-600 text-white py-12 lg:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/courses"
-            className="inline-flex items-center gap-2 text-primary-200 hover:text-white text-body-s mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to All Courses</span>
-          </Link>
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col">
+      {/* ======================================================================= */}
+      {/* SECTION 1: Blue Hero Section with Video & Course Overview               */}
+      {/* ======================================================================= */}
+      <section className="bg-[#003be2] hero-grid-bg text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 relative overflow-hidden">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          {/* Top Breadcrumb & Share */}
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-white/80 hover:text-white transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Courses</span>
+            </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Share Button */}
+            <button
+              type="button"
+              onClick={handleShare}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#CEF001] hover:bg-[#bde200] text-neutral-950 font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer shrink-0"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              <span>{copiedShare ? "Link Copied!" : "Share"}</span>
+            </button>
+          </div>
+
+          {/* Main Title & Subtitle */}
+          <div className="max-w-3xl">
+            <h1 className="font-heading text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-tight leading-tight">
+              {course.title || "Build Digital Asset: A Comprehensive Guide"}
+            </h1>
+            <p className="mt-2 text-white/90 text-sm sm:text-base font-normal leading-relaxed">
+              Unlock the Power of Digital Creation with Expert Guidance
+            </p>
+
+            <p className="mt-2 text-xs sm:text-sm text-white/80">
+              by{" "}
+              <span className="text-[#CEF001] font-semibold hover:underline cursor-pointer">
+                {course.instructor?.name || "purepearl studio"}
+              </span>
+            </p>
+
+            {/* Three Info Badges (Pills) */}
+            <div className="flex items-center gap-2.5 sm:gap-3 mt-4 flex-wrap">
+              {/* Level Pill */}
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-neutral-800 text-xs sm:text-sm font-semibold shadow-xs">
+                <BarChart2 className="w-3.5 h-3.5 text-neutral-600" />
+                <span>{course.level || "Intermediate"}</span>
+              </div>
+
+              {/* Rating Pill */}
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-neutral-800 text-xs sm:text-sm font-semibold shadow-xs">
+                <Star className="w-3.5 h-3.5 fill-[#003be2] text-[#003be2]" />
+                <span>{course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)</span>
+              </div>
+
+              {/* Students Count Pill */}
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-neutral-800 text-xs sm:text-sm font-semibold shadow-xs">
+                <Users className="w-3.5 h-3.5 text-neutral-600" />
+                <span>199 Students</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Video Preview Card placed in Hero */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 rounded-full bg-white/10 text-secondary-400 text-label-xs font-semibold backdrop-blur-xs">
-                  {course.category}
-                </span>
-                {course.badge && (
-                  <Badge variant="secondary" size="sm">
-                    {course.badge}
-                  </Badge>
-                )}
-              </div>
+              <div className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-[28px] overflow-hidden shadow-2xl bg-neutral-900 border border-white/10 group">
+                <Image
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80"
+                  alt="Course Video Preview"
+                  fill
+                  className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
 
-              <h1 className="font-heading text-heading-s sm:text-heading-m font-semibold tracking-tight text-white leading-tight">
-                {course.title}
-              </h1>
-
-              <div className="mt-6 flex flex-wrap items-center gap-6 text-body-s text-primary-100">
-                <div className="flex items-center gap-1.5">
-                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  <span className="font-bold text-white">{course.rating.toFixed(1)}</span>
-                  <span>({course.reviewsCount.toLocaleString()} ratings)</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  <span>{course.duration} total duration</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <BookOpen className="w-4 h-4" />
-                  <span>{course.lessonsCount} lessons</span>
-                </div>
-              </div>
-
-              <div className="mt-6 flex items-center gap-3 pt-6 border-t border-primary-500/40">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-neutral-200">
-                  <Image
-                    src={course.instructor.avatar}
-                    alt={course.instructor.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="text-label-s font-semibold text-white">
-                    Created by {course.instructor.name}
-                  </p>
-                  <p className="text-body-xs text-primary-200">{course.instructor.role}</p>
+                {/* Center Glass Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.button
+                    whileHover={{ scale: 1.12 }}
+                    whileTap={{ scale: 0.94 }}
+                    type="button"
+                    onClick={() => setIsPlayingVideo(true)}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/75 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl cursor-pointer hover:bg-white transition-all pl-1"
+                    aria-label="Play Course Video Preview"
+                  >
+                    <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-neutral-900 text-neutral-900" />
+                  </motion.button>
                 </div>
               </div>
             </div>
@@ -95,110 +166,315 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         </div>
       </section>
 
-      {/* Main Content & Pricing Sticky Card */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left Details Column */}
-          <div className="lg:col-span-8 space-y-10">
-            {/* What you'll learn */}
-            <div className="bg-white p-8 rounded-2xl border border-neutral-200 shadow-xs">
-              <h2 className="font-heading text-heading-xs font-semibold text-neutral-900 mb-6">
-                What you will master in this course
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* ======================================================================= */}
+      {/* SECTION 2: Body Content (Left: Tabs & Info, Right: Sticky Sidebar Card) */}
+      {/* ======================================================================= */}
+      <section className="py-10 sm:py-14 bg-white flex-1 relative">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
+            {/* =================================================================== */}
+            {/* Left Column: Tabs, Description, Sneak Peek, Key Points              */}
+            {/* =================================================================== */}
+            <div className="lg:col-span-7 xl:col-span-8 space-y-10">
+              {/* Category / Section Tabs */}
+              <div className="flex items-center gap-2.5">
                 {[
-                  "Architect and build full production-ready applications from scratch",
-                  "Integrate secure authentication, state management, and API layers",
-                  "Master responsive UI/UX principles with Tailwind CSS design systems",
-                  "Optimize performance, SEO, accessibility, and Core Web Vitals",
-                  "Deploy CI/CD pipelines to Vercel and production cloud providers",
-                  "Gain lifetime access to code repositories and developer Discord",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="text-body-s text-neutral-700">{item}</span>
-                  </div>
-                ))}
+                  { id: "about", label: "About" },
+                  { id: "lessons", label: "Lessons" },
+                  { id: "reviews", label: "Reviews" },
+                ].map((tab) => {
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                      className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-[#CEF001] text-neutral-950 shadow-xs"
+                          : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
+
+              {/* Tab 1: ABOUT CONTENT */}
+              {activeTab === "about" && (
+                <div className="space-y-10">
+                  {/* Description Section */}
+                  <div>
+                    <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-3.5">
+                      Description
+                    </h2>
+                    <div className="space-y-3.5 text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                      <p>
+                        Embark on an enlightening exploration into the world of digital creation with our comprehensive
+                        course, &ldquo;Build Digital Assets: A Comprehensive Guide.&rdquo; This transformative learning experience invites
+                        you to delve deep into the intricacies of crafting impactful digital content. From laying the groundwork
+                        with foundational concepts to mastering advanced techniques, this guide is meticulously curated to
+                        empower you with the skills essential for navigating the dynamic landscape of digital asset creation.
+                      </p>
+                      <p>
+                        In the initial modules, you&apos;ll establish a solid foundation by immersing yourself in the foundational
+                        concepts that form the backbone of digital asset creation. Understand the fundamental elements that
+                        constitute compelling digital content and gain proficiency in leveraging these elements to communicate
+                        effectively in the digital realm.
+                      </p>
+                      <p>
+                        As you progress through the course, you&apos;ll ascend to higher levels of expertise, delving into the nuances
+                        of design principles that drive impactful creations. Uncover the secrets behind effective visual
+                        communication, exploring color theory, typography, and layout strategies that elevate your digital assets
+                        to new heights. Engage in hands-on exercises that reinforce your understanding, allowing you to apply
+                        these principles in practical scenarios.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Sneak Peek Section */}
+                  <div>
+                    <h2 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-3.5">
+                      Sneak Peek
+                    </h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                      {SNEAK_PEEK_IMAGES.map((imgUrl, i) => (
+                        <div
+                          key={i}
+                          className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-shadow group bg-neutral-100 border border-neutral-100"
+                        >
+                          <Image
+                            src={imgUrl}
+                            alt={`Sneak peek ${i + 1}`}
+                            fill
+                            sizes="(max-width: 640px) 50vw, 25vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Key Points Section */}
+                  <div>
+                    <h2 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-3.5">
+                      Key Points
+                    </h2>
+                    <div className="space-y-2.5">
+                      {KEY_POINTS.map((point, i) => (
+                        <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-700">
+                          <CheckCircle2 className="w-4 h-4 text-[#003be2] fill-[#003be2] text-white shrink-0" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: LESSONS CURRICULUM */}
+              {activeTab === "lessons" && (
+                <div className="space-y-4">
+                  <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
+                    Curriculum (112 Lessons)
+                  </h2>
+                  <div className="space-y-3">
+                    {SAMPLE_LESSONS.map((lesson) => (
+                      <div
+                        key={lesson.num}
+                        className="p-4 rounded-2xl border border-neutral-200 hover:border-neutral-300 transition-colors flex items-center justify-between bg-white"
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span className="font-mono text-xs font-bold text-neutral-400">
+                            {lesson.num}
+                          </span>
+                          <span className="font-medium text-sm text-neutral-900">
+                            {lesson.title}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs font-semibold text-[#003be2]">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>{lesson.duration}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 3: REVIEWS */}
+              {activeTab === "reviews" && (
+                <div className="space-y-4">
+                  <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
+                    Student Reviews (4.8 ★)
+                  </h2>
+                  <div className="space-y-4">
+                    {[
+                      {
+                        name: "Courtney Henry",
+                        rating: 5,
+                        text: "This course provided crystal clear guidance on constructing production-ready assets with scalable architectures. Highly recommended!",
+                      },
+                      {
+                        name: "Darrell Steward",
+                        rating: 5,
+                        text: "Exceptional instructor and pristine exercises. The design principles modules immediately impacted my day-to-day workflow.",
+                      },
+                    ].map((rev, i) => (
+                      <div key={i} className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100 space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-sm text-neutral-900">{rev.name}</span>
+                          <span className="text-xs font-bold text-amber-500">★★★★★</span>
+                        </div>
+                        <p className="text-xs text-neutral-600 leading-relaxed">{rev.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Curriculum Syllabus */}
-            <div className="bg-white p-8 rounded-2xl border border-neutral-200 shadow-xs">
-              <h2 className="font-heading text-heading-xs font-semibold text-neutral-900 mb-6">
-                Course Curriculum
-              </h2>
-              <div className="space-y-3">
-                {SYLLABUS.map((mod, i) => (
-                  <div
-                    key={i}
-                    className="p-4 rounded-xl border border-neutral-200 bg-neutral-50/50 flex items-center justify-between hover:bg-neutral-50 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <PlayCircle className="w-5 h-5 text-primary-600" />
-                      <span className="font-heading text-label-s font-semibold text-neutral-900">
-                        {mod.title}
+            {/* =================================================================== */}
+            {/* Right Column: Sticky Sidebar Enrollment & Course Summary Card       */}
+            {/* =================================================================== */}
+            <div className="lg:col-span-5 xl:col-span-4 lg:-mt-64 relative z-20">
+              <div className="bg-white rounded-[32px] p-6 sm:p-7 shadow-2xl border border-neutral-100 flex flex-col justify-between">
+                {/* Header */}
+                <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-4">
+                  112 Lessons (24 hours)
+                </h3>
+
+                {/* Lessons Sample List */}
+                <div className="space-y-3 pb-4 border-b border-neutral-100">
+                  {SAMPLE_LESSONS.slice(0, 3).map((lesson) => (
+                    <div key={lesson.num} className="flex items-center justify-between text-xs sm:text-[13px] gap-2">
+                      <span className="text-neutral-800 line-clamp-1">
+                        <strong className="font-mono text-neutral-400 mr-2">{lesson.num}</strong>
+                        {lesson.title}
+                      </span>
+                      <span className="font-semibold text-[#003be2] shrink-0">
+                        {lesson.duration}
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-body-xs text-neutral-500">
-                      <span>{mod.lessons} lessons</span>
-                      <span>{mod.duration}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Sticky Card */}
-          <div className="lg:col-span-4">
-            <div className="bg-white rounded-2xl border border-neutral-200 shadow-xl overflow-hidden sticky top-28">
-              <div className="relative aspect-16/9 w-full bg-neutral-100">
-                <Image
-                  src={course.thumbnail}
-                  alt={course.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-heading-s font-bold text-neutral-900">
-                    ${course.price.toFixed(2)}
-                  </span>
-                  {course.originalPrice > course.price && (
-                    <span className="text-body-m text-neutral-400 line-through">
-                      ${course.originalPrice.toFixed(2)}
-                    </span>
-                  )}
-                  <Badge variant="hot" size="sm">
-                    {Math.round((1 - course.price / course.originalPrice) * 100)}% OFF
-                  </Badge>
+                  ))}
+                  <p className="text-[11px] text-neutral-400 font-medium pt-1">
+                    99 more videos
+                  </p>
                 </div>
 
-                <Button variant="secondary" size="lg" className="w-full mb-3">
-                  Enroll Now
-                </Button>
-                <Button variant="outline" size="md" className="w-full">
-                  Add to Wishlist
-                </Button>
+                {/* Callout Text */}
+                <p className="text-xs text-neutral-500 mt-4 leading-relaxed">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
 
-                <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-body-xs text-neutral-600">
-                  <p className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" /> 30-Day Money-Back Guarantee
+                {/* Price Display */}
+                <div className="mt-4 mb-4 flex items-baseline gap-1">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-[#003be2] tracking-tight">
+                    ${Math.round(course.price || 25)}
+                  </span>
+                  <span className="text-xs text-neutral-400 font-normal">/lifetime</span>
+                </div>
+
+                {/* Enroll Now Button */}
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="button"
+                  onClick={() => alert(`Enrolled in ${course.title} for $${Math.round(course.price || 25)}`)}
+                  className="bg-[#CEF001] hover:bg-[#bde200] text-neutral-950 font-bold py-3.5 rounded-full text-sm sm:text-base w-full text-center shadow-md cursor-pointer transition-colors"
+                >
+                  Enroll Now
+                </motion.button>
+
+                {/* "This course include" Checklist */}
+                <div className="mt-6 pt-5 border-t border-neutral-100">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 mb-3">
+                    This course include
+                  </h4>
+                  <div className="space-y-2.5 text-xs text-neutral-600">
+                    <div className="flex items-center gap-2.5">
+                      <FileText className="w-4 h-4 text-[#003be2]" />
+                      <span>Learning Resources</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Video className="w-4 h-4 text-[#003be2]" />
+                      <span>Quality Lesson Videos</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Award className="w-4 h-4 text-[#003be2]" />
+                      <span>Certificate of Completion</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <MessageSquare className="w-4 h-4 text-[#003be2]" />
+                      <span>Private Consultation</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Creator Profile Box */}
+                <div className="mt-6 pt-5 border-t border-neutral-100">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-200 shrink-0">
+                      <Image
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80"
+                        alt="PurePearl Studio"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h5 className="font-heading text-xs sm:text-sm font-bold text-neutral-900">
+                        PurePearl Studio
+                      </h5>
+                      <p className="text-[11px] text-neutral-400">Professional Creator</p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-neutral-500 mt-3 leading-relaxed">
+                    Ready to Dive In? Enroll Now and Start Building Your Digital Future!
                   </p>
-                  <p className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-primary-600" /> Full Lifetime Access
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary-600" /> Certificate of Completion
-                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => alert("Viewing Creator Profile")}
+                    className="mt-3.5 inline-block border border-neutral-200 hover:border-neutral-300 rounded-full px-5 py-2 text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors cursor-pointer"
+                  >
+                    See Full Profile
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Video Preview Modal */}
+      <AnimatePresence>
+        {isPlayingVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          >
+            <div className="relative w-full max-w-4xl bg-neutral-950 rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-video flex items-center justify-center">
+              <button
+                type="button"
+                onClick={() => setIsPlayingVideo(false)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer"
+              >
+                ✕
+              </button>
+              <div className="text-center p-6 text-white space-y-3">
+                <Play className="w-16 h-16 mx-auto text-[#CEF001]" />
+                <h3 className="text-xl font-bold">{course.title}</h3>
+                <p className="text-sm text-neutral-400">Preview Video Demo</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
