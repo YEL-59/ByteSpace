@@ -2,12 +2,12 @@
 
 import { redirect } from "next/navigation";
 
-export async function loginAction(formData: FormData) {
+export async function loginAction(formData: FormData): Promise<void> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
   if (!email || !password) {
-    return { error: "Please provide both email and password." };
+    return;
   }
 
   // Authentication logic (e.g. NextAuth, database session)
@@ -16,13 +16,13 @@ export async function loginAction(formData: FormData) {
   redirect("/");
 }
 
-export async function registerAction(formData: FormData) {
+export async function registerAction(formData: FormData): Promise<void> {
   const fullName = formData.get("fullName") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
   if (!fullName || !email || !password) {
-    return { error: "Please complete all registration fields." };
+    return;
   }
 
   // User creation logic (e.g. database insertion, verification email)
