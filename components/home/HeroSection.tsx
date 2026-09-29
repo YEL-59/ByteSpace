@@ -49,7 +49,7 @@ export default function HeroSection() {
       </div>
 
       {/* 4. Cylinder Lime / Grey (Top-Right - Peeking over right edge) */}
-      <div className="absolute -right-6 sm:-right-8 lg:-right-12 top-[16%] sm:top-[18%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
+      <div className="absolute -right-6 sm:-right-8 lg:-right-25 top-[16%] sm:top-[18%] w-36 sm:w-50 md:w-64 lg:w-76 xl:w-88 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/cylinder-lime.svg"
           alt="Lime 3D Cylinder"
