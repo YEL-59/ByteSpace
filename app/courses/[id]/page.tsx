@@ -180,7 +180,7 @@ export default function CourseDetailPage() {
               <div className="flex items-center gap-2.5">
                 {[
                   { id: "about", label: "About" },
-                  { id: "lessons", label: "Lessons" },
+                  { id: "lessons", label: "Lesson" },
                   { id: "reviews", label: "Reviews" },
                 ].map((tab) => {
                   const isActive = activeTab === tab.id;
@@ -273,32 +273,105 @@ export default function CourseDetailPage() {
                 </div>
               )}
 
-              {/* Tab 2: LESSONS CURRICULUM */}
+              {/* Tab 2: LESSON TAB CONTENT */}
               {activeTab === "lessons" && (
-                <div className="space-y-4">
-                  <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
-                    Curriculum (112 Lessons)
-                  </h2>
-                  <div className="space-y-3">
-                    {SAMPLE_LESSONS.map((lesson) => (
-                      <div
-                        key={lesson.num}
-                        className="p-4 rounded-2xl border border-neutral-200 hover:border-neutral-300 transition-colors flex items-center justify-between bg-white"
-                      >
-                        <div className="flex items-center gap-3.5">
-                          <span className="font-mono text-xs font-bold text-neutral-400">
-                            {lesson.num}
-                          </span>
-                          <span className="font-medium text-sm text-neutral-900">
-                            {lesson.title}
-                          </span>
+                <div className="space-y-8 animate-fadeIn">
+                  {/* Explore the Modules Header */}
+                  <div>
+                    <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
+                      Explore the Modules
+                    </h2>
+                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-2xl">
+                      Immerse yourself in the course content as we break down each module into comprehensive lessons, providing practical insights and hands-on experiences.
+                    </p>
+                  </div>
+
+                  {/* Lesson List */}
+                  <div>
+                    <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-5">
+                      Lesson List
+                    </h3>
+
+                    <div className="space-y-5">
+                      {[
+                        {
+                          module: "Module 1: Introduction to Digital Assets",
+                          desc: "Lay the groundwork with lessons like 'Understanding Digital Elements' and 'Navigating Design Software Tools.' Dive into the essentials of digital asset creation.",
+                        },
+                        {
+                          module: "Module 2: Design Principles for Impact",
+                          desc: "Master the principles that drive impactful designs with lessons such as 'Color Theory in Digital Design' and 'Typography Essentials.' Elevate your visual communication skills.",
+                        },
+                        {
+                          module: "Module 4: User-Centric Design Strategies",
+                          desc: "Understand 'Design Thinking in Digital Creation' and delve into 'User Experience (UX) Essentials.' Craft digital assets with a focus on user-centric design.",
+                        },
+                        {
+                          module: "Module 5: Interactive Media and Engagement",
+                          desc: "Engage your audience with lessons like 'Creating Interactive Presentations' and 'Integrating Multimedia Elements.' Master the art of creating immersive digital experiences.",
+                        },
+                        {
+                          module: "Module 6: Project Showcase and Critique",
+                          desc: "Perfect your presentation skills with 'Effective Presentation Techniques' and embrace collaboration with 'Peer Critique and Collaboration.' Showcase your work with confidence.",
+                        },
+                        {
+                          module: "Module 7: Optimizing Digital Assets for Various Platforms",
+                          desc: "Adapt your digital creations for 'Mobile Platforms' and optimize for 'Social Media.' Ensure widespread accessibility and engagement across diverse digital landscapes.",
+                        },
+                      ].map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-3.5 sm:gap-4 group">
+                          {/* Lime Camcorder Icon Box */}
+                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#CEF001] flex items-center justify-center shrink-0 text-neutral-950 shadow-xs transition-transform group-hover:scale-105">
+                            <Video className="w-5 h-5 fill-neutral-950 text-neutral-950" />
+                          </div>
+
+                          <div className="flex-1">
+                            <h4 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
+                              {item.module}
+                            </h4>
+                            <p className="text-xs text-neutral-500 leading-relaxed mt-1">
+                              {item.desc}
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 text-xs font-semibold text-[#003be2]">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>{lesson.duration}</span>
-                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Lesson Content Section */}
+                  <div>
+                    <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-2">
+                      Lesson Content
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-2xl">
+                      Engage with each lesson through captivating video content, detailed textual explanations, and interactive elements. Download resources, complete assignments, and test your understanding with quizzes.
+                    </p>
+                  </div>
+
+                  {/* Lesson Progress Tracking */}
+                  <div>
+                    <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-2">
+                      Lesson Progress Tracking
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-2xl mb-4">
+                      Witness your growth as you complete lessons, with an intuitive progress tracking feature guiding you through your learning journey.
+                    </p>
+
+                    {/* Progress Card (55%) */}
+                    <div className="border border-neutral-200 rounded-2xl p-5 sm:p-6 bg-white shadow-xs max-w-xl">
+                      <p className="text-xs font-semibold text-neutral-600">
+                        Learning Progress
+                      </p>
+                      <p className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-1 mb-3">
+                        55%
+                      </p>
+                      <div className="w-full bg-neutral-100 rounded-full h-2.5 overflow-hidden">
+                        <div
+                          className="bg-[#CEF001] h-full rounded-full transition-all duration-500"
+                          style={{ width: "55%" }}
+                        />
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               )}
