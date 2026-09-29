@@ -137,12 +137,12 @@ export default function CreatorProfilePage() {
           {/* Creator Profile Header */}
           <div className="flex items-start gap-4 sm:gap-5">
             {/* Creator Photo Avatar */}
-            <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-lg shrink-0 border border-white/20 bg-neutral-200">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-xl shrink-0 border-2 border-white/30 bg-neutral-200">
               <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
-                alt="PurePearl Studio"
+                src="/myphoto.png"
+                alt="Tofayel"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
               />
             </div>
@@ -150,26 +150,26 @@ export default function CreatorProfilePage() {
             {/* Creator Name, Badge & Title */}
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  PurePearl Studio
+                <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                  Tofayel
                 </h1>
                 <span className="bg-[#CEF001] text-neutral-950 font-bold px-3 py-0.5 rounded-full text-xs shadow-xs">
                   Creator
                 </span>
               </div>
-              <p className="text-white/85 text-xs sm:text-sm mt-1 font-normal">
-                Passionate UI/UX, Web designer
+              <p className="text-[#CEF001] text-xs sm:text-sm mt-1 font-semibold">
+                Full-Stack Developer & UI/UX Designer
               </p>
             </div>
           </div>
 
           {/* Creator Bio Paragraphs */}
-          <div className="mt-5 sm:mt-6 text-xs sm:text-sm text-white/90 leading-relaxed max-w-3xl space-y-2.5 font-normal">
+          <div className="mt-5 sm:mt-6 text-xs sm:text-sm text-white/95 leading-relaxed max-w-3xl space-y-2.5 font-normal">
             <p>
-              Welcome to the creative world of PurePearl Studio. Here, you&apos;ll discover the passion, expertise, and inspiration that drive my creative journey. Let&apos;s explore and learn together!
+              Welcome to my creative space! I&apos;m Tofayel, a passionate Full-Stack Developer and UI/UX Designer dedicated to building modern, high-performance digital experiences and interactive applications. Here, you&apos;ll discover hands-on courses, comprehensive guides, and project-driven learning designed to elevate your craft.
             </p>
             <p>
-              Fall into my creative portfolio, showcasing a glimpse of my artistic endeavors. From digital designs to multimedia projects, each piece tells a unique story. Explore the world of creativity with me.
+              Explore my curated portfolio and courses—from foundational web development concepts to advanced architecture and interactive design. Let&apos;s build the future of the digital web together!
             </p>
           </div>
 
@@ -505,7 +505,7 @@ export default function CreatorProfilePage() {
           {/* Active Filter Chips Bar */}
           <div className="pt-4 flex items-center justify-between flex-wrap gap-2 text-xs text-neutral-500">
             <p>
-              Showing <strong className="text-neutral-900 font-semibold">{creatorCourses.length}</strong> courses by PurePearl Studio
+              Showing <strong className="text-neutral-900 font-semibold">{creatorCourses.length}</strong> courses by Tofayel
               {selectedCategory !== "All Categories" && (
                 <span> in <strong className="text-neutral-900">{selectedCategory}</strong></span>
               )}
