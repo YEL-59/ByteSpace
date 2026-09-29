@@ -33,6 +33,7 @@ export default function CourseDetailPage() {
   const [activeTab, setActiveTab] = useState<"about" | "lessons" | "reviews">("about");
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
+  const [selectedReviewRating, setSelectedReviewRating] = useState<number | null>(null);
 
   const handleShare = () => {
     if (typeof window !== "undefined") {
@@ -376,33 +377,193 @@ export default function CourseDetailPage() {
                 </div>
               )}
 
-              {/* Tab 3: REVIEWS */}
+              {/* Tab 3: REVIEWS TAB CONTENT */}
               {activeTab === "reviews" && (
-                <div className="space-y-4">
-                  <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
-                    Student Reviews (4.8 ★)
-                  </h2>
+                <div className="space-y-8 animate-fadeIn">
+                  {/* Header */}
+                  <div>
+                    <h2 className="font-heading text-lg sm:text-xl font-bold text-neutral-900 mb-2">
+                      What Learners Are Saying
+                    </h2>
+                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-2xl">
+                      Discover what our learners have to say about their experience with &apos;Build Digital Assets: A Comprehensive Guide.&apos; Read reviews and ratings from individuals who have embarked on the transformative journey of mastering digital asset creation.
+                    </p>
+                  </div>
+
+                  {/* Ratings Summary Card */}
+                  <div className="border border-neutral-200 rounded-3xl p-6 sm:p-7 bg-white shadow-xs flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                    {/* Left Lime Block */}
+                    <div className="w-26 h-26 sm:w-28 sm:h-28 rounded-2xl bg-[#CEF001] flex flex-col items-center justify-center shrink-0 text-neutral-950 shadow-xs">
+                      <span className="text-xs font-semibold text-neutral-800">
+                        Ratings
+                      </span>
+                      <span className="text-3xl sm:text-4xl font-black text-neutral-950 mt-0.5">
+                        4.7
+                      </span>
+                    </div>
+
+                    {/* Right Star Breakdown Bars */}
+                    <div className="flex-1 w-full space-y-2">
+                      {[
+                        { stars: 5, percent: "82%", count: 720 },
+                        { stars: 4, percent: "35%", count: 120 },
+                        { stars: 3, percent: "12%", count: 21 },
+                        { stars: 2, percent: "5%", count: 12 },
+                        { stars: 1, percent: "6%", count: 16 },
+                      ].map((row) => (
+                        <div key={row.stars} className="flex items-center gap-3 text-xs">
+                          {/* Progress bar */}
+                          <div className="flex-1 bg-neutral-100 rounded-full h-2 overflow-hidden">
+                            <div
+                              className="bg-[#CEF001] h-full rounded-full"
+                              style={{ width: row.percent }}
+                            />
+                          </div>
+
+                          {/* 5 black stars */}
+                          <div className="flex items-center gap-0.5 text-neutral-900 shrink-0">
+                            {Array.from({ length: 5 }).map((_, s) => (
+                              <Star
+                                key={s}
+                                className={`w-3.5 h-3.5 ${
+                                  s < row.stars
+                                    ? "fill-neutral-900 text-neutral-900"
+                                    : "fill-neutral-200 text-neutral-200"
+                                }`}
+                              />
+                            ))}
+                          </div>
+
+                          {/* Review count */}
+                          <span className="font-mono text-neutral-600 text-right w-8 shrink-0">
+                            {row.count}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Individual Reviews Filter Chips */}
+                  <div className="space-y-4 pt-2">
+                    <h3 className="font-heading text-sm sm:text-base font-bold text-neutral-900">
+                      Individual Reviews:
+                    </h3>
+
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {[
+                        { id: null, label: "All rating" },
+                        { id: 5, label: "★ 5" },
+                        { id: 4, label: "★ 4" },
+                        { id: 3, label: "★ 3" },
+                        { id: 2, label: "★ 2" },
+                        { id: 1, label: "★ 1" },
+                      ].map((filter) => {
+                        const isSelected = selectedReviewRating === filter.id;
+                        return (
+                          <button
+                            key={filter.label}
+                            type="button"
+                            onClick={() => setSelectedReviewRating(filter.id)}
+                            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                              isSelected
+                                ? "bg-[#CEF001] text-neutral-950 shadow-xs"
+                                : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
+                            }`}
+                          >
+                            {filter.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Reviews Cards List */}
                   <div className="space-y-4">
                     {[
                       {
-                        name: "Courtney Henry",
+                        name: "PurePearl Studio",
+                        role: "UI/UX Designer",
+                        time: "a year ago",
                         rating: 5,
-                        text: "This course provided crystal clear guidance on constructing production-ready assets with scalable architectures. Highly recommended!",
+                        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+                        text: "“This course provided me with a comprehensive understanding of digital asset creation. The lessons were in-depth, practical, and immediately applicable to my work. Highly recommended!”",
                       },
                       {
-                        name: "Darrell Steward",
+                        name: "Albert Flores",
+                        role: "UI/UX Designer",
+                        time: "a year ago",
                         rating: 5,
-                        text: "Exceptional instructor and pristine exercises. The design principles modules immediately impacted my day-to-day workflow.",
+                        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80",
+                        text: "This course transformed my approach to digital design. The combination of theory, hands-on exercises, and real-world applications made it a truly enriching experience. Excited to implement what I’ve learned!",
                       },
-                    ].map((rev, i) => (
-                      <div key={i} className="p-4 rounded-2xl bg-neutral-50 border border-neutral-100 space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-sm text-neutral-900">{rev.name}</span>
-                          <span className="text-xs font-bold text-amber-500">★★★★★</span>
+                      {
+                        name: "Cody Fisher",
+                        role: "UI/UX Designer",
+                        time: "a year ago",
+                        rating: 5,
+                        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80",
+                        text: "The project showcase and critique module created a collaborative environment where I could showcase my work, receive valuable feedback, and refine my skills. It added a unique and valuable dimension to the learning process.",
+                      },
+                      {
+                        name: "Brooklyn Simmons",
+                        role: "UI/UX Designer",
+                        time: "a year ago",
+                        rating: 5,
+                        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80",
+                        text: "The lessons on optimizing digital assets for various platforms were particularly insightful. The course adapts to the evolving digital landscape, and the engaging content kept me motivated throughout.",
+                      },
+                    ]
+                      .filter(
+                        (rev) =>
+                          selectedReviewRating === null ||
+                          rev.rating === selectedReviewRating
+                      )
+                      .map((rev, idx) => (
+                        <div
+                          key={idx}
+                          className="border border-neutral-200 rounded-3xl p-6 sm:p-7 bg-white shadow-xs space-y-3.5"
+                        >
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-neutral-200 shrink-0">
+                                <Image
+                                  src={rev.avatar}
+                                  alt={rev.name}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                              <div>
+                                <h4 className="font-heading text-xs sm:text-sm font-bold text-neutral-900">
+                                  {rev.name}
+                                </h4>
+                                <p className="text-[11px] text-neutral-500">
+                                  {rev.role}
+                                </p>
+                              </div>
+                            </div>
+
+                            <span className="text-[11px] text-neutral-400 font-normal">
+                              {rev.time}
+                            </span>
+                          </div>
+
+                          {/* 5 black stars */}
+                          <div className="flex items-center gap-0.5 text-neutral-900">
+                            {Array.from({ length: 5 }).map((_, s) => (
+                              <Star
+                                key={s}
+                                className="w-3.5 h-3.5 fill-neutral-900 text-neutral-900"
+                              />
+                            ))}
+                          </div>
+
+                          {/* Review Body */}
+                          <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                            {rev.text}
+                          </p>
                         </div>
-                        <p className="text-xs text-neutral-600 leading-relaxed">{rev.text}</p>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               )}
