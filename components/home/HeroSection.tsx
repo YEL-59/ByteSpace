@@ -13,7 +13,7 @@ const STUDENT_AVATARS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-[720px] sm:min-h-[800px] lg:min-h-[880px] xl:h-[940px] flex flex-col items-center bg-[#003be2] hero-grid-bg text-white overflow-hidden select-none">
+    <section className="relative w-full h-[880px] sm:h-[920px] lg:h-[960px] flex flex-col items-center bg-[#003be2] hero-grid-bg text-white overflow-hidden select-none">
       {/* ========================================================= */}
       {/* LAYER 1: 3D Floating SVGs anchored to edges               */}
       {/* ========================================================= */}
@@ -59,7 +59,7 @@ export default function HeroSection() {
       </div>
 
       {/* 5. Spiral White 2 (Bottom-Right) */}
-      <div className="absolute -right-6 sm:-right-8 lg:-right-12 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 xl:w-80 aspect-square pointer-events-none animate-float-slow z-10">
+      <div className="absolute -right-6 sm:-right-8 lg:-right-12 bottom-0 w-32 sm:w-46 md:w-58 lg:w-70 aspect-square pointer-events-none animate-float-slow z-10">
         <Image
           src="/svgs/spiral-white-2.svg"
           alt="White 3D Coil"
@@ -71,14 +71,14 @@ export default function HeroSection() {
       {/* ========================================================= */}
       {/* LAYER 2: Foreground Headline, Subtitle & Search Bar       */}
       {/* ========================================================= */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 sm:pt-28 md:pt-32 lg:pt-36 max-w-4xl mx-auto w-full">
+      <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 sm:pt-26 md:pt-28 lg:pt-32 max-w-4xl mx-auto w-full">
         {/* Main Hero Headline */}
-        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[62px] font-bold text-white tracking-tight leading-[1.14] drop-shadow-sm">
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[60px] font-bold text-white tracking-tight leading-[1.14] drop-shadow-sm">
           Get Access to Hundreds<br />Courses Available
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-3.5 sm:mt-4 text-sm sm:text-base lg:text-[17px] text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2">
+        <p className="mt-3 sm:mt-3.5 text-sm sm:text-base lg:text-[17px] text-white/90 max-w-xl mx-auto font-normal leading-relaxed drop-shadow-xs px-2">
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
         </p>
 
@@ -86,7 +86,7 @@ export default function HeroSection() {
         <form
           action="/courses"
           method="GET"
-          className="mt-6 sm:mt-7 w-full max-w-[340px] sm:max-w-md md:max-w-lg mx-auto"
+          className="mt-5 sm:mt-6 w-full max-w-[340px] sm:max-w-md md:max-w-lg mx-auto"
         >
           <div className="flex items-center bg-white rounded-full pl-4 pr-1.5 py-1.5 shadow-2xl transition-all hover:shadow-primary-950/20 focus-within:ring-2 focus-within:ring-[#CEF001]">
             <Search className="w-4 h-4 sm:w-5 h-5 text-neutral-400 shrink-0 mr-2.5" />
@@ -110,10 +110,10 @@ export default function HeroSection() {
       {/* LAYER 3: Bottom Visual Assembly (bottomcircle.svg + person.svg + cards)  */}
       {/* Pinned to bottom-0 of the coded royal blue grid background               */}
       {/* ========================================================================= */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1149px] h-[360px] sm:h-[420px] md:h-[460px] lg:h-[500px] flex items-end justify-center pointer-events-none z-20">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1149px] h-[420px] sm:h-[460px] lg:h-[500px] flex items-end justify-center pointer-events-none z-20">
         
         {/* 1. Vector Lime Arc (bottomcircle.svg) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1149px] pointer-events-none z-10">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] sm:max-w-[1000px] lg:max-w-[1080px] pointer-events-none z-10">
           <Image
             src="/svgs/bottomcircle.svg"
             alt="ByteSpace Lime Arc"
@@ -125,7 +125,7 @@ export default function HeroSection() {
         </div>
 
         {/* 2. White 3D Donut (Overlapping bottom-left arc of the circle) */}
-        <div className="absolute left-[0%] sm:left-[2%] lg:left-[4%] bottom-0 w-32 sm:w-46 md:w-58 lg:w-72 aspect-square pointer-events-none animate-float-slow z-15">
+        <div className="absolute left-[3%] sm:left-[6%] lg:left-[8%] bottom-1 sm:bottom-2 w-28 sm:w-38 md:w-50 lg:w-62 aspect-square pointer-events-none animate-float-slow z-15">
           <Image
             src="/svgs/donut-white.svg"
             alt="White 3D Donut"
@@ -135,19 +135,19 @@ export default function HeroSection() {
         </div>
 
         {/* 3. Middle Overlay Person with Laptop & Headphones (person.svg) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] max-w-[500px] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[660px] pointer-events-none z-20">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] max-w-[440px] sm:max-w-[500px] lg:max-w-[550px] pointer-events-none z-20">
           <Image
             src="/svgs/person.svg"
             alt="ByteSpace Student"
             width={722}
-            height={689}
+            height={544}
             className="w-full h-auto object-bottom"
             priority
           />
         </div>
 
-        {/* 4. Card 1: UI/UX Design (Left of student) */}
-        <div className="absolute left-[4%] sm:left-[8%] md:left-[12%] lg:left-[16%] top-[10%] sm:top-[14%] lg:top-[18%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
+        {/* 4. Card 1: UI/UX Design (Left of student's shoulder) */}
+        <div className="absolute left-[6%] sm:left-[11%] lg:left-[16%] top-[18%] sm:top-[22%] lg:top-[26%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2 sm:px-4 sm:py-2.5 border border-white/90 hover:scale-105 transition-transform cursor-pointer pointer-events-auto">
           <h3 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
             UI/UX Design
           </h3>
@@ -156,8 +156,8 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* 5. Card 2: Learning Progress 55% (Right of student) */}
-        <div className="absolute right-[4%] sm:right-[8%] md:right-[12%] lg:right-[16%] top-[14%] sm:top-[18%] lg:top-[22%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform pointer-events-auto">
+        {/* 5. Card 2: Learning Progress 55% (Right of student's headphone) */}
+        <div className="absolute right-[6%] sm:right-[11%] lg:right-[16%] top-[22%] sm:top-[26%] lg:top-[30%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3.5 py-2.5 sm:px-5 sm:py-3.5 border border-white/90 min-w-[125px] sm:min-w-[165px] md:min-w-[190px] hover:scale-105 transition-transform pointer-events-auto">
           <p className="text-[9px] sm:text-xs text-neutral-500 font-medium">
             Learning Progress
           </p>
@@ -170,7 +170,7 @@ export default function HeroSection() {
         </div>
 
         {/* 6. Card 3: Happy Students (Bottom-Left over lime arc & donut) */}
-        <div className="absolute left-[2%] sm:left-[5%] md:left-[8%] lg:left-[11%] bottom-[8%] sm:bottom-[12%] lg:bottom-[15%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto max-w-[250px]">
+        <div className="absolute left-[3%] sm:left-[6%] lg:left-[10%] bottom-[8%] sm:bottom-[11%] lg:bottom-[14%] z-30 bg-white text-neutral-900 rounded-xl sm:rounded-2xl shadow-xl shadow-blue-950/20 px-3 py-2 sm:px-4 sm:py-3 border border-white/90 hover:scale-105 transition-transform pointer-events-auto max-w-[250px]">
           <div>
             <p className="font-heading text-[11px] sm:text-sm font-bold text-neutral-900 leading-none">
               Happy Students
