@@ -5,6 +5,144 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const RAIN_LEFT_ITEMS = [
+  {
+    id: "l1",
+    src: "/svgs/spine-lime.svg",
+    alt: "Lime Spring",
+    left: "2%",
+    size: "w-22 sm:w-28 md:w-34 lg:w-40",
+    duration: 11,
+    delay: 0,
+    rotateDelta: 160,
+    sway: [0, 12, -8, 0],
+  },
+  {
+    id: "l2",
+    src: "/svgs/spine-white.svg",
+    alt: "White Spring",
+    left: "14%",
+    size: "w-14 sm:w-18 md:w-22 lg:w-26",
+    duration: 9.5,
+    delay: 3,
+    rotateDelta: -180,
+    sway: [0, -10, 10, 0],
+  },
+  {
+    id: "l3",
+    src: "/svgs/circle-lime.svg",
+    alt: "Lime Donut",
+    left: "7%",
+    size: "w-24 sm:w-30 md:w-36 lg:w-44",
+    duration: 13,
+    delay: 5.8,
+    rotateDelta: 200,
+    sway: [0, 14, -14, 0],
+  },
+  {
+    id: "l4",
+    src: "/svgs/pyramid-white.svg",
+    alt: "White Pyramid",
+    left: "18%",
+    size: "w-18 sm:w-22 md:w-26 lg:w-32",
+    duration: 10.5,
+    delay: 1.8,
+    rotateDelta: -140,
+    sway: [0, -12, 8, 0],
+  },
+  {
+    id: "l5",
+    src: "/svgs/spine-lime.svg",
+    alt: "Lime Spring",
+    left: "11%",
+    size: "w-20 sm:w-26 md:w-30 lg:w-36",
+    duration: 12,
+    delay: 8.2,
+    rotateDelta: 140,
+    sway: [0, 10, -12, 0],
+  },
+  {
+    id: "l6",
+    src: "/svgs/circle-lime.svg",
+    alt: "Lime Donut",
+    left: "16%",
+    size: "w-20 sm:w-26 md:w-32 lg:w-38",
+    duration: 14,
+    delay: 10.5,
+    rotateDelta: -160,
+    sway: [0, -8, 12, 0],
+  },
+];
+
+const RAIN_RIGHT_ITEMS = [
+  {
+    id: "r1",
+    src: "/svgs/cylinder-white.svg",
+    alt: "White Cylinder",
+    right: "3%",
+    size: "w-24 sm:w-30 md:w-36 lg:w-44",
+    duration: 12.5,
+    delay: 0.5,
+    rotateDelta: -150,
+    sway: [0, -12, 12, 0],
+  },
+  {
+    id: "r2",
+    src: "/svgs/piramid-ime.svg",
+    alt: "Lime Pyramid",
+    right: "15%",
+    size: "w-18 sm:w-22 md:w-28 lg:w-34",
+    duration: 10,
+    delay: 3.5,
+    rotateDelta: 180,
+    sway: [0, 10, -10, 0],
+  },
+  {
+    id: "r3",
+    src: "/svgs/spine-lime.svg",
+    alt: "Lime Spring",
+    right: "8%",
+    size: "w-22 sm:w-28 md:w-34 lg:w-40",
+    duration: 11.5,
+    delay: 6.8,
+    rotateDelta: 210,
+    sway: [0, -14, 10, 0],
+  },
+  {
+    id: "r4",
+    src: "/svgs/spine-white.svg",
+    alt: "White Spring",
+    right: "19%",
+    size: "w-14 sm:w-18 md:w-22 lg:w-26",
+    duration: 9,
+    delay: 2.2,
+    rotateDelta: -170,
+    sway: [0, 8, -12, 0],
+  },
+  {
+    id: "r5",
+    src: "/svgs/circle-lime.svg",
+    alt: "Lime Donut",
+    right: "6%",
+    size: "w-22 sm:w-28 md:w-34 lg:w-40",
+    duration: 13.5,
+    delay: 8.8,
+    rotateDelta: 180,
+    sway: [0, 12, -10, 0],
+  },
+  {
+    id: "r6",
+    src: "/svgs/cylinder-white.svg",
+    alt: "White Cylinder",
+    right: "14%",
+    size: "w-20 sm:w-26 md:w-30 lg:w-36",
+    duration: 11,
+    delay: 5.2,
+    rotateDelta: -130,
+    sway: [0, -10, 10, 0],
+  },
+];
+
 export default function CreatorCtaBanner() {
   return (
     <section
@@ -12,167 +150,73 @@ export default function CreatorCtaBanner() {
       id="creator-cta"
     >
       {/* ===================================================================== */}
-      {/* Floating 3D SVGs: Left Side Animated Group                           */}
+      {/* Left Side Raining 3D SVGs (falling smoothly from top to bottom)       */}
       {/* ===================================================================== */}
-
-      {/* 1. Lime Spiral Spring (Top-Left corner) */}
-      <motion.div
-        initial={{ x: -140, opacity: 0, scale: 0.7, rotate: -25 }}
-        whileInView={{ x: 0, opacity: 1, scale: 1, rotate: -8 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 18, stiffness: 80, delay: 0.1 }}
-        className="absolute -top-6 -left-6 sm:top-1 sm:left-2 md:top-3 md:left-6 lg:top-4 lg:left-8 w-24 sm:w-32 md:w-40 lg:w-48 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [-8, 8, -8], rotate: [-8, -3, -8] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/spine-lime.svg"
-            alt="Decorative Lime Spring"
-            width={190}
-            height={190}
-            className="w-full h-auto drop-shadow-xl"
-            priority
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 2. White Squiggle / Spring (Top-Left, closer to center) */}
-      <motion.div
-        initial={{ x: -120, opacity: 0, scale: 0.7, rotate: 10 }}
-        whileInView={{ x: 0, opacity: 1, scale: 1, rotate: 20 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.25 }}
-        className="absolute top-4 left-20 sm:top-8 sm:left-32 md:left-44 lg:left-56 w-14 sm:w-18 md:w-24 lg:w-28 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [6, -6, 6], rotate: [20, 25, 20] }}
-          transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/spine-white.svg"
-            alt="Decorative White Spring"
-            width={110}
-            height={110}
-            className="w-full h-auto drop-shadow-lg"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 3. White Pyramid (Bottom-Left corner) */}
-      <motion.div
-        initial={{ x: -120, y: 50, opacity: 0, scale: 0.7 }}
-        whileInView={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.18 }}
-        className="absolute -bottom-4 left-0 sm:bottom-0 sm:left-4 md:left-8 lg:left-12 w-20 sm:w-28 md:w-36 lg:w-40 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [5, -5, 5], rotate: [-2, 3, -2] }}
-          transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/pyramid-white.svg"
-            alt="Decorative White Pyramid"
-            width={160}
-            height={160}
-            className="w-full h-auto drop-shadow-xl"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 4. Lime Donut / Torus (Bottom-Left, closer to center) */}
-      <motion.div
-        initial={{ x: -130, y: 60, opacity: 0, scale: 0.7, rotate: -20 }}
-        whileInView={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 19, stiffness: 85, delay: 0.32 }}
-        className="absolute -bottom-10 left-16 sm:-bottom-8 sm:left-28 md:left-40 lg:left-52 w-28 sm:w-36 md:w-44 lg:w-52 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [-7, 7, -7], rotate: [0, -6, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/circle-lime.svg"
-            alt="Decorative Lime Donut"
-            width={200}
-            height={200}
-            className="w-full h-auto drop-shadow-2xl"
-          />
-        </motion.div>
-      </motion.div>
+      <div className="absolute inset-y-0 left-0 w-1/3 pointer-events-none z-10 overflow-hidden">
+        {RAIN_LEFT_ITEMS.map((item) => (
+          <motion.div
+            key={item.id}
+            className={`absolute pointer-events-none select-none ${item.size}`}
+            style={{ left: item.left, top: 0 }}
+            initial={{ y: -160, opacity: 0 }}
+            animate={{
+              y: [-160, 680],
+              opacity: [0, 1, 1, 0.8, 0],
+              x: item.sway,
+              rotate: [0, item.rotateDelta],
+            }}
+            transition={{
+              duration: item.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: item.delay,
+            }}
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={180}
+              height={180}
+              className="w-full h-auto drop-shadow-xl"
+              priority={item.delay === 0}
+            />
+          </motion.div>
+        ))}
+      </div>
 
       {/* ===================================================================== */}
-      {/* Floating 3D SVGs: Right Side Animated Group                          */}
+      {/* Right Side Raining 3D SVGs (falling smoothly from top to bottom)      */}
       {/* ===================================================================== */}
-
-      {/* 5. Lime Pyramid (Top-Right, closer to center) */}
-      <motion.div
-        initial={{ x: 120, opacity: 0, scale: 0.7, rotate: -15 }}
-        whileInView={{ x: 0, opacity: 1, scale: 1, rotate: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 18, stiffness: 85, delay: 0.2 }}
-        className="absolute top-2 right-20 sm:top-6 sm:right-32 md:right-48 lg:right-60 w-20 sm:w-28 md:w-36 lg:w-40 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [-6, 6, -6], rotate: [0, 4, 0] }}
-          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/piramid-ime.svg"
-            alt="Decorative Lime Pyramid"
-            width={160}
-            height={160}
-            className="w-full h-auto drop-shadow-xl"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 6. White 3D Cylinder (Top-Right corner) */}
-      <motion.div
-        initial={{ x: 140, y: -40, opacity: 0, scale: 0.7, rotate: 20 }}
-        whileInView={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 20, stiffness: 90, delay: 0.12 }}
-        className="absolute -top-10 -right-6 sm:-top-8 sm:right-0 lg:top-0 lg:right-6 w-28 sm:w-36 md:w-48 lg:w-56 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [8, -8, 8], rotate: [0, -3, 0] }}
-          transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/cylinder-white.svg"
-            alt="Decorative White Cylinder"
-            width={220}
-            height={220}
-            className="w-full h-auto drop-shadow-2xl"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 7. Lime Spiral Spring (Bottom-Right corner) */}
-      <motion.div
-        initial={{ x: 130, y: 60, opacity: 0, scale: 0.7, rotate: 25 }}
-        whileInView={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 15 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 19, stiffness: 85, delay: 0.28 }}
-        className="absolute -bottom-8 -right-4 sm:-bottom-6 sm:right-4 lg:bottom-0 lg:right-8 w-24 sm:w-32 md:w-40 lg:w-48 z-10 pointer-events-none select-none"
-      >
-        <motion.div
-          animate={{ y: [-8, 8, -8], rotate: [15, 10, 15] }}
-          transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/svgs/spine-lime.svg"
-            alt="Decorative Lime Spring"
-            width={190}
-            height={190}
-            className="w-full h-auto drop-shadow-xl"
-          />
-        </motion.div>
-      </motion.div>
+      <div className="absolute inset-y-0 right-0 w-1/3 pointer-events-none z-10 overflow-hidden">
+        {RAIN_RIGHT_ITEMS.map((item) => (
+          <motion.div
+            key={item.id}
+            className={`absolute pointer-events-none select-none ${item.size}`}
+            style={{ right: item.right, top: 0 }}
+            initial={{ y: -160, opacity: 0 }}
+            animate={{
+              y: [-160, 680],
+              opacity: [0, 1, 1, 0.8, 0],
+              x: item.sway,
+              rotate: [0, item.rotateDelta],
+            }}
+            transition={{
+              duration: item.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: item.delay,
+            }}
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={180}
+              height={180}
+              className="w-full h-auto drop-shadow-xl"
+            />
+          </motion.div>
+        ))}
+      </div>
 
       {/* ===================================================================== */}
       {/* Central Content                                                       */}
