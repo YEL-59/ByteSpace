@@ -135,18 +135,19 @@ export default function CourseDetailPage() {
             </div>
           </div>
 
-          {/* Video Preview Card placed in Hero */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8">
+          {/* Video Preview Card & Right Sidebar Card placed side-by-side in Hero */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
+            {/* Left Column: Video Preview Card */}
+            <div className="lg:col-span-7 xl:col-span-8">
               <div className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-[28px] overflow-hidden shadow-2xl bg-neutral-900 border border-white/10 group">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/course_video_preview.png"
                   alt="Course Video Preview"
                   fill
                   className="object-cover group-hover:scale-102 transition-transform duration-500"
                   priority
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
 
                 {/* Center Glass Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -160,6 +161,114 @@ export default function CourseDetailPage() {
                   >
                     <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-neutral-900 text-neutral-900" />
                   </motion.button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Sticky Sidebar Enrollment & Course Summary Card */}
+            <div className="lg:col-span-5 xl:col-span-4 relative z-30 lg:-mb-[450px]">
+              <div className="bg-white rounded-[32px] p-6 sm:p-7 shadow-2xl border border-neutral-100 flex flex-col justify-between">
+                {/* Header */}
+                <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-4">
+                  112 Lessons (24 hours)
+                </h3>
+
+                {/* Lessons Sample List */}
+                <div className="space-y-3 pb-4 border-b border-neutral-100">
+                  {SAMPLE_LESSONS.slice(0, 3).map((lesson) => (
+                    <div key={lesson.num} className="flex items-center justify-between text-xs sm:text-[13px] gap-2">
+                      <span className="text-neutral-800 line-clamp-1">
+                        <strong className="font-mono text-neutral-400 mr-2">{lesson.num}</strong>
+                        {lesson.title}
+                      </span>
+                      <span className="font-semibold text-[#003be2] shrink-0">
+                        {lesson.duration}
+                      </span>
+                    </div>
+                  ))}
+                  <p className="text-[11px] text-neutral-400 font-medium pt-1">
+                    99 more videos
+                  </p>
+                </div>
+
+                {/* Callout Text */}
+                <p className="text-xs text-neutral-500 mt-4 leading-relaxed">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
+
+                {/* Price Display */}
+                <div className="mt-4 mb-4 flex items-baseline gap-1">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-[#003be2] tracking-tight">
+                    ${Math.round(course.price || 25)}
+                  </span>
+                  <span className="text-xs text-neutral-400 font-normal">/lifetime</span>
+                </div>
+
+                {/* Enroll Now Button */}
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="button"
+                  onClick={() => alert(`Enrolled in ${course.title} for $${Math.round(course.price || 25)}`)}
+                  className="bg-[#CEF001] hover:bg-[#bde200] text-neutral-950 font-bold py-3.5 rounded-full text-sm sm:text-base w-full text-center shadow-md cursor-pointer transition-colors"
+                >
+                  Enroll Now
+                </motion.button>
+
+                {/* "This course include" Checklist */}
+                <div className="mt-6 pt-5 border-t border-neutral-100">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 mb-3">
+                    This course include
+                  </h4>
+                  <div className="space-y-2.5 text-xs text-neutral-600">
+                    <div className="flex items-center gap-2.5">
+                      <FileText className="w-4 h-4 text-[#003be2]" />
+                      <span>Learning Resources</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Video className="w-4 h-4 text-[#003be2]" />
+                      <span>Quality Lesson Videos</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Award className="w-4 h-4 text-[#003be2]" />
+                      <span>Certificate of Completion</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <MessageSquare className="w-4 h-4 text-[#003be2]" />
+                      <span>Private Consultation</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Creator Profile Box */}
+                <div className="mt-6 pt-5 border-t border-neutral-100">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-200 shrink-0">
+                      <Image
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80"
+                        alt="PurePearl Studio"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h5 className="font-heading text-xs sm:text-sm font-bold text-neutral-900">
+                        PurePearl Studio
+                      </h5>
+                      <p className="text-[11px] text-neutral-400">Professional Creator</p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-neutral-500 mt-3 leading-relaxed">
+                    Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                  </p>
+
+                  <Link
+                    href="/profile"
+                    className="mt-3.5 inline-block border border-neutral-200 hover:border-neutral-300 rounded-full px-5 py-2 text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors cursor-pointer"
+                  >
+                    See Full Profile
+                  </Link>
                 </div>
               </div>
             </div>
@@ -570,114 +679,9 @@ export default function CourseDetailPage() {
             </div>
 
             {/* =================================================================== */}
-            {/* Right Column: Sticky Sidebar Enrollment & Course Summary Card       */}
+            {/* Right Column: Spacer on desktop matching the Hero Card width       */}
             {/* =================================================================== */}
-            <div className="lg:col-span-5 xl:col-span-4 lg:-mt-64 relative z-20">
-              <div className="bg-white rounded-[32px] p-6 sm:p-7 shadow-2xl border border-neutral-100 flex flex-col justify-between">
-                {/* Header */}
-                <h3 className="font-heading text-base sm:text-lg font-bold text-neutral-900 mb-4">
-                  112 Lessons (24 hours)
-                </h3>
-
-                {/* Lessons Sample List */}
-                <div className="space-y-3 pb-4 border-b border-neutral-100">
-                  {SAMPLE_LESSONS.slice(0, 3).map((lesson) => (
-                    <div key={lesson.num} className="flex items-center justify-between text-xs sm:text-[13px] gap-2">
-                      <span className="text-neutral-800 line-clamp-1">
-                        <strong className="font-mono text-neutral-400 mr-2">{lesson.num}</strong>
-                        {lesson.title}
-                      </span>
-                      <span className="font-semibold text-[#003be2] shrink-0">
-                        {lesson.duration}
-                      </span>
-                    </div>
-                  ))}
-                  <p className="text-[11px] text-neutral-400 font-medium pt-1">
-                    99 more videos
-                  </p>
-                </div>
-
-                {/* Callout Text */}
-                <p className="text-xs text-neutral-500 mt-4 leading-relaxed">
-                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
-                </p>
-
-                {/* Price Display */}
-                <div className="mt-4 mb-4 flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-[#003be2] tracking-tight">
-                    ${Math.round(course.price || 25)}
-                  </span>
-                  <span className="text-xs text-neutral-400 font-normal">/lifetime</span>
-                </div>
-
-                {/* Enroll Now Button */}
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  type="button"
-                  onClick={() => alert(`Enrolled in ${course.title} for $${Math.round(course.price || 25)}`)}
-                  className="bg-[#CEF001] hover:bg-[#bde200] text-neutral-950 font-bold py-3.5 rounded-full text-sm sm:text-base w-full text-center shadow-md cursor-pointer transition-colors"
-                >
-                  Enroll Now
-                </motion.button>
-
-                {/* "This course include" Checklist */}
-                <div className="mt-6 pt-5 border-t border-neutral-100">
-                  <h4 className="font-heading text-xs sm:text-sm font-bold text-neutral-900 mb-3">
-                    This course include
-                  </h4>
-                  <div className="space-y-2.5 text-xs text-neutral-600">
-                    <div className="flex items-center gap-2.5">
-                      <FileText className="w-4 h-4 text-[#003be2]" />
-                      <span>Learning Resources</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Video className="w-4 h-4 text-[#003be2]" />
-                      <span>Quality Lesson Videos</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Award className="w-4 h-4 text-[#003be2]" />
-                      <span>Certificate of Completion</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <MessageSquare className="w-4 h-4 text-[#003be2]" />
-                      <span>Private Consultation</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Creator Profile Box */}
-                <div className="mt-6 pt-5 border-t border-neutral-100">
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-200 shrink-0">
-                      <Image
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80"
-                        alt="PurePearl Studio"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h5 className="font-heading text-xs sm:text-sm font-bold text-neutral-900">
-                        PurePearl Studio
-                      </h5>
-                      <p className="text-[11px] text-neutral-400">Professional Creator</p>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-neutral-500 mt-3 leading-relaxed">
-                    Ready to Dive In? Enroll Now and Start Building Your Digital Future!
-                  </p>
-
-                  <Link
-                    href="/profile"
-                    className="mt-3.5 inline-block border border-neutral-200 hover:border-neutral-300 rounded-full px-5 py-2 text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors cursor-pointer"
-                  >
-                    See Full Profile
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <div className="lg:col-span-5 xl:col-span-4 hidden lg:block pointer-events-none" />
           </div>
         </div>
       </section>
