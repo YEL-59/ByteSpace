@@ -9,7 +9,7 @@ import { ShoppingBag, Menu, X } from "lucide-react";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
-  { label: "Creators", href: "/#creators" },
+  { label: "Creators", href: "/creators" },
 ];
 
 export default function Navbar() {
