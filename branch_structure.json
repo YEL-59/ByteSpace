@@ -1,0 +1,30 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "auth",
+    "feature/auth-and-catalog",
+    "feature/landing-page",
+    "feature/project-setup-and-tokens",
+    "features/course",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "auth": "main",
+    "feature/auth-and-catalog": "main",
+    "feature/landing-page": "main",
+    "feature/project-setup-and-tokens": "main",
+    "features/course": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "auth",
+    "feature/auth-and-catalog",
+    "feature/landing-page",
+    "feature/project-setup-and-tokens",
+    "features/course",
+    "origin"
+  ]
+}
