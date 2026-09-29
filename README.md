@@ -60,34 +60,33 @@ ByteSpace/
 ├── docs/
 │   └── PROJECT_SPEC.md             # Complete design tokens, mock data & requirement docs
 ├── public/                         # Static assets & icons
-├── src/
-│   ├── app/
-│   │   ├── (auth)/                 # Route group for authentication
-│   │   │   ├── login/page.tsx      # Split-screen Login (Bonus)
-│   │   │   └── register/page.tsx   # Split-screen Register (Bonus)
-│   │   ├── courses/
-│   │   │   ├── page.tsx            # Course Search & Catalog
-│   │   │   └── [id]/page.tsx       # Dynamic Course Details
-│   │   ├── not-found.tsx           # Custom 404 screen
-│   │   ├── layout.tsx              # Root Layout (Poppins font, Navbar, Footer)
-│   │   ├── page.tsx                # Complete Landing Page (10 sections)
-│   │   └── globals.css             # Tailwind v4 theme, tokens & typography utilities
-│   ├── components/
-│   │   ├── common/                 # Reusable UI primitives (Button, Badge, Container, SectionHeading)
-│   │   ├── layout/                 # Navbar, Footer
-│   │   └── home/                   # HeroSection, PartnerLogos, FeaturedCourses, CourseCard,
-│   │                               # CategoryGrid, GrowthSection, CreatorSection,
-│   │                               # CreatorCtaBanner, TestimonialsSection
-│   ├── data/                       # Modular mock JSON data (Frontend-only)
-│   │   ├── courses.json
-│   │   ├── categories.json
-│   │   ├── testimonials.json
-│   │   ├── partners.json
-│   │   └── stats.json
-│   ├── types/                      # TypeScript definitions (Course, Category, Testimonial, etc.)
-│   └── lib/                        # Utility functions (cn / clsx / tailwind-merge)
+├── app/
+│   ├── (auth)/                     # Route group for authentication
+│   │   ├── login/page.tsx          # Split-screen Login (Bonus)
+│   │   └── register/page.tsx       # Split-screen Register (Bonus)
+│   ├── courses/
+│   │   ├── page.tsx                # Course Search & Catalog
+│   │   └── [id]/page.tsx           # Dynamic Course Details
+│   ├── not-found.tsx               # Custom 404 screen
+│   ├── layout.tsx                  # Root Layout (Poppins font, Navbar, Footer)
+│   ├── page.tsx                    # Complete Landing Page (10 sections)
+│   └── globals.css                 # Tailwind v4 theme, tokens & typography utilities
+├── components/
+│   ├── common/                     # Reusable UI primitives (Button, Badge, Container, SectionHeading)
+│   ├── layout/                     # Navbar, Footer
+│   └── home/                       # HeroSection, PartnerLogos, FeaturedCourses, CourseCard,
+│                                   # CategoryGrid, GrowthSection, CreatorSection,
+│                                   # CreatorCtaBanner, TestimonialsSection
+├── data/                           # Modular mock JSON data (Frontend-only)
+│   ├── courses.json
+│   ├── categories.json
+│   ├── testimonials.json
+│   ├── partners.json
+│   └── stats.json
+├── types/                          # TypeScript definitions (Course, Category, Testimonial, etc.)
+├── lib/                            # Utility functions (cn / clsx / tailwind-merge)
 ├── next.config.ts
-├── tailwind.config.ts / globals.css
+├── postcss.config.mjs
 └── tsconfig.json
 ```
 
