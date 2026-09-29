@@ -669,13 +669,12 @@ export default function CourseDetailPage() {
                     Ready to Dive In? Enroll Now and Start Building Your Digital Future!
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={() => alert("Viewing Creator Profile")}
+                  <Link
+                    href="/profile"
                     className="mt-3.5 inline-block border border-neutral-200 hover:border-neutral-300 rounded-full px-5 py-2 text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors cursor-pointer"
                   >
                     See Full Profile
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
