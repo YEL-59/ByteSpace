@@ -74,7 +74,7 @@ export default function CourseDetailPage() {
       {/* ======================================================================= */}
       {/* SECTION 1: Blue Hero Section with Video & Course Overview               */}
       {/* ======================================================================= */}
-      <section className="bg-[#003be2] hero-grid-bg text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 relative overflow-hidden">
+      <section className="bg-[#003be2] hero-grid-bg text-white pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 relative z-20 overflow-visible">
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           {/* Top Breadcrumb & Share */}
           <div className="flex items-center justify-between gap-4 mb-4">
@@ -139,28 +139,48 @@ export default function CourseDetailPage() {
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
             {/* Left Column: Video Preview Card */}
             <div className="lg:col-span-7 xl:col-span-8">
-              <div className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-[28px] overflow-hidden shadow-2xl bg-neutral-900 border border-white/10 group">
+              <div
+                onClick={() => setIsPlayingVideo(true)}
+                className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-[28px] overflow-hidden shadow-2xl bg-neutral-900 border border-white/10 group cursor-pointer"
+              >
                 <Image
                   src="/images/course_video_preview.png"
                   alt="Course Video Preview"
                   fill
-                  className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  className="object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
                   priority
                 />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+                
+                {/* Ambient vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent group-hover:from-black/65 transition-colors" />
 
-                {/* Center Glass Play Button */}
+                {/* Center Glass Play Button with Glow */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.button
+                  <motion.div
                     whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.94 }}
-                    type="button"
-                    onClick={() => setIsPlayingVideo(true)}
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/75 backdrop-blur-md flex items-center justify-center text-neutral-900 shadow-2xl cursor-pointer hover:bg-white transition-all pl-1"
-                    aria-label="Play Course Video Preview"
+                    className="relative flex items-center justify-center"
                   >
-                    <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-neutral-900 text-neutral-900" />
-                  </motion.button>
+                    {/* Pulsing subtle ambient halo */}
+                    <div className="absolute -inset-3 rounded-full bg-white/20 blur-md group-hover:bg-[#CEF001]/30 transition-colors animate-pulse" />
+                    
+                    {/* Disc */}
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 backdrop-blur-md border border-white/60 flex items-center justify-center text-neutral-950 shadow-2xl transition-all group-hover:bg-white group-hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] pl-1">
+                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-neutral-950 text-neutral-950" />
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Bottom Video Overlays */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-xs font-medium shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#CEF001] animate-ping" />
+                    <span>Watch Preview (2 mins)</span>
+                  </div>
+
+                  <span className="px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/15 text-white/90 text-[11px] font-mono font-medium shadow-sm">
+                    1080p HD
+                  </span>
                 </div>
               </div>
             </div>
@@ -279,9 +299,9 @@ export default function CourseDetailPage() {
       {/* ======================================================================= */}
       {/* SECTION 2: Body Content (Left: Tabs & Info, Right: Sticky Sidebar Card) */}
       {/* ======================================================================= */}
-      <section className="py-10 sm:py-14 bg-white flex-1 relative">
+      <section className="py-10 sm:py-14 bg-white flex-1 relative z-10">
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
             {/* =================================================================== */}
             {/* Left Column: Tabs, Description, Sneak Peek, Key Points              */}
             {/* =================================================================== */}
