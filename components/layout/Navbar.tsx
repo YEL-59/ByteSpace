@@ -27,7 +27,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = isHome && !scrolled;
+  const isTransparent = !pathname?.startsWith("/courses") && !scrolled;
 
   return (
     <header
