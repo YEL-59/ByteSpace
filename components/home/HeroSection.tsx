@@ -184,22 +184,39 @@ export default function HeroSection() {
       {/* ========================================================================= */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1149px] h-[310px] xs:h-[340px] sm:h-[420px] md:h-[460px] lg:h-[500px] flex items-end justify-center pointer-events-none z-20 overflow-hidden sm:overflow-visible">
         
-        {/* 1. Vector Lime Arc (bottomcircle.svg - Appears by RISING from deep BOTTOM) */}
-        <motion.div
-          initial={{ opacity: 0, y: 380, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ type: "spring", damping: 22, stiffness: 65, delay: 0.2 }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[130%] xs:w-[115%] sm:w-full max-w-[620px] sm:max-w-[1000px] lg:max-w-[1080px] pointer-events-none z-10"
-        >
-          <Image
-            src="/svgs/bottomcircle.svg"
-            alt="ByteSpace Lime Arc"
-            width={1149}
-            height={442}
-            className="w-full h-auto object-bottom"
-            priority
-          />
-        </motion.div>
+        {/* 1. Vector Lime Arc SVG - Animated left-to-right from 0% to 100% */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[130%] xs:w-[115%] sm:w-full max-w-[620px] sm:max-w-[1000px] lg:max-w-[1080px] pointer-events-none z-10">
+          <svg
+            viewBox="0 0 1149 442"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-auto object-bottom block overflow-hidden"
+          >
+            {/* Background subtle guide track */}
+            <path
+              d="M 162.5 620 A 414.5 414.5 0 1 1 986.5 620"
+              stroke="#CBFC01"
+              strokeWidth="320"
+              strokeOpacity="0.14"
+              fill="none"
+            />
+            {/* Animated neon lime stroke drawing from left to right (0 to 100%) */}
+            <motion.path
+              d="M 162.5 620 A 414.5 414.5 0 1 1 986.5 620"
+              stroke="#CBFC01"
+              strokeWidth="320"
+              strokeLinecap="round"
+              fill="none"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{
+                duration: 3.2,
+                ease: "easeInOut",
+                delay: 0.2,
+              }}
+            />
+          </svg>
+        </div>
 
         {/* 2. White 3D Donut (Flies in from the LEFT side - Desktop/Tablet only) */}
         <motion.div
