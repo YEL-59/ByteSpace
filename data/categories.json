@@ -7,26 +7,26 @@
   {
     "id": "development",
     "name": "Development",
-    "icon": "/svgs/svg1.svg"
+    "icon": "/svgs/svg2.svg"
   },
   {
     "id": "it-software",
     "name": "IT & Software",
-    "icon": "/svgs/svg1.svg"
+    "icon": "/svgs/svg3.svg"
   },
   {
     "id": "business",
     "name": "Business",
-    "icon": "/svgs/svg1.svg"
+    "icon": "/svgs/svg4.svg"
   },
   {
     "id": "marketing",
     "name": "Marketing",
-    "icon": "/svgs/svg1.svg"
+    "icon": "/svgs/svg5.svg"
   },
   {
     "id": "photography",
     "name": "Photography",
-    "icon": "/svgs/svg1.svg"
+    "icon": "/svgs/svg6.svg"
   }
 ]
